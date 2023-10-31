@@ -27,8 +27,6 @@ const Feature = ({ type }) => {
     getRandomContent()
   },[type])
 
-  const baseUrl = process.env.BASE_URL;
-  console.log(baseUrl);
 
   return (
     <div className='feature'>
