@@ -1,0 +1,16 @@
+.subscriptions{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    h1{
+        font-size: 60px;
+        font-family: "Bebas Neue", sans-serif;
+        display: flex;
+    }
+    .subscriptionsCards{
+        display: flex;
+        gap: 10px;
+    }
+}

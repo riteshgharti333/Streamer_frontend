@@ -1,0 +1,65 @@
+.featureCards {
+  font-family: "Bebas Neue", sans-serif;
+  position: relative;
+
+  .featureCardsImg {
+    width: 150px;
+    height: 300px;
+    border-radius: 5px;
+    object-fit: cover;
+    transition: all 0.5s;
+  }
+
+  .featureCardsInfo {
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 25%;
+    left: 5%;
+    gap: 10px;
+    opacity: 0;
+
+    .title {
+      font-size: 30px;
+    }
+
+    .desc {
+      font-size: 18px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .featureCardsSmInfo {
+      span {
+        font-size: 18px;
+      }
+      .line {
+        color: red;
+      }
+    }
+
+    button {
+      width: 30%;
+      border: none;
+      background: green;
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 20px;
+      border-radius: 4px;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+  }
+
+  &:hover {
+    .featureCardsImg {
+      width: 200px;
+      filter: brightness(0.3);
+    }
+    .featureCardsInfo {
+      opacity: 1;
+    }
+  }
+}

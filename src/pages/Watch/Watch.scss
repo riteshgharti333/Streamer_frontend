@@ -1,0 +1,66 @@
+@import "../../styles/responsive.scss";
+
+.watch {
+  overflow: hidden;
+  background-color: #fde7f9;
+background-image: linear-gradient(315deg, #fde7f9 0%, #aacaef 74%);
+
+  .WatchIcon{
+    padding: 20px;
+
+    .backIcon{
+      font-size: 30px;
+    }
+  }
+ 
+
+  .video{
+    display: flex;
+   justify-content: center;
+  
+   .youtube{
+    @include md{
+    }
+  }
+
+  
+  }
+
+  .watchInfo{
+    font-family: "Bebas Neue", sans-serif; 
+    margin: 40px 60px;
+
+    @include md{
+      margin: 30px 20px;
+    }
+
+    h1{
+      font-size: 50px;
+
+      @include md{
+        font-size: 35px;
+      }
+
+    }
+
+    p{
+      font-size: 35px;
+      @include md{
+        font-size: 20px;
+      }
+    }
+
+    span{
+      font-size: 30px;
+
+      @include md{
+        font-size: 20px;
+      }
+    }
+
+    .line{
+      color: red;
+    }
+
+  }
+}

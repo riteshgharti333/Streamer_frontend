@@ -1,0 +1,16 @@
+@import "../../styles/responsive.scss";
+
+.movieLists{
+    margin: 0 30px;
+    padding-bottom: 10px;
+
+    @include sm{
+        margin: 0 10px;
+    }
+
+    h1{
+    font-family: "Bebas Neue", sans-serif;
+font-size: 40px;
+letter-spacing: 2px;
+    }
+}

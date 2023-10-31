@@ -1,0 +1,56 @@
+.subscriptionCard{
+        background-image: linear-gradient(163deg, #ff0000 0%, #15ff00 100%);
+        border-radius: 20px;
+        transition: all .3s;
+        width: 300px;
+        height: 500px;
+       
+       .card2 {
+        background-image: url("../../assets/images/st.jpg");
+        background-size: cover;
+        width: 300px;
+        height: 500px;
+        background-color: #1a1a1a;
+        transition: all .2s;
+        position: relative;
+       }
+       .card2:hover {
+        transform: scale(0.98);
+        border-radius: 20px;
+       }
+       
+       .card:hover {
+        box-shadow: 100px 100px 300px 100px rgba(0, 26, 255, 0.884);
+       }
+
+       .subscriptionCardInfo{
+        position: absolute;
+        top: 70%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-family: "Bebas Neue", sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        h1{
+            font-size: 50px;
+            color: #fff;
+            letter-spacing: 2px;
+        }
+        p{
+            font-size: 30px;
+            color: aqua;
+            letter-spacing: 2px; 
+        }
+
+        button{
+            padding: 5px 20px;
+            background: green;
+            border: none;
+            border-radius: 5px;
+        font-family: "Bebas Neue", sans-serif;
+font-size: 30px;
+        }
+       }
+       
+    }
