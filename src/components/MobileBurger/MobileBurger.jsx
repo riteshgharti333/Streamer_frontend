@@ -22,7 +22,7 @@ const MobileBurger = () => {
       toast.success("Logged Out Successfully");
       setIsAuthenticated(false);
       setLoading(false);
-      Navigate("/login");
+      return <Navigate to="/login" />;
     } catch (error) {
       toast.error(error.response.data.message);
       setIsAuthenticated(true);

@@ -9,7 +9,7 @@ const MovieLists = ({list}) => {
 let slide;
 
  if(sm <= 480){
-   slide = 2; 
+   slide = 1; 
  }else if(sm <= 768){
   slide = 2;
  }else if(sm <= 1024){
