@@ -1,4 +1,4 @@
-**# Netflix Clone Web Application
+**# Streamer
 
 ## Overview
 
