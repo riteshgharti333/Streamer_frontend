@@ -13,7 +13,6 @@ const MovieListItem = ({item,index}) => {
       try {
         const res = await axios.get("https://streamer-backend.onrender.com/api/movies/" + item)
         setMovie(res.data.getMovie);
-        console.log(res.data.getMovie)
       } catch (error) {
         console.log(error)
       }

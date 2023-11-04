@@ -15,7 +15,7 @@
         object-fit: cover;
 
         @include sm{
-            width: 200px;
+            // width: 200px;
         }
         
     }
@@ -30,7 +30,7 @@
         font-family: "Bebas Neue", sans-serif;
 
         @include sm{
-            top: 20%;
+            left: 20%;
         }
 
         .name{
@@ -38,18 +38,18 @@
             font-size: 30px;
             margin: 0;
 
-            @include sm{
-                font-size: 20px;
-            }
+            // @include sm{
+            //     font-size: 20px;
+            // }
             }
 
             .year{
                 color: #fff;
                 font-size: 20px;
 
-                @include sm{
-                    font-size: 13px;
-                }
+                // @include sm{
+                //     font-size: 13px;
+                // }
             }
 
             button{
@@ -62,10 +62,10 @@ background: green;
                 border-radius: 4px;
                 cursor: pointer;
 
-                @include sm{
-                    padding: 3;
-                    font-size: 16px;
-                }
+                // @include sm{
+                //     padding: 3;
+                //     font-size: 16px;
+                // }
 
             }
     }
