@@ -5,8 +5,7 @@ import Slide from '../Slide/Slide'
 const MovieLists = ({list}) => {
 
  const sm = window.innerWidth;
- console.log(sm)
-let slide;
+ let slide;
 
  if(sm <= 480){
    slide = 1; 

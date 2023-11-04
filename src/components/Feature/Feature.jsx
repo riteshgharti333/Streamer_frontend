@@ -19,7 +19,6 @@ const Feature = ({ type }) => {
             setContent(res.data.movie[0]);
            
           }
-          console.log(res)
         }catch(err) {
           console.log(err)
         }

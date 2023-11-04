@@ -25,9 +25,7 @@ export default function Login() {
     useFormik({
       initialValues: initialvalues,
       onSubmit: async (values) => {
-        console.log("Starting login process");
         try {
-          console.log("Starting login process");
           const { data } = await axios.post(
             "https://streamer-backend.onrender.com/api/auth/login",
             values,
@@ -40,8 +38,6 @@ export default function Login() {
           );
           toast.success(data.message);
           setIsAuthenticated(true);
-          console.log(isAuthenticated);
-          console.log(data.message);
           setLoading(false);
         } catch (error) {
           toast.error(error.response.data.message);

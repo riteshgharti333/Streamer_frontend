@@ -1,6 +1,5 @@
 import "./navbar.scss";
 import { Link } from "react-router-dom";
-import {BiSolidUser} from "react-icons/bi"
 import { useEffect, useState } from "react";
 import { Context } from "../../main";
 import { useContext } from "react";
@@ -10,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 import MobileBurger from "../MobileBurger/MobileBurger";
 
 const Navbar = () => {
-
   const [scroll, setScroll] = useState(false);
   const navigate = useNavigate();
 
@@ -31,41 +29,41 @@ const Navbar = () => {
 
   const navbarClass = scroll ? "navbar scrolled" : "navbar";
 
-
   const { isAuthenticated, setIsAuthenticated, loading, setLoading } =
-  useContext(Context);
+    useContext(Context);
 
-const logoutHandler = async () => {
-  setLoading(true);
-  try {
-    await axios.get(`https://streamer-backend.onrender.com/api/auth/logout`, {
-      withCredentials: true,
-    });
+  const logoutHandler = async () => {
+    setLoading(true);
+    try {
+      await axios.get(`https://streamer-backend.onrender.com/api/auth/logout`, {
+        withCredentials: true,
+      });
 
-    toast.success("Logged Out Successfully");
-    setIsAuthenticated(false);
-    setLoading(false);
-    navigate("/login");
-  } catch (error) {
-    toast.error(error.response.data.message);
-    setIsAuthenticated(true);
-    setLoading(false);
-    console.log(error)
-  }
-};
-
-  
+      toast.success("Logged Out Successfully");
+      setIsAuthenticated(false);
+      setLoading(false);
+      navigate("/login");
+    } catch (error) {
+      toast.error(error.response.data.message);
+      setIsAuthenticated(true);
+      setLoading(false);
+      console.log(error);
+    }
+  };
 
   return (
     <div className={navbarClass}>
       <div className="container">
         <div className="left">
-         <h1><span className="f">STRE</span><span className="s">AMER</span></h1>
+          <h1>
+            <span className="f">STRE</span>
+            <span className="s">AMER</span>
+          </h1>
         </div>
 
-         <div className="mobileSidebar">
+        <div className="mobileSidebar">
           <MobileBurger />
-         </div>
+        </div>
 
         <div className="right">
           {/* <Link to="/" className="link">
@@ -77,12 +75,26 @@ const logoutHandler = async () => {
           <Link to="/series" className="link">
             <span className="navOptions"> Movies </span>
           </Link>
-          
-          <button className="subscribe">Subscribe</button>
-          <button class="button" onClick={logoutHandler}>
-            Logout
-</button>
-           {/* <div className="userPic">
+          <Link to="/subscriptions">
+            <button className="subscribe">Subscribe</button>
+          </Link>
+
+          {
+            isAuthenticated ? (
+              <button className="button" onClick={logoutHandler}>
+              Logout
+            </button>
+
+            ) : 
+            <Link to="/login">
+                <button className="button">
+              Login
+            </button>
+            </Link>
+          }
+        
+
+          {/* <div className="userPic">
            <BiSolidUser className="userIcon" />
           <div className="profile">
             <div className="options">
@@ -94,7 +106,7 @@ const logoutHandler = async () => {
             </div>
           </div>
           </div> */}
-          </div>
+        </div>
       </div>
     </div>
   );
