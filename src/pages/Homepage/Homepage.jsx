@@ -12,7 +12,7 @@ const Homepage = ({ type, anType }) => {
   const path = location.pathname;
   const [lists, setLists] = useState([]);
 
-  const baseURL = `https://streamer-backend.onrender.com/api/list/`;
+  const baseURL = `${baseUrl}/api/list/`;
 
   const typeParam = type ? `?type=${type}` : "";
 
