@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import MobileBurger from "../MobileBurger/MobileBurger";
+import Cookies from "js-cookie";
 
 const Navbar = () => {
   const [scroll, setScroll] = useState(false);
@@ -15,7 +16,7 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
-        setScroll(true);
+      setScroll(true);
       } else {
         setScroll(false);
       }
@@ -31,6 +32,9 @@ const Navbar = () => {
 
   const { isAuthenticated, setIsAuthenticated, loading, setLoading } =
     useContext(Context);
+
+    console.log(isAuthenticated);
+  
 
   const logoutHandler = async () => {
     setLoading(true);

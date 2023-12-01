@@ -21,6 +21,8 @@ export default function Register() {
 
   const { isAuthenticated, setIsAuthenticated,loading, setLoading } = useContext(Context);
 
+
+
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -32,10 +34,7 @@ export default function Register() {
       initialValues: initialvalues,
       validationSchema: signUpSchema,
       onSubmit: async (values) => {
-        // console.log("object")
         try {
-        // setLoading(true);
-        // console.log("object")
           const { data } = await axios.post(
             `${baseUrl}/api/auth/register`,
             values,
@@ -46,6 +45,7 @@ export default function Register() {
               withCredentials: true,
             }
           );
+
           toast.success(data.message);
           setIsAuthenticated(true);
           setLoading(false)

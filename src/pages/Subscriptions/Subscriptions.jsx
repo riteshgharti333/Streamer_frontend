@@ -3,8 +3,15 @@ import SubscriptionCard from "../../components/SubscriptionCard/SubscriptionCard
 import {subscriptionsPlans} from "../../assets/data";
 import { BsArrowLeft } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { Context } from "../../main";
+import { useContext } from "react";
+
 
 const Subscriptions = () => {
+
+  const {isAuthenticated} = useContext(Context);
+  console.log(isAuthenticated);
+
   return (
     <div className="subscriptions">
         <Link to="/">

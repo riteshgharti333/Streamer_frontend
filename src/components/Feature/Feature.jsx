@@ -6,12 +6,10 @@ import {Link} from "react-router-dom";
 import { baseUrl } from '../../main';
 
 const Feature = ({ type }) => {
+
   
   const [content, setContent] = useState({});
   const [featureCards, setFeatureCards] = useState([])
-
-  console.log(baseUrl);
-
 
   useEffect (() => {
     const getRandomContent = async () => {
