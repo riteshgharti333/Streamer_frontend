@@ -3,16 +3,18 @@ import FeatureCard from '../FeatureCard/FeatureCard';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import {Link} from "react-router-dom";
+import { baseUrl } from '../../main';
 
 const Feature = ({ type }) => {
-
+  
   const [content, setContent] = useState({});
   const [featureCards, setFeatureCards] = useState([])
+
 
   useEffect (() => {
     const getRandomContent = async () => {
         try {
-          const res = await axios.get(`https://streamer-backend.onrender.com/api/movies/random?type=${type}`);
+          const res = await axios.get(`${baseUrl}/api/movies/random?type=${type}`);
           if (res.data.movie && res.data.movie.length > 0) {
             const subsetOfMovieArray = res.data.movie.slice(1);
             setFeatureCards(subsetOfMovieArray);

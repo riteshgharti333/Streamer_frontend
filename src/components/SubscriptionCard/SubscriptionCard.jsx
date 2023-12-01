@@ -1,19 +1,21 @@
-import './SubscriptionCard.scss'
+import './SubscriptionCard.scss';
 
-const SubscriptionCard = () => {
+const SubscriptionCard = ({ name, price, image }) => {
+  const style = {
+    backgroundImage: `url(${image})`,
+  };
+
   return (
     <div className='subscriptionCard'>
-      <div className="card2">
+      <div className="card2" style={style}>
         <div className="subscriptionCardInfo">
-        <h1>Movies</h1>
-      <p>$20.00</p>
-      <button>Buy</button>
+          <h1>{name}</h1>
+          <p>{price}</p>
+          <button>Buy</button>
         </div>
-
       </div>
-   
     </div>
-  )
-}
+  );
+};
 
-export default SubscriptionCard
+export default SubscriptionCard;

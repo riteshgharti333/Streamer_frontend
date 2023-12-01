@@ -5,14 +5,14 @@ import Navbar from "../../components/Navbar/Navbar";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { date } from "yup";
+import { baseUrl } from "../../main";
 
 const Homepage = ({ type, anType }) => {
   const location = useLocation();
   const path = location.pathname;
   const [lists, setLists] = useState([]);
 
-  const baseURL = "https://streamer-backend.onrender.com/api/list/";
+  const baseURL = `${baseUrl}/api/list/`;
 
   const typeParam = type ? `?type=${type}` : "";
 

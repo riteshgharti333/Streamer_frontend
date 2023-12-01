@@ -8,7 +8,7 @@ import { signUpSchema } from "../../schemas/index";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useContext } from "react";
-import { Context } from "../../main";
+import { Context, baseUrl } from "../../main";
 
 const initialvalues = {
   name: "",
@@ -37,7 +37,7 @@ export default function Register() {
         // setLoading(true);
         // console.log("object")
           const { data } = await axios.post(
-            `https://streamer-backend.onrender.com/api/auth/register`,
+            `${baseUrl}/api/auth/register`,
             values,
             {
               headers: {

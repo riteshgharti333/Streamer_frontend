@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { slide as Menu } from "react-burger-menu";
 import "./MobileBurger.scss";
-import { Context } from "../../main";
+import { Context, baseUrl } from "../../main";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
@@ -16,7 +16,7 @@ const MobileBurger = () => {
     setLoading(true);
     try {
       const res = await axios.get(
-        `https://streamer-backend.onrender.com/api/auth/logout`,
+        `${baseUrl}/api/auth/logout`,
         {
           withCredentials: true,
         }
@@ -54,7 +54,10 @@ const MobileBurger = () => {
           <span>Login</span>
           </Link>
         )}
+        <Link to="/subscriptions">
         <button className="subscribe">Subscribe</button>
+
+        </Link>
       </Menu>
     </div>
   );

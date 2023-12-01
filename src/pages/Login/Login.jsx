@@ -8,7 +8,7 @@ import { signUpSchema } from "../../schemas/index";
 import { useContext } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { Context } from "../../main";
+import { Context , baseUrl} from "../../main";
 
 const initialvalues = {
   email: "",
@@ -27,7 +27,7 @@ export default function Login() {
       onSubmit: async (values) => {
         try {
           const { data } = await axios.post(
-            "https://streamer-backend.onrender.com/api/auth/login",
+            `${baseUrl}/api/auth/login`,
             values,
             {
               headers: {
