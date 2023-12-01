@@ -9,6 +9,8 @@ import { useContext } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Context , baseUrl} from "../../main";
+import Cookies from "js-cookie";
+
 
 const initialvalues = {
   email: "",
@@ -20,6 +22,9 @@ export default function Login() {
 
   const { isAuthenticated, setIsAuthenticated, loading, setLoading } =
     useContext(Context);
+
+
+    
 
   const { values, errors, handleBlur, touched, handleChange, handleSubmit } =
     useFormik({
