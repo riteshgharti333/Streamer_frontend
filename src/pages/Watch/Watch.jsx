@@ -4,6 +4,7 @@ import "./Watch.scss"
 import {BsArrowLeft} from "react-icons/bs"
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { baseUrl } from "../../main";
 
 const Watch = () => {
   const location = useLocation();
@@ -14,7 +15,7 @@ const Watch = () => {
   useEffect(() => {
 
     const getMovie = async() => {
-    const res = await axios.get(`https://streamer-backend.onrender.com/api/movies/${path}`);
+    const res = await axios.get(`${baseUrl}/api/movies/${path}`);
     setMovie(res.data.getMovie);
     }
     getMovie();

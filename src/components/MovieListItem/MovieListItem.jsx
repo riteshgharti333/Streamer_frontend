@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import './MovieListItem.scss'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { baseUrl } from '../../main';
 
 const MovieListItem = ({item,index}) => {
 
@@ -11,7 +12,7 @@ const MovieListItem = ({item,index}) => {
   useEffect(() => {
     const getMovie = async () => {
       try {
-        const res = await axios.get("https://streamer-backend.onrender.com/api/movies/" + item)
+        const res = await axios.get(`${baseUrl}/api/movies/` + item)
         setMovie(res.data.getMovie);
       } catch (error) {
         console.log(error)

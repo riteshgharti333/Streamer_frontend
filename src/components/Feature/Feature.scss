@@ -1,112 +1,152 @@
 @import "../../styles/responsive.scss";
 
 .feature {
- height: 80vh;
- overflow: hidden;
- z-index: 0;
-
-@include md{
   height: 80vh;
-}
+  overflow: hidden;
+  z-index: 0;
 
-  .featureContainer{
+  @include md {
+    height: 80vh;
+  }
+
+  .featureContainer {
     position: relative;
-  .featureBgImg{
-    width: 100%;
-    height: 70vh;
-    object-fit: cover;
+    .featureBgImg {
+      width: 100%;
+      height: 70vh;
+      object-fit: cover;
 
-    filter: brightness(0.3);
-  }
-  .featureAllCards{
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, 10%);
-    display: flex;
-    gap: 10px;
-
-    @media (max-width: 640px) {
-      display: none;
+      filter: brightness(0.3);
     }
+    .featureAllCards {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, 10%);
+      display: flex;
+      gap: 10px;
 
-    @include md{
-      top: 60%;
-    }
+      @media (max-width: 640px) {
+        display: none;
+      }
 
-  }
-
-
-  .info {
-    font-family: "Bebas Neue", sans-serif;
-    position: absolute;
-    top: 15%;
-    left: 5%;
-    width: 500px;
-
-    @include sm{
-      width: 350px;
-      top: 30%;
-    }
-
-    h1 {
-      font-size: 60px;
-      color: #fff;
-      letter-spacing: 2px;
-
-      @include sm{
-          font-size: 40px;
+      @include md {
+        top: 60%;
       }
     }
 
-    p {
-      font-size: 20px;
-      color: white;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
+    .info {
+      font-family: "Bebas Neue", sans-serif;
+      position: absolute;
+      top: 15%;
+      left: 5%;
+      width: 700px;
 
-      @include sm{
-        font-size: 16px;
-
+      @include sm {
+        width: 350px;
+        top: 30%;
       }
-    }
 
-    .smInfo {
-        margin: 10px 0px;
-      span {
-        font-size: 20px;
+      h1 {
+        font-size: 60px;
         color: #fff;
+        letter-spacing: 2px;
+        animation: fadeInFromTop 0.5s ease-in-out;
 
-        @include sm{
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+
+        @include sm {
+          font-size: 30px;
+        }
+      }
+
+      p {
+        font-size: 20px;
+        color: white;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        animation: fadeInFromLeft 0.5s ease-in-out;
+
+        @include sm {
           font-size: 16px;
         }
       }
 
-      .line {
-        color: red;
+      .smInfo {
+        margin: 10px 0px;
+        animation: fadeInFromLeft 0.5s ease-in-out;
+
+        span {
+          font-size: 20px;
+          color: #fff;
+
+          @include sm {
+            font-size: 16px;
+          }
+        }
+
+        .line {
+          color: red;
+        }
+
+        .rating {
+          .ratings {
+            width: 20px;
+          }
+        }
       }
 
-      .rating{
-        .ratings{
-            width: 20px;
-              }
+      button {
+        padding: 8px 15px;
+        border: none;
+        font-family: "Bebas Neue", sans-serif;
+        letter-spacing: 2px;
+        font-size: 20px;
+        background: green;
+        border-radius: 4px;
+        cursor: pointer;
+        animation: fadeInFromBottom 0.5s ease-in-out;
+
+      }
+
+      @keyframes fadeInFromTop {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
       
-}
-    
-    }
+      @keyframes fadeInFromLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      
+      @keyframes fadeInFromBottom {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
 
-
-    button {
-      padding: 8px 15px;
-      border: none;
-      font-family: "Bebas Neue", sans-serif;
-      letter-spacing: 2px;
-      font-size: 20px;
-      background: green;
-      border-radius: 4px;
-      cursor: pointer;
     }
   }
-}}
+}

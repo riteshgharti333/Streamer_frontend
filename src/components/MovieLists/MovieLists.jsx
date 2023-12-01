@@ -17,11 +17,12 @@ const MovieLists = ({list}) => {
   slide = 4;
  }
 
+
   return (
     <div className='movieLists'>
       <h1>{list.title}</h1>
       <div className="movieListsItems">
-      <Slide slidesToShow={slide} arrowsScroll={1}>
+      <Slide slidesToShow={slide} dots={true} arrowsScroll={1}>
        {list.content.map((item,i) => (
         <MovieListItem key={i} index={i} item={item} />
        ))}

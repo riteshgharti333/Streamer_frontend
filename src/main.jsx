@@ -7,6 +7,8 @@ import "./styles/global.scss";
 
 export const Context = createContext({ isAuthenticated: false });
 
+export const baseUrl = import.meta.env.VITE_SOME_KEY;
+
 const AppWrapper = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(false);

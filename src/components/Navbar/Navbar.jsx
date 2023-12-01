@@ -1,7 +1,7 @@
 import "./navbar.scss";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Context } from "../../main";
+import { Context , baseUrl} from "../../main";
 import { useContext } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
@@ -35,7 +35,7 @@ const Navbar = () => {
   const logoutHandler = async () => {
     setLoading(true);
     try {
-      await axios.get(`https://streamer-backend.onrender.com/api/auth/logout`, {
+      await axios.get(`${baseUrl}/api/auth/logout`, {
         withCredentials: true,
       });
 
