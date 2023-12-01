@@ -12,6 +12,7 @@ const Watch = () => {
 
   const [movie , setMovie] = useState({});
 
+
   useEffect(() => {
 
     const getMovie = async() => {
