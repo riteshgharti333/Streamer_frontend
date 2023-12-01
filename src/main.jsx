@@ -7,7 +7,7 @@ import "./styles/global.scss";
 
 export const Context = createContext({ isAuthenticated: false });
 
-export const baseUrl = import.meta.env.VITE_SOME_KEY;
+export const baseUrl = "https://streamer-backend.onrender.com";
 
 const AppWrapper = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
