@@ -1,5 +1,5 @@
 import "./Login.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoMdMail } from "react-icons/io";
 import { BiSolidLock, BiShow, BiHide } from "react-icons/bi";
 import { Link, Navigate } from "react-router-dom";
@@ -9,7 +9,6 @@ import { useContext } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Context , baseUrl} from "../../main";
-import Cookies from "js-cookie";
 
 
 const initialvalues = {
@@ -20,11 +19,13 @@ const initialvalues = {
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
 
+
   const { isAuthenticated, setIsAuthenticated, loading, setLoading } =
     useContext(Context);
 
-
-    
+      
+   
+  
 
   const { values, errors, handleBlur, touched, handleChange, handleSubmit } =
     useFormik({
@@ -42,6 +43,7 @@ export default function Login() {
             }
           );
           toast.success(data.message);
+          localStorage.setItem("token", data.token);
           setIsAuthenticated(true);
           setLoading(false);
         } catch (error) {
@@ -52,6 +54,8 @@ export default function Login() {
         }
       },
     });
+
+    console.log(isAuthenticated);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);

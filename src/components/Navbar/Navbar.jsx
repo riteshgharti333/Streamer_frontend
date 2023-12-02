@@ -13,6 +13,8 @@ const Navbar = () => {
   const [scroll, setScroll] = useState(false);
   const navigate = useNavigate();
 
+  const token = localStorage.getItem("token");
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -33,8 +35,6 @@ const Navbar = () => {
   const { isAuthenticated, setIsAuthenticated, loading, setLoading } =
     useContext(Context);
 
-    console.log(isAuthenticated);
-  
 
   const logoutHandler = async () => {
     setLoading(true);
@@ -46,6 +46,7 @@ const Navbar = () => {
       toast.success("Logged Out Successfully");
       setIsAuthenticated(false);
       setLoading(false);
+      localStorage.removeItem("token");
       navigate("/login");
     } catch (error) {
       toast.error(error.response.data.message);
@@ -55,6 +56,7 @@ const Navbar = () => {
     }
   };
 
+  
   return (
     <div className={navbarClass}>
       <div className="container">
@@ -84,7 +86,7 @@ const Navbar = () => {
           </Link>
 
           {
-            isAuthenticated ? (
+            token ? (
               <button className="button" onClick={logoutHandler}>
               Logout
             </button>
