@@ -12,6 +12,9 @@ const MobileBurger = () => {
 
   const navigate = useNavigate();
 
+  const token = localStorage.getItem("token");
+
+
   const logoutHandler = async () => {
     setLoading(true);
     try {
@@ -24,6 +27,7 @@ const MobileBurger = () => {
       toast.success(res.data.message);
       setIsAuthenticated(false);
       setLoading(false);
+      localStorage.removeItem("token");
       navigate("/login");
     } catch (error) {
       toast.error(error.response.data.message);
@@ -46,7 +50,7 @@ const MobileBurger = () => {
           Web Series
         </a>
 
-        {isAuthenticated ? (
+        {token ? (
           <span onClick={logoutHandler}>Logout</span>
         ) : (
 
