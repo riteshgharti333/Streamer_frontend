@@ -6,9 +6,6 @@ import { Link, Navigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { signUpSchema } from "../../schemas/index";
 import { useContext } from "react";
-import axios from "axios";
-import toast from "react-hot-toast";
-import { Context , baseUrl} from "../../main";
 
 
 const initialvalues = {
@@ -19,38 +16,16 @@ const initialvalues = {
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
 
-
   const { isAuthenticated, setIsAuthenticated, loading, setLoading } =
     useContext(Context);
-
-      
-   
-  
 
   const { values, errors, handleBlur, touched, handleChange, handleSubmit } =
     useFormik({
       initialValues: initialvalues,
       onSubmit: async (values) => {
         try {
-          const { data } = await axios.post(
-            `${baseUrl}/api/auth/login`,
-            values,
-            {
-              headers: {
-                "Content-Type": "application/json",
-              },
-              withCredentials: true,
-            }
-          );
-          toast.success(data.message);
-          localStorage.setItem("token", data.token);
-          setIsAuthenticated(true);
-          setLoading(false);
         } catch (error) {
-          toast.error(error.response.data.message);
-          setIsAuthenticated(false);
-          setLoading(false);
-          console.log(error);
+         
         }
       },
     });

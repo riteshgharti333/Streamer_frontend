@@ -5,10 +5,6 @@ import { BiSolidLock, BiSolidUser, BiShow, BiHide } from "react-icons/bi";
 import { IoMdMail } from "react-icons/io";
 import { useFormik } from "formik";
 import { signUpSchema } from "../../schemas/index";
-import toast from "react-hot-toast";
-import axios from "axios";
-import { useContext } from "react";
-import { Context, baseUrl } from "../../main";
 
 const initialvalues = {
   name: "",
@@ -18,9 +14,6 @@ const initialvalues = {
 };
 
 export default function Register() {
-
-  const { isAuthenticated, setIsAuthenticated,loading, setLoading } = useContext(Context);
-
 
 
   const [showPassword, setShowPassword] = useState(false);
@@ -35,27 +28,9 @@ export default function Register() {
       validationSchema: signUpSchema,
       onSubmit: async (values) => {
         try {
-          const { data } = await axios.post(
-            `${baseUrl}/api/auth/register`,
-            values,
-            {
-              headers: {
-                "Content-Type": "application/json",
-              },
-              withCredentials: true,
-            }
-          );
+         
 
-          toast.success(data.message);
-          setIsAuthenticated(true);
-          setLoading(false)
-          console.log(isAuthenticated)
         } catch (error) {
-          toast.error(error.response.data.message);
-          setIsAuthenticated(false);
-          setLoading(false);
-          console.log(isAuthenticated)
-          console.log(error)
         }
       },
     });

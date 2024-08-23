@@ -1,24 +1,18 @@
 import "./navbar.scss";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Context , baseUrl} from "../../main";
-import { useContext } from "react";
-import toast from "react-hot-toast";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import MobileBurger from "../MobileBurger/MobileBurger";
-import Cookies from "js-cookie";
+// import MobileBurger from "../MobileBurger/MobileBurger";
+import { FaUser } from "react-icons/fa";
 
 const Navbar = () => {
   const [scroll, setScroll] = useState(false);
   const navigate = useNavigate();
 
-  const token = localStorage.getItem("token");
-
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
-      setScroll(true);
+        setScroll(true);
       } else {
         setScroll(false);
       }
@@ -32,86 +26,46 @@ const Navbar = () => {
 
   const navbarClass = scroll ? "navbar scrolled" : "navbar";
 
-  const { isAuthenticated, setIsAuthenticated, loading, setLoading } =
-    useContext(Context);
-
-
-  const logoutHandler = async () => {
-    setLoading(true);
-    try {
-      await axios.get(`${baseUrl}/api/auth/logout`, {
-        withCredentials: true,
-      });
-
-      toast.success("Logged Out Successfully");
-      setIsAuthenticated(false);
-      setLoading(false);
-      localStorage.removeItem("token");
-      navigate("/login");
-    } catch (error) {
-      toast.error(error.response.data.message);
-      setIsAuthenticated(true);
-      setLoading(false);
-      console.log(error);
-    }
-  };
-
-  
   return (
     <div className={navbarClass}>
       <div className="container">
         <div className="left">
-          <h1>
-            <span className="f">STRE</span>
-            <span className="s">AMER</span>
-          </h1>
+          <Link to={"/"}>
+            <h1>
+              <span className="f">STRE</span>
+              <span className="s">AMER</span>
+            </h1>
+          </Link>
         </div>
 
         <div className="mobileSidebar">
-          <MobileBurger />
+          {/* <MobileBurger /> */}
         </div>
 
         <div className="right">
           {/* <Link to="/" className="link">
             <span className="navOptions"> Homepage </span> */}
           {/* </Link> */}
-          <Link to="/movies" className="link">
+          <Link to="/series" className="link">
             <span className="navOptions"> Series </span>
           </Link>
-          <Link to="/series" className="link">
+          <Link to="/movies" className="link">
             <span className="navOptions"> Movies </span>
           </Link>
           <Link to="/subscriptions">
             <button className="subscribe">Subscribe</button>
           </Link>
 
-          {
-            token ? (
-              <button className="button" onClick={logoutHandler}>
-              Logout
-            </button>
-
-            ) : 
+            <button className="button">Logout</button>
+       
             <Link to="/login">
-                <button className="button">
-              Login
-            </button>
+              <button className="button">Login</button>
             </Link>
-          }
-        
-
-          {/* <div className="userPic">
-           <BiSolidUser className="userIcon" />
-          <div className="profile">
-            <div className="options">
-              <span>Settings</span>
-        
-              <span onClick={logoutHandler}>      Logout
-            
-              </span>
+          <Link to="/profile">
+            <div className="user">
+              <FaUser className="userIcon" />
             </div>
-          </div>
-          </div> */}
+          </Link>
         </div>
       </div>
     </div>

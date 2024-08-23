@@ -5,68 +5,58 @@ import Navbar from "../../components/Navbar/Navbar";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { baseUrl } from "../../main";
+import { useDispatch, useSelector } from "react-redux";
+import { getRandomAsyncMovies } from "../../redux/asyncThunks/movieThunks";
+import { getAsyncLists, getAsyncQueryLists } from "../../redux/asyncThunks/listThunks";
 
-const Homepage = ({ type, anType }) => {
+const Homepage = ({ type }) => {
   const location = useLocation();
   const path = location.pathname;
-  const [lists, setLists] = useState([]);
+  const [allists, setAllLists] = useState([]);
 
-  const baseURL = `${baseUrl}/api/list/`;
+  const [movieLists, setMoviesLists] = useState([]);
+  const [seriesLists, setSeriesLists] = useState([]);
 
-  const typeParam = type ? `?type=${type}` : "";
 
-  const url = `${baseURL}${typeParam}`;
+  const dispatch = useDispatch();
+
+
+  const movie = useSelector((state) => state.lists.movie);
+
+  // const series = useSelector((state) => state.lists.series);
+
+  // console.log("mvis  " + movie)
+  // console.log("seres " + series)
+
+
 
   useEffect(() => {
-    const getRandomList = async () => {
-      try {
-        const res = await axios.get(url);
-        setLists(res.data.movies);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getRandomList();
-  }, [type]);
+    dispatch(getAsyncQueryLists("series"));
+
+  }, [dispatch]); 
+  
+  useEffect(() => {
+
+  }, [movie]);
 
   return (
     <div className="homePage">
-      <Navbar />
-
-      {path === "/" || path === "/movies" ? (
+      {/* {path === "/" || path === "/movies" ? (
         <>
           <Feature type={type} />
-          {lists.map((list) => (
-            <MovieLists list={list} key={list._id} />
-          ))}
+          {allists &&
+            allists.map((list) => <MovieLists list={list} key={list._id} type={type} />)}
         </>
       ) : null}
 
-      {/* {path === "/" && (
-        <>
-          <Feature type={type}/>
-          {
-            lists.map((list) => (
-              <MovieLists  list={list} key={list._id} />
-            ))
-          }
-
-
-          <Feature anType={anType}/>
-          <MovieLists />
-          <MovieLists />
-        </>
-      )} */}
 
       {path === "/series" && (
         <>
-          <Feature type={type} />
-          {lists.map((list) => (
-            <MovieLists list={list} />
-          ))}
+        <Feature type={type}/>
+            {allists &&
+            allists.map((list) => <MovieLists list={list} key={list._id} type={type} />)}
         </>
-      )}
+      )} */}
     </div>
   );
 };

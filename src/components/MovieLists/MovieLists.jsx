@@ -2,7 +2,7 @@ import './MovieLists.scss'
 import MovieListItem from "../MovieListItem/MovieListItem"
 import Slide from '../Slide/Slide'
 
-const MovieLists = ({list}) => {
+const MovieLists = ({list,type}) => {
 
  const sm = window.innerWidth;
  let slide;
@@ -20,11 +20,14 @@ const MovieLists = ({list}) => {
 
   return (
     <div className='movieLists'>
+      <div className="movieListsTop">
       <h1>{list.title}</h1>
+      <p>View All</p>
+      </div>
       <div className="movieListsItems">
       <Slide slidesToShow={slide} dots={true} arrowsScroll={1}>
        {list.content.map((item,i) => (
-        <MovieListItem key={i} index={i} item={item} />
+        <MovieListItem key={i} item={item} type={type}/>
        ))}
       </Slide>
       </div>

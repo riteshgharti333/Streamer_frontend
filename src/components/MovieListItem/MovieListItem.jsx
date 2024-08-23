@@ -1,41 +1,39 @@
-import { useEffect, useState } from 'react'
-import './MovieListItem.scss'
-import axios from 'axios';
-import { Link } from 'react-router-dom';
-import { baseUrl } from '../../main';
+import { useEffect, useState } from "react";
+import "./MovieListItem.scss";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getAsyncSigleMovie } from "../../redux/asyncThunks/movieThunks";
 
-const MovieListItem = ({item,index}) => {
-
-
+const MovieListItem = ({ item, type }) => {
   const [movie, setMovie] = useState({});
+  const dispatch = useDispatch();
+
+  const { singleMovie } = useSelector((state) => state.movies);
+
+  const series = useSelector((state) => state.movies.series);
 
   useEffect(() => {
-    const getMovie = async () => {
-      try {
-        const res = await axios.get(`${baseUrl}/api/movies/` + item)
-        setMovie(res.data.getMovie);
-      } catch (error) {
-        console.log(error)
+    const fetchMovie = async () => {
+      const response = await dispatch(getAsyncSigleMovie(item));
+      if (response?.payload?.success) {
+        setMovie(response.payload.getMovie);
       }
-    }
-    getMovie();
-  })
-
+    };
+    fetchMovie();
+  }, [dispatch, item]);
 
   return (
-    <div className='movieListItem'>
-      <img className='movieListItemImg' src={movie?.featureImg} alt="" />
+    <div className="movieListItem">
+      <img className="movieListItemImg" src={movie?.smImg} alt="" />
       <div className="movieListItemInfo">
-      <span className='name'>{movie?.title}</span>
-      <span className='year'>{movie?.year}</span>
-     <button>
-     <Link to={`/movies/${movie?._id}`}>
-  Play
-</Link>
-      </button>
+        <p className="name">{movie?.title}</p>
+        <p className="year">{movie?.year}</p>
+        <button>
+          <Link to={`/movies/${movie?._id}`}>Play</Link>
+        </button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default MovieListItem
+export default MovieListItem;
