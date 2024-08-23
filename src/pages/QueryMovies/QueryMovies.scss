@@ -1,0 +1,28 @@
+.queryMovies{
+  font-family: "Bebas Neue", sans-serif;
+  margin: 20px;
+    .queryMoviesTop{
+        font-size: 30px;
+        margin: 5px 0px 5px 10px;
+        display: flex;
+        align-items: center;
+
+        .backIcon{
+          font-weight: 600;
+          cursor: pointer;
+        }
+
+        p{
+          font-size: 30px;
+          letter-spacing: 2px;
+        }
+      }
+
+      .queryAllMovies{
+        display: grid;
+        overflow: hidden;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 65px;
+        row-gap: 20px;
+      }
+}

@@ -1,16 +1,29 @@
 @import "../../styles/responsive.scss";
 
-.movieLists{
-    margin: 0 30px;
-    padding-bottom: 10px;
+.movieLists {
+  margin: 0 30px;
+  padding-bottom: 10px;
 
-    @include sm{
-        margin: 0 10px;
-    }
+  @include sm {
+    margin: 0 10px;
+  }
 
-    h1{
+  .movieListsTop {
+    display: flex;
     font-family: "Bebas Neue", sans-serif;
-font-size: 40px;
-letter-spacing: 2px;
+    justify-content: space-between;
+
+    h1 {
+      font-size: 40px;
+      letter-spacing: 2px;
     }
+
+    p{
+        letter-spacing: 1px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        font-size: 20px;
+    }
+  }
 }

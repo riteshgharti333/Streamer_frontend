@@ -3,11 +3,13 @@
 .navbar {
   width: 100%;
   color: white;
-  position: fixed;
   top: 0;
+  position: sticky;
   z-index: 999;
   transition: all 0.5s;
   overflow: hidden;
+  background-color: black;
+
 
   &.scrolled {
     background-color: black;
@@ -56,12 +58,13 @@
       }
 
       .navOptions {
-        margin-right: 20px;
         cursor: pointer;
         text-transform: uppercase;
         font-family: "Gabarito", sans-serif;
         font-size: 20px;
         font-weight: 600;
+      margin-right: 20px;
+
         &:hover {
           color: antiquewhite;
         }
@@ -96,6 +99,8 @@
   letter-spacing: 1px;
   font-size: 20px;
   padding: 5px 10px;
+  margin-right: 20px;
+
   border-radius: 9px;
   display: inline-block;
   text-align: center;
@@ -136,63 +141,15 @@
 .button:active {
   transform: scale(0.9);
 }
-
-/////////////////
-      .userPic {
-        display: flex;
-        flex-direction: column;
-        .userIcon {
-          font-size: 30px;
-          background: aqua;
-          padding: 3px;
-          border-radius: 4px;
-          cursor: pointer;
-        }
-
-        &:hover {
-          .options {
-            display: flex;
-            flex-direction: column;
-            position: absolute;
-            margin-top: 3px;
-            right: -24px;
-            z-index: 9999;
-    
-
-          }
-        }
-
-        .options {
-          // display: none;
-          background-color: white;
+        .user{
+          background-color: aqua;
+          padding: 5px 8px;
           border-radius: 5px;
-          display: flex;
-          flex-direction: column;
-          position: absolute;
-          margin-top: 3px;
-          right: -24px;
-          z-index: 9999;
-
-          span {
-            padding: 10px;
-            cursor: pointer;
-            color: black;
-            font-size: 18px;
-            font-family: "Gabarito", sans-serif;
-
-          }
-
-          span:first-child:hover {
-            background: rgb(207, 203, 203);
-            border-radius: 5px 5px 0px 0px;
-          }
-
-          span:last-child:hover {
-            background: rgb(207, 203, 203);
-            border-radius: 0px 0px 5px 5px;
+          cursor: pointer;
+          .userIcon {
+            font-size: 20px;
           }
         }
-      }
     }
   }
 }

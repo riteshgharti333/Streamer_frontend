@@ -1,5 +1,4 @@
 import './FeatureCard.scss'
-import sm from "../../assets/images/sm.jpg"
 import { Link } from 'react-router-dom'
 
 const FeatureCard = ({title,desc,age,year,genre,featureSmImg, id}) => {
