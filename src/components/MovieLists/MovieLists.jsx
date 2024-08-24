@@ -4,18 +4,18 @@ import Slide from '../Slide/Slide'
 
 const MovieLists = ({list,type}) => {
 
- const sm = window.innerWidth;
- let slide;
+//  const sm = window.innerWidth;
+//  let slide;
 
- if(sm <= 480){
-   slide = 1; 
- }else if(sm <= 768){
-  slide = 2;
- }else if(sm <= 1024){
-  slide = 3;
- }else{
-  slide = 4;
- }
+//  if(sm <= 480){
+//    slide = 1; 
+//  }else if(sm <= 768){
+//   slide = 2;
+//  }else if(sm <= 1024){
+//   slide = 3;
+//  }else{
+//   slide = 4;
+//  }
 
 
   return (
@@ -25,7 +25,7 @@ const MovieLists = ({list,type}) => {
       <p>View All</p>
       </div>
       <div className="movieListsItems">
-      <Slide slidesToShow={slide} dots={true} arrowsScroll={1}>
+      <Slide slidesToShow={4}  arrowsScroll={1}>
        {list.content.map((item,i) => (
         <MovieListItem key={i} item={item} type={type}/>
        ))}

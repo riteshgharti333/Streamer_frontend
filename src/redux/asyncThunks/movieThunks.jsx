@@ -57,7 +57,6 @@ export const getRandomAsyncMovies = createAsyncThunk(
   async (query, { rejectWithValue }) => {
     try {
       const res = await getRandomMovies(query);
-      console.log(res.data);
       return { query, data: res.data }; 
 
     } catch (error) {
