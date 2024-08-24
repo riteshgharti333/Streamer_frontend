@@ -27,11 +27,17 @@ const Feature = ({ type }) => {
   }, [dispatch, type]);
 
   useEffect(() => {
-    const contentData = type === 'movies' ? movies.movie : series.movie;
+
+    let contentData = [];
     
-    if (contentData && contentData.length > 0) {
-      setContent(contentData[0]); 
-      setFeatureCards(contentData.slice(1, 6)); 
+    if (type === 'movies' && movies?.movie) {
+      contentData = movies.movie;
+    } else if (type === 'series' && series?.movie) {
+      contentData = series.movie;
+    }
+    if (contentData.length > 0) {
+      setContent(contentData[0]);
+      setFeatureCards(contentData.slice(1, 6));
     }
   }, [movies, series, type]);
 

@@ -26,11 +26,11 @@ const listSlice = createSlice({
         state.status = "loading";
         state.error = null;
       })
-      .addCase(getAsyncLists.fulfilled, (state,action) => {
+      .addCase(getAsyncLists.fulfilled, (state, action) => {
         state.status = "idle";
         state.lists = action.payload;
       })
-      .addCase(getAsyncLists.rejected, (state,action) => {
+      .addCase(getAsyncLists.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.payload;
       });
@@ -40,17 +40,17 @@ const listSlice = createSlice({
         state.status = "loading";
         state.error = null;
       })
-      .addCase(getAsyncQueryLists.fulfilled, (state,action) => {
+      .addCase(getAsyncQueryLists.fulfilled, (state, action) => {
         state.status = "idle";
         const { query, data } = action.payload;
-        if (query === 'movie') {
+
+        if (query === "movies") {
           state.lists.movie = data;
-        } else if (query === 'series') {
+        } else if (query === "series") {
           state.lists.series = data;
         }
-
       })
-      .addCase(getAsyncQueryLists.rejected, (state,action) => {
+      .addCase(getAsyncQueryLists.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.payload;
       });
@@ -60,16 +60,15 @@ const listSlice = createSlice({
         state.status = "loading";
         state.error = null;
       })
-      .addCase(getAsyncSingleList.fulfilled, (state,action) => {
+      .addCase(getAsyncSingleList.fulfilled, (state, action) => {
         state.status = "idle";
         state.lists = action.payload;
       })
-      .addCase(getAsyncSingleList.rejected, (state,action) => {
+      .addCase(getAsyncSingleList.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.payload;
       });
   },
 });
-
 
 export default listSlice.reducer;

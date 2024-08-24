@@ -4,9 +4,12 @@ import Slider from "infinite-react-carousel";
 const Slide = ({ children, slidesToShow, arrowsScroll }) => {
 
   const settings = {
-    dots: true,
     centerMode: true,
-    centerPadding: 0
+    centerPadding: 0,
+    arrows:true
+    // arrows:true
+    // slidesToShow, 
+    // arrowsScroll, 
   };
 
   return (
