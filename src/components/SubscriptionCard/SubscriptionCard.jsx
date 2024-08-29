@@ -1,6 +1,6 @@
 import './SubscriptionCard.scss';
 
-const SubscriptionCard = ({ name, price, image }) => {
+const SubscriptionCard = ({ name, price, image, onClick }) => {
   const style = {
     backgroundImage: `url(${image})`,
   };
@@ -11,7 +11,7 @@ const SubscriptionCard = ({ name, price, image }) => {
         <div className="subscriptionCardInfo">
           <h1>{name}</h1>
           <p>{price}</p>
-          <button>Buy</button>
+          <button onClick={onClick}>Buy</button>
         </div>
       </div>
     </div>

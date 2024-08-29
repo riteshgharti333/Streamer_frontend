@@ -4,10 +4,14 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 // import MobileBurger from "../MobileBurger/MobileBurger";
 import { FaUser } from "react-icons/fa";
+import { genre } from "../../assets/data";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const [scroll, setScroll] = useState(false);
   const navigate = useNavigate();
+
+  const { user } = useSelector((state) => state.auth);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,29 +42,47 @@ const Navbar = () => {
           </Link>
         </div>
 
-        <div className="mobileSidebar">
-          {/* <MobileBurger /> */}
-        </div>
+        <div className="mobileSidebar">{/* <MobileBurger /> */}</div>
 
         <div className="right">
           {/* <Link to="/" className="link">
             <span className="navOptions"> Homepage </span> */}
           {/* </Link> */}
-          <Link to="/series" className="link">
-            <span className="navOptions"> Series </span>
-          </Link>
-          <Link to="/movies" className="link">
-            <span className="navOptions"> Movies </span>
-          </Link>
+
+          {/* <Link to="/series" className="link">
+            <select name="" id="" className="navOptions">
+              {genre.map((g) => (
+                <>
+                  <option key={g} value="">
+                    {g}
+                  </option>
+                </>
+              ))}
+            </select>
+          </Link> */}
+
+          {/* <Link to="/movies" className="link">
+            <select name="" id="" className="navOptions">
+              {genre.map((g) => (
+                <>
+                  <option key={g} value="">
+                    {g}
+                  </option>
+                </>
+              ))}
+            </select> */}
+          {/* </Link> */}
           <Link to="/subscriptions">
             <button className="subscribe">Subscribe</button>
           </Link>
-
+          {user ? (
             <button className="button">Logout</button>
-       
+          ) : (
             <Link to="/login">
               <button className="button">Login</button>
             </Link>
+          )}
+
           <Link to="/profile">
             <div className="user">
               <FaUser className="userIcon" />

@@ -6,8 +6,8 @@ const FeatureCard = ({title,desc,age,year,genre,featureSmImg, id}) => {
     <div className='featureCards'>
       <img className='featureCardsImg' src={featureSmImg} alt="" />
       <div className="featureCardsInfo">
-      <span className='title'>{title}</span>
-      <span className='desc'>{desc}</span>
+      <p className='title'>{title}</p>
+      <p className='desc'>{desc}</p>
       <div className="featureCardsSmInfo">
       <span>{year}</span>
           <span className='line'>|</span>

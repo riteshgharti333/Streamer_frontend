@@ -46,19 +46,37 @@ export const MovieItems = [
 
 export const subscriptionsPlans = [
     {
-        name : "movies",
-        price : "$ 20.00",
+        name: "movies",
+        price: "900",
+        priceId: "price_1Pt0FASGN61YzC6ZVsLPr87B", // Replace with actual priceId from Stripe
         image: spider,
     },
     {
-        name : "web series",
-        price : "$ 15.00",
+        name: "web series",
+        price: "700",
+        priceId: "price_1Pt0D9SGN61YzC6Za7Por7Fy", 
         image: st,
     },
     {
-        name : "movies + web series",
-        price : "$ 30.00",
+        name: "movies + web series",
+        price: "1500",
+        priceId: "price_1Pt0G5SGN61YzC6ZzRoweliJ", // Replace with actual priceId from Stripe
         image: sg,
     }
+];
 
-]
+
+
+export const genre = [
+    "Action",
+    "Adventure",
+    "Anime",
+    "Animation",
+    "TV Dramas",
+    "Documentaries",
+    "Horror",
+    "Romantic",
+    "Sci-fi & Fantasy",
+    "Sports",
+    "Thrillers",
+  ];
