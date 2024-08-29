@@ -1,25 +1,24 @@
 @import "../../styles/responsive.scss";
 
-.subscriptions{
-    h1{
-        font-size: 60px;
-        font-family: "Bebas Neue", sans-serif;
-        text-align: center;
+.subscriptions {
+  .backIcon {
+    font-size: 50px;
+    padding-left: 20px;
+  }
+  h1 {
+    font-size: 60px;
+    font-family: "Bebas Neue", sans-serif;
+    text-align: center;
+  }
+
+  .subscriptionsCards {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+
+    @include sm {
+      flex-direction: column;
+      align-items: center;
     }
-
-    .backIcon{
-        font-size: 50px;
-        padding-left: 20px;
-      }
-
-    .subscriptionsCards{
-        display: flex;
-        gap: 10px;
-        justify-content: center;
-
-        @include sm {
-            flex-direction: column;
-            align-items: center;
-        }
-    }
+  }
 }

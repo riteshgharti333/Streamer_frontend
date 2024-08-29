@@ -1,0 +1,226 @@
+@import "../../styles/responsive.scss";
+
+.settings {
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  font-family: "Bebas Neue", sans-serif;
+  letter-spacing: 2px;
+
+  @include sm {
+    height: 70vh;
+  }
+
+  .profileBack {
+    position: absolute;
+    font-size: 34px;
+    cursor: pointer;
+    top: 10px;
+    left: 10px;
+  }
+  .settingsWrapper {
+    background: radial-gradient(
+      circle at 10% 20%,
+      rgb(254, 158, 94) 0%,
+      rgb(254, 94, 114) 94.3%
+    );
+    padding: 40px;
+    position: relative;
+    border-radius: 5px;
+    min-width: 300px;
+
+    .settingsIcon {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .profileData {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      .profileUpdatedImg {
+        position: relative;
+
+        img {
+          height: 150px;
+          object-fit: cover;
+          width: 150px;
+          border-radius: 50%;
+          transition: all 0.2s ease-in;
+          cursor: pointer;
+        }
+        span {
+          display: none;
+          position: absolute;
+          right: 23%;
+          cursor: pointer;
+          top: 43%;
+          color: white;
+          padding: 5px;
+          font-size: 20px;
+          font-weight: 500;
+        }
+        &:hover img {
+          filter: brightness(0.3);
+          transform: scale(1.1);
+        }
+        &:hover span {
+          display: block;
+        }
+      }
+
+      .profileName {
+        h3 {
+          color: white;
+          text-align: center;
+          margin: 12px 0px;
+          font-size: 25px;
+        }
+      }
+
+      .ProfileEmail {
+        text-align: center;
+        color: white;
+        font-size: 20px;
+        font-weight: 600;
+      }
+
+      .profileInputForm {
+        .formError {
+          color: red;
+          font-weight: 600;
+          margin-top: 5px;
+        }
+
+        input {
+          border: none;
+          width: 100%;
+          max-width: 200px;
+          border-bottom: 2px solid aqua;
+          color: white;
+          text-align: center;
+          background-color: transparent;
+          font-size: 20px;
+          &:focus {
+            outline: none;
+          }
+
+          &::placeholder {
+            font-size: 20px;
+          }
+        }
+
+        &:first-child {
+          input {
+            background: none;
+            text-align: center;
+
+            margin: 5px 0px;
+            font-size: 25px;
+            font-weight: 600;
+          }
+        }
+
+        &:last-child {
+          input {
+            background: none;
+            margin: 5px 0px;
+            font-size: 20px;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+
+    .postCount {
+      color: white;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      font-family: "Dosis", sans-serif;
+      font-weight: 600;
+
+      :first-child {
+        font-size: 50px;
+      }
+
+      :last-child {
+        font-size: 18px;
+      }
+
+      &:hover {
+        color: aqua;
+        cursor: pointer;
+      }
+    }
+
+    .changePwd {
+      color: white;
+      font-size: 18px;
+      font-weight: 500;
+      cursor: pointer;
+
+      &:hover {
+        color: aqua;
+        cursor: pointer;
+      }
+    }
+
+    .profileUpdateBtn {
+      display: flex;
+      justify-content: space-between;
+
+      .cancel {
+        margin-right: 15px;
+        background-color: red;
+
+        &:hover {
+          background-color: rgb(212, 24, 24);
+        }
+      }
+      button {
+        border: none;
+        font-size: 20px;
+        font-weight: 600;
+        background-color: aqua;
+        border-radius: 3px;
+        padding: 5px 0px;
+        color: white;
+        cursor: pointer;
+        width: 100%;
+        margin: 10px 0px;
+
+        &:hover {
+          background-color: rgb(25, 175, 175);
+        }
+      }
+    }
+
+    .profileEditBtn {
+      button {
+        border: none;
+        font-size: 20px;
+        font-weight: 600;
+        background-color: aqua;
+        border-radius: 3px;
+        padding: 5px 0px;
+        color: white;
+        cursor: pointer;
+        width: 100%;
+        margin: 10px 0px;
+        letter-spacing: 2px;
+        font-family: "Bebas Neue", sans-serif;
+
+        &:hover {
+          background-color: rgb(25, 175, 175);
+        }
+      }
+    }
+  }
+}

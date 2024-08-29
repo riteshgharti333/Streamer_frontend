@@ -4,15 +4,15 @@
   width: 100%;
   color: white;
   top: 0;
+  // position: relative;
   position: sticky;
   z-index: 999;
   transition: all 0.5s;
   overflow: hidden;
-  background-color: black;
-
+  // background-color: black;
 
   &.scrolled {
-    background-color: black;
+    // background-color: black;
   }
 
   .mobileSidebar {
@@ -30,21 +30,21 @@
     .left {
       cursor: pointer;
       font-size: 20px;
-     h1{
-      font-family: "Agbalumo";
-      color: yellow;
+      h1 {
+        font-family: "Agbalumo";
+        color: yellow;
 
-        .f{
-          &:hover{
+        .f {
+          &:hover {
             color: green;
           }
         }
-        .s{
-          &:hover{
+        .s {
+          &:hover {
             color: red;
           }
         }
-     }
+      }
     }
 
     .right {
@@ -59,15 +59,15 @@
 
       .navOptions {
         cursor: pointer;
-        text-transform: uppercase;
         font-family: "Gabarito", sans-serif;
         font-size: 20px;
         font-weight: 600;
-      margin-right: 20px;
-
-        &:hover {
-          color: antiquewhite;
-        }
+        margin-right: 20px;
+        background-color: black;
+        color: white;
+        appearance: none;
+        border: 0;
+        padding: 5px;
       }
 
       .subscribe {
@@ -92,64 +92,66 @@
         }
       }
 
-///////////////////////////////////////////
+      ///////////////////////////////////////////
 
-.button {
-  font-family: "Bebas Neue", sans-serif;
-  letter-spacing: 1px;
-  font-size: 20px;
-  padding: 5px 10px;
-  margin-right: 20px;
+      .button {
+        font-family: "Bebas Neue", sans-serif;
+        letter-spacing: 1px;
+        font-size: 20px;
+        padding: 5px 10px;
+        margin-right: 20px;
 
-  border-radius: 9px;
-  display: inline-block;
-  text-align: center;
-  position: relative;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
-  text-decoration: none;
-  transition: 0.3s ease all;
-  z-index: 1;
-  border: none;
-  cursor: pointer;
-}
+        border-radius: 9px;
+        display: inline-block;
+        text-align: center;
+        position: relative;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
+        text-decoration: none;
+        transition: 0.3s ease all;
+        z-index: 1;
+        border: none;
+        cursor: pointer;
+      }
 
-.button:before {
-  transition: 0.5s all ease;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  right: 50%;
-  bottom: 0;
-  opacity: 0;
-  content: '';
-  background: #000;
-  border: 2px solid white;
-  z-index: -1;
-}
+      .button:before {
+        transition: 0.5s all ease;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        right: 50%;
+        bottom: 0;
+        opacity: 0;
+        content: "";
+        background: #000;
+        border: 2px solid white;
+        z-index: -1;
+      }
 
-.button:hover, .button:focus {
-  color: white;
-}
+      .button:hover,
+      .button:focus {
+        color: white;
+      }
 
-.button:hover:before, .button:focus:before {
-  transition: 0.5s all ease;
-  left: 0;
-  right: 0;
-  opacity: 1;
-}
+      .button:hover:before,
+      .button:focus:before {
+        transition: 0.5s all ease;
+        left: 0;
+        right: 0;
+        opacity: 1;
+      }
 
-.button:active {
-  transform: scale(0.9);
-}
-        .user{
-          background-color: aqua;
-          padding: 5px 8px;
-          border-radius: 5px;
-          cursor: pointer;
-          .userIcon {
-            font-size: 20px;
-          }
+      .button:active {
+        transform: scale(0.9);
+      }
+      .user {
+        background-color: aqua;
+        padding: 5px 8px;
+        border-radius: 5px;
+        cursor: pointer;
+        .userIcon {
+          font-size: 20px;
         }
+      }
     }
   }
 }

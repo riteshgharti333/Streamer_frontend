@@ -1,35 +1,58 @@
-// import axios from 'axios';
-// import React, { useContext, useEffect, useState } from 'react'
-// import { Context, baseUrl } from '../../main';
+import "./Profile.scss";
+import { Link, useNavigate } from "react-router-dom";
+import { IoMdArrowRoundBack } from "react-icons/io";
+import { FaRegTrashAlt } from "react-icons/fa";
+import { useSelector } from "react-redux";
+import profileImg from "../../assets/images/sm.jpg";
 
-// const Profile = () => {
+export default function Profile() {
 
-//     const { setUser, setIsAuthenticated, setLoading } = useContext(Context);
+  const navigate = useNavigate();
 
-//     useEffect(() => {
-//       setLoading(true);
-//       axios
-//         .get(`${baseUrl}/api/auth/profile`, {
-//           withCredentials: true,
-//         })
-//         .then((res) => {
-//           setUser(res.data.user);
-//           setIsAuthenticated(true);
-//           setLoading(false);
-//         })
-//         .catch((error) => {
-//           setUser({});
-//           setIsAuthenticated(false);
-//           setLoading(false);
-//           console.log(error)
-//         });
-//     }, []);
+  const { user } = useSelector((state) => state.auth);
 
-//   return (
-//     <div>
-//       profile
-//     </div>
-//   )
-// }
+  
 
-// export default Profile
+  const goBack = () => {
+    navigate(-1);
+  };
+
+  return (
+    <div className="settings">
+      <div className="profileBack">
+        <Link to="#" onClick={goBack}>
+          <IoMdArrowRoundBack className="backArrow" />
+        </Link>
+      </div>
+      <div className="settingsWrapper">
+        <div className="settingsIcon">
+          <span title="Delete Account">
+            <FaRegTrashAlt />
+          </span>
+        </div>
+        <div className="profileData">
+         
+              <div className="profileUpdatedImg">
+                <img src={user.user.profilePic || profileImg } alt="Profile" />
+              </div>
+              <div className="profileName">
+                <h3>{user.user.name}</h3>
+              </div>
+              <div className="ProfileEmail">
+                <span>{user.user.email}</span>
+              </div>
+
+
+              <div className="profileEditBtn">
+                <button>Edit</button>
+                <div className="changePwd">
+                  <Link to={"/changepassword"}>
+                    <span className="changePwd">Change Password</span>
+                  </Link>
+                </div>
+              </div>
+        </div>
+      </div>
+    </div>
+  );
+}
