@@ -5,6 +5,11 @@ import { BiSolidLock, BiSolidUser, BiShow, BiHide } from "react-icons/bi";
 import { IoMdMail } from "react-icons/io";
 import { useFormik } from "formik";
 import { signUpSchema } from "../../schemas/index";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  loginAsyncUser,
+  registerAsyncUser,
+} from "../../redux/asyncThunks/authThunks";
 
 const initialvalues = {
   name: "",
@@ -14,9 +19,10 @@ const initialvalues = {
 };
 
 export default function Register() {
-
-
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -28,20 +34,22 @@ export default function Register() {
       validationSchema: signUpSchema,
       onSubmit: async (values) => {
         try {
-         
-
+          await dispatch(registerAsyncUser(values));
+          navigate("/");
         } catch (error) {
+          console.log(error)
         }
       },
     });
-
-if(isAuthenticated) return <Navigate to={"/login"} />
 
   return (
     <div className="register">
       <div className="top">
         <div className="wrapper">
-        <h1><span className="f">STRE</span><span className="s">AMER</span></h1>
+          <h1>
+            <span className="f">STRE</span>
+            <span className="s">AMER</span>
+          </h1>
         </div>
       </div>
       <form className="input" onSubmit={handleSubmit}>

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { createAsyncCustomer, createAsyncSubscription, createAsyncSubscriptionSession, saveAsyncsSubscriptionSession } from '../asyncThunks/subscriptionThunks';
+import { createAsyncCustomer, createAsyncSubscription, createAsyncSubscriptionSession } from '../asyncThunks/subscriptionThunks';
 
 const initialState = {
   customer: null,
@@ -57,21 +57,6 @@ const subscriptionSlice = createSlice({
       })
       .addCase(createAsyncSubscriptionSession.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
-      });
- // Handle save subscription session
-      builder
-
-      .addCase(saveAsyncsSubscriptionSession.pending, (state) => {
-        state.status = "loading";
-        state.error = null;
-      })
-      .addCase(saveAsyncsSubscriptionSession.fulfilled, (state, action) => {
-        state.status = "succeeded";
-        state.subscription = action.payload;
-      })
-      .addCase(saveAsyncsSubscriptionSession.rejected, (state, action) => {
-        state.status = "failed";
         state.error = action.payload;
       });
   }

@@ -5,11 +5,13 @@ import { useNavigate } from "react-router-dom";
 // import MobileBurger from "../MobileBurger/MobileBurger";
 import { FaUser } from "react-icons/fa";
 import { genre } from "../../assets/data";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { logoutAsyncUser } from "../../redux/asyncThunks/authThunks";
 
 const Navbar = () => {
   const [scroll, setScroll] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const { user } = useSelector((state) => state.auth);
 
@@ -27,6 +29,11 @@ const Navbar = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const handleLogout = () => {
+     dispatch(logoutAsyncUser());
+     navigate("/login");
+  }
 
   const navbarClass = scroll ? "navbar scrolled" : "navbar";
 
@@ -76,7 +83,7 @@ const Navbar = () => {
             <button className="subscribe">Subscribe</button>
           </Link>
           {user ? (
-            <button className="button">Logout</button>
+            <button className="button" onClick={handleLogout}>Logout</button>
           ) : (
             <Link to="/login">
               <button className="button">Login</button>
