@@ -19,18 +19,10 @@ export const createSubscription = (customerId, priceId) => {
 };
 
 // CREATE SUBSCRIPTION SESSION
-export const createSubscriptionSession = (email, priceId) => {
-  return axios.post(`${baseUrl}/subscriptions/create-subscription-session`, {
-    email,
-    priceId,
-  });
+export const createSubscriptionSession = (subscriptionData) => {
+  return axios.post(`${baseUrl}/subscriptions/create-subscription-session`, subscriptionData);
 };
 
-// SAVE SUBSCRIPTION SESSION
-export const saveSubscriptionSession = (subscriptionData) => {
-  return axios.post(`${baseUrl}/subscriptions/saveSubscription`, {
-    subscriptionData
-  });
-};
+
 
 

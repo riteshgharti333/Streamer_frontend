@@ -35,11 +35,12 @@ export const createAsyncSubscription = createAsyncThunk(
 
 export const createAsyncSubscriptionSession = createAsyncThunk(
   "subscription/createSession",
-  async ({ email, priceId }, { rejectWithValue }) => {
+  async (subscriptionData, { rejectWithValue }) => {
     try {
-      const response = await createSubscriptionSession(email, priceId);
+      const response = await createSubscriptionSession(subscriptionData);
       return response.data.sessionUrl;
     } catch (error) {
+      console.log(error)
       return rejectWithValue(
         error.response?.data?.error?.message || "Failed to create session"
       );
@@ -47,41 +48,4 @@ export const createAsyncSubscriptionSession = createAsyncThunk(
   }
 );
 
-export const saveAsyncsSubscriptionSession = createAsyncThunk(
-  "subscription/saveAsyncsSubscriptionSession",
-  async (subscriptionData, { rejectWithValue }) => {
-    try {
-      const {
-        userId,
-        email,
-        name,
-        customerId,
-        subscriptionId,
-        plan,
-        startDate,
-        endDate,
-        status,
-        price,
-      } = subscriptionData;
 
-      const newSubscriptionData = {
-        userId,
-        email,
-        name,
-        customerId,
-        subscriptionId,
-        plan,
-        startDate,
-        endDate,
-        status,
-        price,
-      };
-
-      const response = await saveAsyncsSubscriptionSession(newSubscriptionData);
-      return response.data;
-    } catch (error) {
-      console.log(error);
-      return rejectWithValue(error.response.data);
-    }
-  }
-);

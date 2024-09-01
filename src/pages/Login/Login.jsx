@@ -2,10 +2,12 @@ import "./Login.scss";
 import { useEffect, useState } from "react";
 import { IoMdMail } from "react-icons/io";
 import { BiSolidLock, BiShow, BiHide } from "react-icons/bi";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { signUpSchema } from "../../schemas/index";
 import { useContext } from "react";
+import { useDispatch } from "react-redux";
+import { loginAsyncUser } from "../../redux/asyncThunks/authThunks";
 
 
 const initialvalues = {
@@ -16,27 +18,28 @@ const initialvalues = {
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
 
-  const { isAuthenticated, setIsAuthenticated, loading, setLoading } =
-    useContext(Context);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
 
   const { values, errors, handleBlur, touched, handleChange, handleSubmit } =
     useFormik({
       initialValues: initialvalues,
       onSubmit: async (values) => {
         try {
+          await dispatch(loginAsyncUser(values));
+          navigate("/");
         } catch (error) {
-         
+         console.log(error);
         }
       },
     });
 
-    console.log(isAuthenticated);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
-  if (isAuthenticated) return <Navigate to={"/"} />;
 
 
   return (
