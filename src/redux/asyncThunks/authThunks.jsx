@@ -23,8 +23,8 @@ export const registerAsyncUser = createAsyncThunk(
     async (userData, { rejectWithValue }) => {
         try {
             const res = await registerUser(userData);
-            // Save user info to local storage
-            localStorage.setItem("user", JSON.stringify(res.data));
+            // localStorage.setItem("user", JSON.stringify(res.data));
+            console.log(res.data);
             return res.data;
         } catch (error) {
             console.error("Failed to register:", error);
