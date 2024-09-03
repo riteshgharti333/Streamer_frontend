@@ -1,9 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import {
-  getLists,
-  getQueryLists,
-  getSingleList,
-} from "../api/listAPI";
+import { getLists, getQueryLists, getSingleList } from "../api/listAPI";
 
 //GET ALL LISTS
 export const getAsyncLists = createAsyncThunk(
@@ -25,9 +21,8 @@ export const getAsyncQueryLists = createAsyncThunk(
   async (query, { rejectWithValue }) => {
     try {
       const res = await getQueryLists(query);
-      console.log(res.data);
 
-      return {query, data: res.data};
+      return { query, data: res.data };
     } catch (error) {
       console.log(error);
       return rejectWithValue(error.message || "Failed to fetch query lists");
@@ -48,4 +43,3 @@ export const getAsyncSingleList = createAsyncThunk(
     }
   }
 );
-
