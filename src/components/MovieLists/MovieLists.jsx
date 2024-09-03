@@ -26,8 +26,8 @@ const MovieLists = ({list,type}) => {
       </div>
       <div className="movieListsItems">
       <Slide slidesToShow={4}  arrowsScroll={1}>
-       {list.content.map((item,i) => (
-        <MovieListItem key={i} item={item} type={type}/>
+       {list.content.map((item,index) => (
+        <MovieListItem key={item.id || index} item={item} type={type}/>
        ))}
       </Slide>
       </div>

@@ -1,23 +1,18 @@
 import { useEffect, useState } from "react";
 import "./MovieListItem.scss";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getAsyncSigleMovie } from "../../redux/asyncThunks/movieThunks";
 
-const MovieListItem = ({ item, type }) => {
+const MovieListItem = ({ item }) => {
   const [movie, setMovie] = useState({});
   const dispatch = useDispatch();
 
-  const { singleMovie } = useSelector((state) => state.movies);
-
-  const series = useSelector((state) => state.movies.series);
 
   useEffect(() => {
     const fetchMovie = async () => {
-      const response = await dispatch(getAsyncSigleMovie(item));
-      if (response?.payload?.success) {
-        setMovie(response.payload.getMovie);
-      }
+      const response = await dispatch(getAsyncSigleMovie(item)).unwrap();
+        setMovie(response.getMovie);
     };
     fetchMovie();
   }, [dispatch, item]);
