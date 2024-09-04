@@ -8,12 +8,15 @@ import Homepage from "./pages/Homepage/Homepage";
 import Subscriptions from "./pages/Subscriptions/Subscriptions";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
-import { Toaster } from "react-hot-toast";
 // import Watch from "./pages/Watch/Watch";
 import Profile from "./pages/Profile/Profile";
 import QueryMovies from "./pages/QueryMovies/QueryMovies";
 import Navbar from "./components/Navbar/Navbar";
 import { useDispatch, useSelector } from "react-redux";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+
 
 function App() {
 
@@ -42,7 +45,18 @@ function App() {
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Router>
-      <Toaster />
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 }

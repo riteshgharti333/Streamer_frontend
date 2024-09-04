@@ -6,8 +6,6 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  font-family: "Bebas Neue", sans-serif;
-  letter-spacing: 2px;
 
   @include sm {
     height: 70vh;
@@ -21,41 +19,29 @@
     left: 10px;
   }
   .settingsWrapper {
-    background: radial-gradient(
-      circle at 10% 20%,
-      rgb(254, 158, 94) 0%,
-      rgb(254, 94, 114) 94.3%
-    );
+    background: linear-gradient(90deg, #00c9ff 0%, #92fe9d 100%);
     padding: 40px;
     position: relative;
     border-radius: 5px;
-    min-width: 300px;
-
-    .settingsIcon {
-      position: absolute;
-      right: 10px;
-      top: 10px;
-      color: white;
-      font-size: 20px;
-      cursor: pointer;
-    }
-
+    width: 600px;
     .profileData {
-      text-align: center;
       display: flex;
-      flex-direction: column;
-      .profileUpdatedImg {
-        position: relative;
+      justify-content: space-around;
 
-        img {
-          height: 150px;
-          object-fit: cover;
-          width: 150px;
-          border-radius: 50%;
-          transition: all 0.2s ease-in;
-          cursor: pointer;
+      .left {
+        .profileUpdatedImg {
+          position: relative;
+
+          img {
+            height: 150px;
+            object-fit: cover;
+            width: 150px;
+            border-radius: 50%;
+            transition: all 0.2s ease-in;
+            cursor: pointer;
+          }
         }
-        span {
+        p {
           display: none;
           position: absolute;
           right: 23%;
@@ -75,151 +61,175 @@
         }
       }
 
-      .profileName {
-        h3 {
-          color: white;
-          text-align: center;
-          margin: 12px 0px;
-          font-size: 25px;
-        }
-      }
-
-      .ProfileEmail {
-        text-align: center;
-        color: white;
-        font-size: 20px;
-        font-weight: 600;
-      }
-
-      .profileInputForm {
-        .formError {
-          color: red;
-          font-weight: 600;
-          margin-top: 5px;
-        }
-
-        input {
-          border: none;
-          width: 100%;
-          max-width: 200px;
-          border-bottom: 2px solid aqua;
-          color: white;
-          text-align: center;
-          background-color: transparent;
-          font-size: 20px;
-          &:focus {
-            outline: none;
-          }
-
-          &::placeholder {
-            font-size: 20px;
-          }
-        }
-
-        &:first-child {
-          input {
-            background: none;
+      .right {
+        font-family: "Gabarito", sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .profileName {
+          h3 {
+            color: white;
             text-align: center;
-
-            margin: 5px 0px;
+            margin: 12px 0px;
             font-size: 25px;
-            font-weight: 600;
           }
         }
 
-        &:last-child {
+        .ProfileEmail {
+          text-align: center;
+          color: white;
+          font-size: 20px;
+          font-weight: 600;
+        }
+
+        .profileInputForm {
+          .formError {
+            color: red;
+            font-weight: 600;
+            margin-top: 5px;
+          }
+
           input {
-            background: none;
-            margin: 5px 0px;
+            border: none;
+            width: 100%;
+            max-width: 200px;
+            border-bottom: 2px solid aqua;
+            color: white;
+            text-align: center;
+            background-color: transparent;
             font-size: 20px;
-            font-weight: 600;
+            &:focus {
+              outline: none;
+            }
+
+            &::placeholder {
+              font-size: 20px;
+            }
+          }
+
+          &:first-child {
+            input {
+              background: none;
+              text-align: center;
+
+              margin: 5px 0px;
+              font-size: 25px;
+              font-weight: 600;
+            }
+          }
+
+          &:last-child {
+            input {
+              background: none;
+              margin: 5px 0px;
+              font-size: 20px;
+              font-weight: 600;
+            }
           }
         }
       }
+
+      .profileEditBtn {
+        button {
+          border: none;
+          font-size: 20px;
+          font-weight: 600;
+          background-color: aqua;
+          border-radius: 3px;
+          padding: 5px 0px;
+          color: white;
+          cursor: pointer;
+          letter-spacing: 2px;
+          width: 100%;
+          margin: 10px 0px;
+          letter-spacing: 2px;
+          font-family: "Bebas Neue", sans-serif;
+
+          &:hover {
+            background-color: rgb(25, 175, 175);
+          }
+        }
+
+        .changePwd {
+          color: white;
+          font-family: "Bebas Neue", sans-serif;
+          letter-spacing: 2px;
+        }
+      }
     }
 
-    .postCount {
+    .lineBr {
+      // color: red;
+      margin: 20px 0px;
+    }
+    .subscriptionPlans {
+      font-family: "Bebas Neue", sans-serif;
+      letter-spacing: 1px;
       color: white;
-      display: flex;
-      flex-direction: column;
-      text-align: center;
-      font-family: "Dosis", sans-serif;
-      font-weight: 600;
 
-      :first-child {
-        font-size: 50px;
-      }
-
-      :last-child {
-        font-size: 18px;
-      }
-
-      &:hover {
-        color: aqua;
-        cursor: pointer;
-      }
-    }
-
-    .changePwd {
-      color: white;
-      font-size: 18px;
-      font-weight: 500;
-      cursor: pointer;
-
-      &:hover {
-        color: aqua;
-        cursor: pointer;
-      }
-    }
-
-    .profileUpdateBtn {
-      display: flex;
-      justify-content: space-between;
-
-      .cancel {
-        margin-right: 15px;
-        background-color: red;
-
-        &:hover {
-          background-color: rgb(212, 24, 24);
-        }
-      }
-      button {
-        border: none;
+      p {
         font-size: 20px;
-        font-weight: 600;
-        background-color: aqua;
-        border-radius: 3px;
-        padding: 5px 0px;
-        color: white;
-        cursor: pointer;
-        width: 100%;
-        margin: 10px 0px;
+      }
 
-        &:hover {
-          background-color: rgb(25, 175, 175);
+      .subscriptionPlansData {
+        display: flex;
+        border-radius: 3px;
+        padding: 10px;
+        justify-content: space-between;
+        z-index: 1;
+        position: relative;
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-image: url("../../assets/images/spider.jpg");
+          background-size: cover;
+          background-position: center;
+          border-radius: inherit;
+          filter: brightness(30%);
+          z-index: -1;
+        }
+        .planInfo {
+          p{
+            font-weight: 300;
+            font-size: 14px;
+
+            span{
+              font-weight: 500;
+              color: aquamarine;
+              font-size: 18px;
+            }
+          }
+          .subscriptionPlansDataBtn {
+            button {
+              background-color: aqua;
+              cursor: pointer;
+              padding: 7px;
+              color: white;
+              border: none;
+              font-family: "Bebas Neue", sans-serif;
+              font-size: 16px;
+              letter-spacing: 1px;
+              border-radius: 2px;
+              &:first-child {
+                margin-right: 10px;
+              background-color: red;
+
+              }
+
+             
+            }
+           
+          }
+          
         }
       }
-    }
-
-    .profileEditBtn {
-      button {
-        border: none;
-        font-size: 20px;
-        font-weight: 600;
-        background-color: aqua;
-        border-radius: 3px;
-        padding: 5px 0px;
-        color: white;
-        cursor: pointer;
-        width: 100%;
-        margin: 10px 0px;
-        letter-spacing: 2px;
-        font-family: "Bebas Neue", sans-serif;
-
-        &:hover {
-          background-color: rgb(25, 175, 175);
-        }
+      .noplan{
+        color: rgb(187, 22, 22);
       }
     }
   }

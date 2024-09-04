@@ -8,6 +8,7 @@ import { signUpSchema } from "../../schemas/index";
 import { useContext } from "react";
 import { useDispatch } from "react-redux";
 import { loginAsyncUser } from "../../redux/asyncThunks/authThunks";
+import { toast } from "react-toastify";
 
 
 const initialvalues = {
@@ -27,11 +28,14 @@ export default function Login() {
       initialValues: initialvalues,
       onSubmit: async (values) => {
         try {
-          await dispatch(loginAsyncUser(values));
-          navigate("/");
-        } catch (error) {
-         console.log(error);
-        }
+          const response = await dispatch(loginAsyncUser(values)).unwrap();
+           toast.success(response.message);
+           navigate("/");
+     
+         } catch (error) {
+           toast.error(error.message);
+           console.log(error);
+         }
       },
     });
 

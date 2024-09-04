@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import "./Register.scss";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { BiSolidLock, BiSolidUser, BiShow, BiHide } from "react-icons/bi";
 import { IoMdMail } from "react-icons/io";
 import { useFormik } from "formik";
 import { signUpSchema } from "../../schemas/index";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  loginAsyncUser,
-  registerAsyncUser,
-} from "../../redux/asyncThunks/authThunks";
+import { useDispatch } from "react-redux";
+import { registerAsyncUser } from "../../redux/asyncThunks/authThunks";
+import { toast } from "react-toastify";
+
+
 
 const initialvalues = {
   name: "",
@@ -34,10 +34,14 @@ export default function Register() {
       validationSchema: signUpSchema,
       onSubmit: async (values) => {
         try {
-          await dispatch(registerAsyncUser(values));
-          navigate("/");
+          const response = await dispatch(registerAsyncUser(values)).unwrap();
+          if (response && response.message) {
+            toast.success(response.message);
+            navigate("/login");
+          }
         } catch (error) {
-          console.log(error)
+          toast.error(error.message);
+          console.log(error);
         }
       },
     });
