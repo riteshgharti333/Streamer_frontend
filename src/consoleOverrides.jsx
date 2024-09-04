@@ -1,4 +1,3 @@
-// Save the original console.error method
 const originalConsoleError = console.error;
 
 // Override console.error

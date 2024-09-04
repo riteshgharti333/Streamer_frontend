@@ -19,5 +19,5 @@ export const logoutUser = () => {
 
 // USER PROFILE
 export const userProfile = () => {
-    return axios.get(`${baseUrl}/auth/profile`);
+    return axios.get(`${baseUrl}/auth/profile`, { withCredentials: true });
 }

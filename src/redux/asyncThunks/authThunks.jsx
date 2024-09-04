@@ -12,7 +12,7 @@ export const loginAsyncUser = createAsyncThunk(
             return res.data;
         } catch (error) {
             console.error("Failed to log in:", error);
-            return rejectWithValue(error.message || "Failed to log in");
+            return rejectWithValue(error.response.data || "Failed to log in");
         }
     }
 );
@@ -23,12 +23,11 @@ export const registerAsyncUser = createAsyncThunk(
     async (userData, { rejectWithValue }) => {
         try {
             const res = await registerUser(userData);
-            // localStorage.setItem("user", JSON.stringify(res.data));
             console.log(res.data);
             return res.data;
         } catch (error) {
             console.error("Failed to register:", error);
-            return rejectWithValue(error.message || "Failed to register");
+            return rejectWithValue(error.response.data || "Failed to register");
         }
     }
 );
@@ -45,7 +44,7 @@ export const logoutAsyncUser = createAsyncThunk(
             return res.data;
         } catch (error) {
             console.error("Failed to log out:", error);
-            return rejectWithValue(error.message || "Failed to log out");
+            return rejectWithValue(error.response.data || "Failed to log out");
         }
     }
 );
@@ -56,11 +55,11 @@ export const userProfileAsync = createAsyncThunk(
     async (_, { rejectWithValue }) => {
         try {
             const res = await userProfile();
-            // Optionally, you can update the user profile in local storage if needed
+            console.log(res.data);
             return res.data;
         } catch (error) {
             console.error("Failed to fetch user profile:", error);
-            return rejectWithValue(error.message || "Failed to fetch user profile");
+            return rejectWithValue(error.response.data || "Failed to fetch user profile");
         }
     }
 );
