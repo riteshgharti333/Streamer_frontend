@@ -31,9 +31,9 @@ const Navbar = () => {
   }, []);
 
   const handleLogout = () => {
-     dispatch(logoutAsyncUser());
-     navigate("/login");
-  }
+    dispatch(logoutAsyncUser());
+    navigate("/login");
+  };
 
   const navbarClass = scroll ? "navbar scrolled" : "navbar";
 
@@ -52,11 +52,7 @@ const Navbar = () => {
         <div className="mobileSidebar">{/* <MobileBurger /> */}</div>
 
         <div className="right">
-          {/* <Link to="/" className="link">
-            <span className="navOptions"> Homepage </span> */}
-          {/* </Link> */}
-
-          {/* <Link to="/series" className="link">
+           {/* <Link to="/series" className="link">
             <select name="" id="" className="navOptions">
               {genre.map((g) => (
                 <>
@@ -77,24 +73,28 @@ const Navbar = () => {
                   </option>
                 </>
               ))}
-            </select> */}
-          {/* </Link> */}
+            </select> 
+           </Link> */}
           <Link to="/subscriptions">
             <button className="subscribe">Subscribe</button>
           </Link>
           {user ? (
-            <button className="button" onClick={handleLogout}>Logout</button>
+            <button className="button" onClick={handleLogout}>
+              Logout
+            </button>
           ) : (
             <Link to="/login">
               <button className="button">Login</button>
             </Link>
           )}
 
-          <Link to="/profile">
-            <div className="user">
-              <FaUser className="userIcon" />
-            </div>
-          </Link>
+          {user && (
+            <Link to="/profile">
+              <div className="user">
+                <FaUser className="userIcon" />
+              </div>
+            </Link>
+          )}
         </div>
       </div>
     </div>

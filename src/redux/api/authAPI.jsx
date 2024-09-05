@@ -4,7 +4,7 @@ const baseUrl = import.meta.env.VITE_API_KEY;
 
 // LOGIN USER
 export const loginUser = (userData) => {
-    return axios.post(`${baseUrl}/auth/login`, userData);
+    return axios.post(`${baseUrl}/auth/login`, userData , { withCredentials: true });
 }
 
 // REGISTER USER

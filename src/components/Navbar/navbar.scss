@@ -3,16 +3,14 @@
 .navbar {
   width: 100%;
   color: white;
-  top: 0;
-  // position: relative;
-  position: sticky;
+  // position: sticky;
+  // top: 0;
   z-index: 999;
   transition: all 0.5s;
   overflow: hidden;
-  // background-color: black;
 
   &.scrolled {
-    // background-color: black;
+    background-color: black;
   }
 
   .mobileSidebar {

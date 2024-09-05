@@ -3,6 +3,7 @@ import Feature from "../../components/Feature/Feature";
 import MovieLists from "../../components/MovieLists/MovieLists";
 import { Link, useLocation } from "react-router-dom";
 import useLists from './useLists'; // Import your custom hook
+import Navbar from "../../components/Navbar/Navbar";
 
 const Homepage = ({ type }) => {
   const location = useLocation();

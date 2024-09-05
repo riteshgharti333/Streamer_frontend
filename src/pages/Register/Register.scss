@@ -8,9 +8,9 @@
   background-size: cover;
   position: relative;
 
-  .top {
-    .wrapper {
-      padding: 10px;
+  .logo {
+    display: flex;
+    justify-content: center;
       h1{
         font-family: "Agbalumo";
         color: yellow;
@@ -26,19 +26,18 @@
               color: red;
             }
           }
-       }
     }
   }
    
   .input{
     position: absolute;
-    top: 50%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
-    padding:60px;
-    gap: 20px;
+    padding:40px;
+    gap: 10px;
     border-radius: 6px;
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 
