@@ -48,13 +48,11 @@ export default function Register() {
 
   return (
     <div className="register">
-      <div className="top">
-        <div className="wrapper">
+      <div className="logo">
           <h1>
             <span className="f">STRE</span>
             <span className="s">AMER</span>
           </h1>
-        </div>
       </div>
       <form className="input" onSubmit={handleSubmit}>
         <h1>Sign Up</h1>

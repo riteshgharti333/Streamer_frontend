@@ -62,6 +62,7 @@ const authSlice = createSlice({
       .addCase(userProfileAsync.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.profile = action.payload;
+        console.log(action.payload);
       })
       .addCase(userProfileAsync.rejected, (state, action) => {
         state.status = "failed";

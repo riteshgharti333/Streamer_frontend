@@ -13,3 +13,14 @@ a{
   text-decoration: none;
   color: inherit;
 }
+
+.app {
+  position: relative;
+
+  .navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+}
+
