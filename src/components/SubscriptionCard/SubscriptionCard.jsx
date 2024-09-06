@@ -1,4 +1,4 @@
-import './SubscriptionCard.scss';
+import "./SubscriptionCard.scss";
 
 const SubscriptionCard = ({ name, price, image, onClick }) => {
   const style = {
@@ -6,7 +6,7 @@ const SubscriptionCard = ({ name, price, image, onClick }) => {
   };
 
   return (
-    <div className='subscriptionCard'>
+    <div className="subscriptionCard">
       <div className="card2" style={style}>
         <div className="subscriptionCardInfo">
           <h1>{name}</h1>

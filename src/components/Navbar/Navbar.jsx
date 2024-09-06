@@ -7,6 +7,7 @@ import { FaUser } from "react-icons/fa";
 import { genre } from "../../assets/data";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutAsyncUser } from "../../redux/asyncThunks/authThunks";
+import { IoMdArrowDropdown } from "react-icons/io";
 
 const Navbar = () => {
   const [scroll, setScroll] = useState(false);
@@ -35,6 +36,18 @@ const Navbar = () => {
     navigate("/login");
   };
 
+  const handleGenreChange = (e, type) => {
+    const selectedGenre = e.target.value;
+    if (selectedGenre) {
+      // Redirect to the /movies page with the selected genre
+      navigate(`/${type}?genre=${selectedGenre}`);
+    }
+  };
+
+  const handleLinkClick = () => {
+    navigate(`/query?type=movies&genre=${g}`);
+  };
+
   const navbarClass = scroll ? "navbar scrolled" : "navbar";
 
   return (
@@ -52,29 +65,40 @@ const Navbar = () => {
         <div className="mobileSidebar">{/* <MobileBurger /> */}</div>
 
         <div className="right">
-           {/* <Link to="/series" className="link">
-            <select name="" id="" className="navOptions">
+          <span className="navOptions">
+            <Link to={"/"}>Homepage</Link>
+          </span>
+          <span className="navOptions">
+            <Link to={"/movies"}>Movies</Link>
+            <div className="genre">
               {genre.map((g) => (
-                <>
-                  <option key={g} value="">
-                    {g}
-                  </option>
-                </>
+                <span key={g} value={g}>
+                  <Link
+                    to={`/query?type=movies&genre=${g}`}
+                    onClick={handleLinkClick}
+                  >
+                    {g} Movies
+                  </Link>
+                </span>
               ))}
-            </select>
-          </Link> */}
+            </div>
+          </span>
 
-          {/* <Link to="/movies" className="link">
-            <select name="" id="" className="navOptions">
+          <span className="navOptions">
+            <Link to={"/series"}>Series</Link>
+            <div className="genre">
               {genre.map((g) => (
-                <>
-                  <option key={g} value="">
-                    {g}
-                  </option>
-                </>
+                <span key={g} value={g}>
+                  <Link
+                    to={`/query?type=webseries&genre=${g}`}
+                    onClick={handleLinkClick}
+                  >
+                    {g} Series
+                  </Link>
+                </span>
               ))}
-            </select> 
-           </Link> */}
+            </div>
+          </span>
           <Link to="/subscriptions">
             <button className="subscribe">Subscribe</button>
           </Link>

@@ -15,7 +15,7 @@ export const getAsyncMovies = createAsyncThunk(
       return res.data;
     } catch (error) {
       console.error("Failed to fetch movies:", error);
-      return rejectWithValue(error.message || "Failed to fetch movies");
+      return rejectWithValue(error.response.data || "Failed to fetch movies");
     }
   }
 );
@@ -26,10 +26,12 @@ export const getQueryAsyncMovies = createAsyncThunk(
   async (query, { rejectWithValue }) => {
     try {
       const res = await getQueryMovies(query);
-      return { query, data: res.data }; 
+      return { query, data: res.data };
     } catch (error) {
       console.error("Failed to fetch movies:", error);
-      return rejectWithValue(error.message || "Failed to fetch query movies");
+      return rejectWithValue(
+        error.response.data || "Failed to fetch query movies"
+      );
     }
   }
 );
@@ -44,12 +46,10 @@ export const getAsyncSigleMovie = createAsyncThunk(
       return res.data;
     } catch (error) {
       console.error("Failed to fetch movies:", error);
-      return rejectWithValue(error.message || "Failed to fetch movie");
+      return rejectWithValue(error.response.data || "Failed to fetch movie");
     }
   }
-  
 );
-
 
 //GET RANDOM MOVIES
 export const getRandomAsyncMovies = createAsyncThunk(
@@ -57,10 +57,12 @@ export const getRandomAsyncMovies = createAsyncThunk(
   async (query, { rejectWithValue }) => {
     try {
       const res = await getRandomMovies(query);
-      return { query, data: res.data }; 
-
+      return { query, data: res.data };
     } catch (error) {
       console.error("Failed to fetch movies:", error);
-      return rejectWithValue(error.message || "Failed to fetch query movies");
+      return rejectWithValue(
+        error.response.data || "Failed to fetch query movies"
+      );
     }
-  })
+  }
+);

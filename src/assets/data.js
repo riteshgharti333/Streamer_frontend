@@ -76,7 +76,8 @@ export const genre = [
     "Documentaries",
     "Horror",
     "Romantic",
-    "Sci-fi & Fantasy",
+    "Sci-fi",
+    "Fantasy",
     "Sports",
     "Thrillers",
   ];

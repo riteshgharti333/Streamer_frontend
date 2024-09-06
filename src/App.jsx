@@ -16,6 +16,7 @@ import Navbar from "./components/Navbar/Navbar";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
@@ -41,21 +42,18 @@ function Layout() {
   const { user } = useSelector((state) => state.auth);
   const location = useLocation();
 
-  // Protected route function to prevent access without authentication
   const ProtectedRoute = ({ children }) => {
     return user ? children : <Navigate to="/login" />;
   };
 
-  // Hide Navbar on specific routes
-  const hideNavbar = location.pathname === "/login" || location.pathname === "/register";
+  const hideNavbarFooter =
+    location.pathname === "/login" || location.pathname === "/register";
 
   return (
     <div className="app">
-      {/* Conditionally render Navbar based on the current route */}
-      {!hideNavbar && <Navbar />}
+      {!hideNavbarFooter && <Navbar />}
 
       <Routes>
-        {/* Public routes */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/" element={<Homepage type="series" />} />
@@ -64,7 +62,6 @@ function Layout() {
         <Route path="/movies/:id" element={<Watch />} />
         <Route path="/query" element={<QueryMovies />} />
 
-        {/* Protected routes */}
         <Route
           path="/subscriptions"
           element={
@@ -82,9 +79,9 @@ function Layout() {
           }
         />
 
-        {/* Fallback route for non-existent paths */}
-        <Route path="*" element={<Navigate to="/" />} />
+        {/* <Route path="*" element={<Navigate to="/" />} /> */}
       </Routes>
+      {!hideNavbarFooter && <Footer />}
     </div>
   );
 }
