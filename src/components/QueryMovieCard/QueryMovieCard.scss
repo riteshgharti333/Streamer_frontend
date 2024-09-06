@@ -1,25 +1,38 @@
-.queryMovieCard{
+.queryMovieCard {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     width: 300px;
-    // height: 200px;
+    height: 300px;
     padding: 10px;
-    .queryMovie{
-        img{
-            width: 100%;
-            height: 170px;
-           border-radius: 5px;
-           object-fit: cover;
+    margin-bottom: 5px;
+    display: flex;
+    flex-direction: column; // Ensures children stack vertically
+  
+    .queryMovie {
+      flex-grow: 1;
+  
+      img {
+        width: 100%;
+        height: 170px;
+        border-radius: 5px;
+        object-fit: cover;
+      }
+  
+      .title {
+        font-size: 30px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis; // Add this to handle overflow gracefully
+        line-height: 1.2; // Adjust if necessary
+        width: 100%; // Ensure width is constrained
+      }
+  
+      .queryMoviesInfo {
+        .line {
+          color: red;
         }
-
-        p{
-            font-size: 30px;
-        }
-        
-        .queryMoviesInfo{
-
-            .line{
-                color: red;
-            }
-        }
+      }
     }
-}
+  }
+  

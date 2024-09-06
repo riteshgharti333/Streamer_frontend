@@ -7,9 +7,17 @@ import { userProfileAsync } from "../../redux/asyncThunks/authThunks";
 import { BsArrowLeft } from "react-icons/bs";
 import axios from "axios";
 
+const priceBackgroundMap = {
+  "700": "url('../../assets/images/st.jpg')",
+  "900": "url('../../assets/images/sm.jpg')",
+  "1500": "url('../../assets/images/sg.jpg')",
+  // Add more mappings as needed
+};
+
+
 export default function Profile() {
   const navigate = useNavigate();
-  const [subscriptionData, setSubscriptionData] = useState(null);
+  const [subscriptionData, setSubscriptionData] = useState([]);
 
   const { user } = useSelector((state) => state.auth);
 
@@ -29,44 +37,55 @@ export default function Profile() {
 
   // })
 
-  // useEffect (() => {
-  //   const data = async () => {
-  //     const res = await axios.get("http://localhost:5000/api/auth/profile" , {withCredentials: true});
-  //     console.log(res);
-  //   }
-  //   data();
-  // },[])
+  let price;
+
+ 
+
+  useEffect(() => {
+    const data = async () => {
+      const { data } = await axios.get(
+        "http://localhost:5000/api/auth/profile",
+        { withCredentials: true }
+      );
+      setSubscriptionData(data.userDetails.subscription);
+      console.log(data.userDetails.subscription[0]);
+    };
+    data();
+  }, []);
+
+  const backgroundImage = priceBackgroundMap[price] || 'none';
+
+  const style = {
+    backgroundImage
+  };
 
   const goBack = () => {
     navigate(-1);
   };
 
   const date = (time) => {
-    // console.log(time)
-
     const newDate = new Date(time).toLocaleDateString(undefined, {
       day: "numeric",
       month: "short",
       year: "numeric",
     });
-
     return newDate;
   };
 
   return (
     <div className="settingsContainer">
-      <div className="backIcon">
+      <div className="prevIcon">
         <Link to="/">
           <BsArrowLeft className="backIcon" />
         </Link>
       </div>
 
-      {/* <div className="settings">
+      <div className="settings">
         <div className="settingsWrapper">
           <div className="profileData">
             <div className="left">
               <div className="profileUpdatedImg">
-               <img src={user.user.profilePic || profileImg} alt="Profile" />
+                <img src={user.user.profilePic || profileImg} alt="Profile" />
               </div>
             </div>
 
@@ -91,38 +110,40 @@ export default function Profile() {
             <div className="subscriptionPlans">
               <p>Your Subscriptions</p>
 
-              <div className="subscriptionPlansData">
-                <div className="planInfo left">
-                  <p>
-                    Name Of Plan : <span>{subscriptionData.plan}</span>
-                  </p>
-                  <p>
-                    Custmer Name : <span>{subscriptionData.name}</span>
-                  </p>
-                  <p>
-                    Custmer Email : <span>{subscriptionData.email}</span>
-                  </p>
-                  <p>
-                    Subscription ID :
-                    <span>{subscriptionData.subscriptionId}</span>
-                  </p>
-                </div>
-                <div className="planInfo right">
-                  <p>
-                    Start Date : <span>{date(subscriptionData.startDate)}</span>
-                  </p>
-                  <p>
-                    Expire Date : <span>{date(subscriptionData.endDate)}</span>
-                  </p>
-                  <p>
-                    Plan Price : <span>{subscriptionData.price} /-</span>
-                  </p>
-                  <div className="subscriptionPlansDataBtn">
-                    <button>Cancel</button>
-                    <button>Upgrade</button>
+              {subscriptionData.map((subscription) => (
+                <div className="subscriptionPlansData" key={subscription._id} style={style}>
+                  <div className="planInfo left">
+                    <p>
+                      Name Of Plan : <span>{subscription.plan}</span>
+                    </p>
+                    <p>
+                      Custmer Name : <span>{subscription.name}</span>
+                    </p>
+                    <p>
+                      Custmer Email : <span>{subscription.email}</span>
+                    </p>
+                    <p>
+                      Subscription ID :
+                      <span>{subscription.subscriptionId}</span>
+                    </p>
+                  </div>
+                  <div className="planInfo right">
+                    <p>
+                      Start Date : <span>{date(subscription.startDate)}</span>
+                    </p>
+                    <p>
+                      Expire Date : <span>{date(subscription.endDate)}</span>
+                    </p>
+                    <p>
+                      Plan Price : <span>{subscription.price} /-</span>
+                    </p>
+                    <div className="subscriptionPlansDataBtn">
+                      <button>Cancel</button>
+                      <button>Upgrade</button>
+                    </div>
                   </div>
                 </div>
-              </div>
+              ))}
             </div>
           ) : (
             <p className="noplan">
@@ -133,7 +154,7 @@ export default function Profile() {
             </p>
           )}
         </div>
-      </div> */}
+      </div>
     </div>
   );
 }

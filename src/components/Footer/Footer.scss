@@ -1,0 +1,140 @@
+@import "../../styles/responsive.scss";
+
+.footer {
+  background: linear-gradient(135.8deg, rgb(26, 26, 29) 27.1%, rgb(111, 34, 50) 77.5%);
+  display: flex;
+  justify-content: space-between;
+  padding: 40px;
+  font-family: "Bebas Neue", sans-serif;
+  letter-spacing: 1px;
+  margin-top: 20px;
+
+  @include sm {
+    padding: 10px;
+  }
+
+  .footerLeft, .footerRight {
+    flex: 1; 
+  }
+
+  .footerCenter{
+    flex: 2;
+  }
+
+
+  
+
+  .footerLeft {
+    .logo {
+      cursor: pointer;
+      h1 {
+        color: #fff;
+        font-size: 40px;
+
+        @include sm {
+          font-size: 30px;
+        }
+        span {
+          color: red;
+        }
+      }
+    }
+    .socilMediaIcon {
+      font-size: 30px;
+      margin-top: 10px;
+
+      @include sm {
+        font-size: 25px;
+      }
+      .leftIcon {
+        margin-right: 10px;
+        cursor: pointer;
+      }
+
+      .Linkedin{
+        color: #0a66c2;
+      }
+
+
+    }
+  }
+
+  .footerCenter {
+    color: white;
+
+    @include sm {
+      display: none;
+    }
+
+    @media (max-width: 767px) {
+      display: none;
+    }
+
+    p {
+      font-size: 30px;
+      font-weight: 600;
+    }
+      span {
+        font-size: 18px;
+        font-weight: 500;
+        cursor: pointer;
+        margin-right: 10px;
+
+        &:hover{
+            color: aqua;
+        }
+
+        @include md {
+          // display: flex;
+          // flex-direction: column;
+        }
+
+        @include lg {
+          // display: flex;
+        //   flex-direction: column;
+        }
+    }
+  }
+}
+
+.footerRight {
+  color: white;
+
+  h1 {
+    @include sm {
+      font-size: 30px;
+    }
+  }
+
+  .links {
+    display: flex;
+    flex-direction: column;
+    font-family: "Gabarito", sans-serif;
+
+
+    span {
+      font-size: 20px;
+      font-weight: 600;
+    }
+    .contactLinks {
+      display: flex;
+      flex-direction: column;
+      margin-top: 10px;
+      align-items: flex-start;
+
+      span {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        @include sm {
+          font-size: 16px;
+        }
+        .contactIcon {
+          color: orange;
+          margin-right: 10px;
+          font-size: 25px;
+        }
+      }
+    }
+  }
+}

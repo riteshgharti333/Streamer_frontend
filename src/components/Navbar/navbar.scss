@@ -3,11 +3,9 @@
 .navbar {
   width: 100%;
   color: white;
-  // position: sticky;
-  // top: 0;
-  z-index: 999;
+  z-index: 99;
   transition: all 0.5s;
-  overflow: hidden;
+  // overflow: hidden;
 
   &.scrolled {
     background-color: black;
@@ -29,7 +27,8 @@
       cursor: pointer;
       font-size: 20px;
       h1 {
-        font-family: "Agbalumo";
+        font-family: "Bebas Neue", sans-serif;
+        letter-spacing: 2px;
         color: yellow;
 
         .f {
@@ -60,12 +59,41 @@
         font-family: "Gabarito", sans-serif;
         font-size: 20px;
         font-weight: 600;
-        margin-right: 20px;
-        background-color: black;
+        margin-right: 40px;
         color: white;
-        appearance: none;
-        border: 0;
         padding: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+
+        &:hover {
+          .genre {
+            display: flex;
+          }
+        }
+
+        .genre {
+          display: none;
+          position: absolute;
+          top: 40px;
+          left: 0;
+          background: black;
+          color: white;
+          flex-direction: column;
+          width: 200px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Adds shadow for better visibility */
+
+          span {
+            padding: 5px;
+            font-size: 16px;
+            width: 100%;
+            cursor: pointer;
+            &:hover {
+              background-color: #333; /* Highlight on hover */
+            }
+          }
+        }
       }
 
       .subscribe {

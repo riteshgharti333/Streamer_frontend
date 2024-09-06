@@ -2,13 +2,12 @@ import "./Homepage.scss";
 import Feature from "../../components/Feature/Feature";
 import MovieLists from "../../components/MovieLists/MovieLists";
 import { Link, useLocation } from "react-router-dom";
-import useLists from './useLists'; // Import your custom hook
-import Navbar from "../../components/Navbar/Navbar";
+import useLists from './useLists'; 
 
 const Homepage = ({ type }) => {
   const location = useLocation();
   const path = location.pathname;
-  const { movieLists, seriesLists } = useLists();
+  const { movieLists, seriesLists , homempageSL , homempageML  } = useLists();
 
   const renderLists = (lists, type) =>
     lists.map((list) => (
@@ -20,13 +19,13 @@ const Homepage = ({ type }) => {
       {path === "/" && (
         <>
           <Feature type="movies" />
-          {renderLists(movieLists, 'movies')}
+          {renderLists(homempageML, 'movies')}
           <Link to={"/series"}>
           <h1 className="title">Series</h1>
 
           </Link>
           <Feature type="series" />
-          {renderLists(seriesLists, 'series')}
+          {renderLists(homempageSL, 'series')}
         </>
       )}
 
