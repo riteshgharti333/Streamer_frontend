@@ -4,10 +4,13 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getRandomAsyncMovies } from "../../redux/asyncThunks/movieThunks";
+import { useCheckSubscription } from "../../utils/checkSubscription";
 
 const Feature = ({ type }) => {
   const [content, setContent] = useState({});
   const [featureCards, setFeatureCards] = useState([]);
+
+  const checkAndRedirect = useCheckSubscription();
 
   const dispatch = useDispatch();
 
@@ -27,12 +30,11 @@ const Feature = ({ type }) => {
   }, [dispatch, type]);
 
   useEffect(() => {
-
     let contentData = [];
-    
-    if (type === 'movies' && movies?.movie) {
+
+    if (type === "movies" && movies?.movie) {
       contentData = movies.movie;
-    } else if (type === 'series' && series?.movie) {
+    } else if (type === "series" && series?.movie) {
       contentData = series.movie;
     }
     if (contentData.length > 0) {
@@ -40,6 +42,10 @@ const Feature = ({ type }) => {
       setFeatureCards(contentData.slice(1, 6));
     }
   }, [movies, series, type]);
+
+  const handlePlayClick = () => {
+    checkAndRedirect();
+  };
 
   return (
     <div className="feature">
@@ -63,9 +69,10 @@ const Feature = ({ type }) => {
               {/* <Rating className='ratings' value={feature.rating} /> */}
             </span>
           </div>
-          <Link to={`/movies/${content._id}`}>
-            <button>PLAY</button>
-          </Link>
+
+          <button onClick={handlePlayClick}>
+            <Link to={`/movies/${content._id}`}>PLAY </Link>
+          </button>
         </div>
         <div className="featureAllCards">
           {featureCards.map((featureCard) => (

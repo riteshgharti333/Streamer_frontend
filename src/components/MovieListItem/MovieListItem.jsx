@@ -3,10 +3,16 @@ import "./MovieListItem.scss";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getAsyncSigleMovie } from "../../redux/asyncThunks/movieThunks";
+import { useCheckSubscription } from "../../utils/checkSubscription";
 
 const MovieListItem = ({ item }) => {
   const [movie, setMovie] = useState({});
   const dispatch = useDispatch();
+  const checkAndRedirect = useCheckSubscription();
+
+  const handlePlayClick = () => {
+    checkAndRedirect();
+  };
 
 
   useEffect(() => {
@@ -23,8 +29,8 @@ const MovieListItem = ({ item }) => {
       <div className="movieListItemInfo">
         <p className="name">{movie?.title}</p>
         <p className="year">{movie?.year}</p>
-        <button>
-          <Link to={`/movies/${movie?._id}`}>Play</Link>
+        <button >
+          <Link to={`/movies/${movie?._id}`}onClick={handlePlayClick} >Play</Link>
         </button>
       </div>
     </div>
