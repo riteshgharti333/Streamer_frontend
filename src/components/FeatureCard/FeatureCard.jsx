@@ -1,28 +1,35 @@
-import './FeatureCard.scss'
-import { Link } from 'react-router-dom'
+import { useCheckSubscription } from "../../utils/checkSubscription";
+import "./FeatureCard.scss";
+import { Link } from "react-router-dom";
 
-const FeatureCard = ({title,desc,age,year,genre,featureSmImg, id}) => {
+const FeatureCard = ({ title, desc, age, year, genre, featureSmImg, id }) => {
+
+  const checkAndRedirect = useCheckSubscription();
+
+  const handlePlayClick = () => {
+    checkAndRedirect();
+  };
+
   return (
-    <div className='featureCards'>
-      <img className='featureCardsImg' src={featureSmImg} alt="" />
+    <div className="featureCards">
+      <img className="featureCardsImg" src={featureSmImg} alt="" />
       <div className="featureCardsInfo">
-      <p className='title'>{title}</p>
-      <p className='desc'>{desc}</p>
-      <div className="featureCardsSmInfo">
-      <span>{year}</span>
-          <span className='line'>|</span>
+        <p className="title">{title}</p>
+        <p className="desc">{desc}</p>
+        <div className="featureCardsSmInfo">
+          <span>{year}</span>
+          <span className="line">|</span>
           <span>{age}+</span>
-          <span className='line'>|</span>
+          <span className="line">|</span>
           <span>{genre}</span>
-      </div>
-      <Link to={`/movies/${id}`}>
-    <button >PLAY</button>
+        </div>
 
-      </Link>
+        <button onClick={handlePlayClick}>
+          <Link to={`/movies/${id}`}>PLAY </Link>
+        </button>
       </div>
-
     </div>
-  )
-}
+  );
+};
 
-export default FeatureCard
+export default FeatureCard;

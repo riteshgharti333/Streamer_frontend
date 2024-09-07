@@ -19,6 +19,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Footer from "./components/Footer/Footer";
 
 function App() {
+
   return (
     <Router>
       <Layout />
