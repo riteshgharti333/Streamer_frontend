@@ -17,9 +17,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "./components/Footer/Footer";
+import { useCheckSubscription } from "./utils/checkSubscription";
 
 function App() {
-
   return (
     <Router>
       <Layout />

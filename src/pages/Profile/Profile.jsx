@@ -22,7 +22,6 @@ export default function Profile() {
 
   const { user } = useSelector((state) => state.auth);
 
-  console.log(user);
 
   useEffect(() => {
     const fetchData = async () => {

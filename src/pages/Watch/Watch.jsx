@@ -5,12 +5,21 @@ import { BsArrowLeft } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getAsyncSigleMovie } from "../../redux/asyncThunks/movieThunks";
+import { useCheckSubscription } from "../../utils/checkSubscription";
 
 const Watch = () => {
   const location = useLocation();
   const path = location.pathname.split("/")[2];
 
   const [movie, setMovie] = useState({});
+
+  const checkSubscription = useCheckSubscription();
+  const [hasSubscription, setHasSubscription] = useState(true);
+
+  useEffect(() => {
+    const result = checkSubscription();
+    setHasSubscription(result);
+  }, [checkSubscription]);
 
   const dispatch = useDispatch();
 
@@ -32,8 +41,41 @@ const Watch = () => {
     },
   };
 
+  const NoSubscription = () => {
+    return (
+      <div className="noSub">
+        <div className="noSubInfo">
+          <h2>No Active Subscription</h2>
+          <p>
+            You don’t have an active subscription. To enjoy unlimited access to
+            movies and series, please choose one of our subscription plans.
+          </p>
+          <div className="noSubActions">
+            <button
+              className="btn-primary"
+              onClick={() => (window.location.href = "/subscriptions")}
+            >
+              View Subscription Plans
+            </button>
+            <button
+              className="btn-secondary"
+              onClick={() => (window.location.href = "/")}
+            >
+              Back to Homepage
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
+    <div className="watchContainer">
+     <NoSubscription />
+
     <div className="watch">
+     
+
       <div className="WatchIcon">
         <Link to="/">
           <BsArrowLeft className="backIcon" />
@@ -55,6 +97,7 @@ const Watch = () => {
         <span className="line">|</span>
         <span>{movie.genre}</span>
       </div>
+    </div>
     </div>
   );
 };
