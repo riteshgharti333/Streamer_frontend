@@ -1,72 +1,111 @@
 @import "../../styles/responsive.scss";
 
-.watch {
-  overflow: hidden;
-  background-color: #fde7f9;
-background-image: linear-gradient(315deg, #fde7f9 0%, #aacaef 74%);
+.watchContainer {
+  position: relative;
 
-  .WatchIcon{
-
-    .backIcon{
-      font-size: 40px;
-      margin-top: 50px;
-      margin-left: 20px;
-    }
-  }
- 
-
-  .video{
-    display: flex;
-   justify-content: center;
-
-   video{
-    width: 50%;
-
-   }
-  
-   .youtube{
-    @include md{
-    }
-  }
-
-  
-  }
-
-  .watchInfo{
-    font-family: "Bebas Neue", sans-serif; 
-    margin: 40px 60px;
-
-    @include md{
-      margin: 30px 20px;
+  .watch {
+    overflow: hidden;
+    filter: blur(10px);
+    z-index: 1;
+    .WatchIcon {
+      .backIcon {
+        font-size: 40px;
+        margin-top: 50px;
+        margin-left: 20px;
+      }
     }
 
-    h1{
-      font-size: 50px;
+    .video {
+      display: flex;
+      justify-content: center;
 
-      @include md{
+      video {
+        width: 50%;
+      }
+
+      .youtube {
+        @include md {
+        }
+      }
+    }
+
+    .watchInfo {
+      font-family: "Bebas Neue", sans-serif;
+      margin: 40px 60px;
+
+      @include md {
+        margin: 30px 20px;
+      }
+
+      h1 {
+        font-size: 50px;
+
+        @include md {
+          font-size: 35px;
+        }
+      }
+
+      p {
         font-size: 35px;
+        @include md {
+          font-size: 20px;
+        }
       }
 
-    }
+      span {
+        font-size: 30px;
 
-    p{
-      font-size: 35px;
-      @include md{
-        font-size: 20px;
+        @include md {
+          font-size: 20px;
+        }
+      }
+
+      .line {
+        color: red;
       }
     }
-
-    span{
-      font-size: 30px;
-
-      @include md{
-        font-size: 20px;
-      }
-    }
-
-    .line{
-      color: red;
-    }
-
   }
+
+  .noSub {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: -90px;
+    z-index: 10;
+    background-color: rgba(0, 255, 255, 0.11);
+
+
+    .noSubInfo{
+      font-family: "Bebas Neue", sans-serif;
+      letter-spacing: 1px;
+      padding: 30px;
+      background-color: aquamarine;
+      width: 800px;
+      margin: 0px 10px;
+  
+
+    p {
+      font-size: 20px;
+    }
+    .noSubActions {
+      float: right;
+
+      button {
+        background-color: green;
+        padding: 5px;
+        border: none;
+        font-weight: 500;
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 20px;
+        margin-left: 10px;
+        letter-spacing: 1px;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+    }
+  }
+}
 }

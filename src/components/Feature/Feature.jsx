@@ -4,13 +4,10 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getRandomAsyncMovies } from "../../redux/asyncThunks/movieThunks";
-import { useCheckSubscription } from "../../utils/checkSubscription";
 
 const Feature = ({ type }) => {
   const [content, setContent] = useState({});
   const [featureCards, setFeatureCards] = useState([]);
-
-  const checkAndRedirect = useCheckSubscription();
 
   const dispatch = useDispatch();
 
@@ -43,10 +40,6 @@ const Feature = ({ type }) => {
     }
   }, [movies, series, type]);
 
-  const handlePlayClick = () => {
-    checkAndRedirect();
-  };
-
   return (
     <div className="feature">
       <div className="featureContainer">
@@ -70,7 +63,7 @@ const Feature = ({ type }) => {
             </span>
           </div>
 
-          <button onClick={handlePlayClick}>
+          <button>
             <Link to={`/movies/${content._id}`}>PLAY </Link>
           </button>
         </div>

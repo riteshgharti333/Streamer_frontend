@@ -1,15 +1,7 @@
-import { useCheckSubscription } from "../../utils/checkSubscription";
 import "./FeatureCard.scss";
 import { Link } from "react-router-dom";
 
 const FeatureCard = ({ title, desc, age, year, genre, featureSmImg, id }) => {
-
-  const checkAndRedirect = useCheckSubscription();
-
-  const handlePlayClick = () => {
-    checkAndRedirect();
-  };
-
   return (
     <div className="featureCards">
       <img className="featureCardsImg" src={featureSmImg} alt="" />
@@ -24,7 +16,7 @@ const FeatureCard = ({ title, desc, age, year, genre, featureSmImg, id }) => {
           <span>{genre}</span>
         </div>
 
-        <button onClick={handlePlayClick}>
+        <button>
           <Link to={`/movies/${id}`}>PLAY </Link>
         </button>
       </div>
