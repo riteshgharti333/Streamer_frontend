@@ -62,10 +62,9 @@ const Feature = ({ type }) => {
               {/* <Rating className='ratings' value={feature.rating} /> */}
             </span>
           </div>
-
-          <button>
-            <Link to={`/movies/${content._id}`}>PLAY </Link>
-          </button>
+          <Link to={`/movies/${content._id}`}>
+            <button>PLAY</button>
+          </Link>
         </div>
         <div className="featureAllCards">
           {featureCards.map((featureCard) => (

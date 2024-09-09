@@ -1,13 +1,12 @@
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 
 export const useCheckSubscription = () => {
-  const { user } = useSelector((state) => state.auth);
+  const user = useSelector((state) => state.auth.user);
 
   const checkSubscription = () => {
-    if (!user || !user.subscription || user.subscription.length === 0) {
+    if (!user || !user.subscriptions || user.subscriptions.length === 0) {
       return false;
     }
-    return true;
   };
 
   return checkSubscription;
