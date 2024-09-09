@@ -48,7 +48,7 @@ export const subscriptionsPlans = [
     {
         name: "movies",
         price: "900",
-        priceId: "price_1Pt0FASGN61YzC6ZVsLPr87B", // Replace with actual priceId from Stripe
+        priceId: "price_1Pt0FASGN61YzC6ZVsLPr87B", 
         image: spider,
     },
     {
@@ -60,7 +60,7 @@ export const subscriptionsPlans = [
     {
         name: "movies + web series",
         price: "1500",
-        priceId: "price_1Pt0G5SGN61YzC6ZzRoweliJ", // Replace with actual priceId from Stripe
+        priceId: "price_1Pt0G5SGN61YzC6ZzRoweliJ",
         image: sg,
     }
 ];
