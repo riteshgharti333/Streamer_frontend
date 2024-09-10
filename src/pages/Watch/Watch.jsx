@@ -27,48 +27,50 @@ const Watch = () => {
   }, [path, dispatch]);
 
   useEffect(() => {
-  if(singleMovie){
-    console.log(singleMovie.getMovie);
-  }
-  },[singleMovie]);
+    if (singleMovie && singleMovie.getMovie) {
+      setMovie(singleMovie.getMovie); // Update the movie state
+      console.log(singleMovie.getMovie);
+    }
+  }, [singleMovie]);
 
   // Set movie details and check subscription status
-  // useEffect(() => {
-  //   if (singleMovie) {    
-  //     const movieType = singleMovie.getMovie.isSeries;
-  //     const userPriceIds = user.subscriptions.map((sub) => sub.priceId);
 
-  //     const hasMovieSubscription = userPriceIds.some((priceId) => {
-  //       const contentType = getContentTypeFromPriceId(priceId);
-  //       return !movieType && contentType === "movies";
-  //     });
+  useEffect(() => {
+    if (singleMovie) {    
+      const movieType = singleMovie.getMovie.isSeries;
+      const userPriceIds = user.subscriptions.map((sub) => sub.priceId);
 
-  //     const hasSeriesSubscription = userPriceIds.some((priceId) => {
-  //       const contentType = getContentTypeFromPriceId(priceId);
-  //       return movieType && contentType === "web series";
-  //     });
+      const hasMovieSubscription = userPriceIds.some((priceId) => {
+        const contentType = getContentTypeFromPriceId(priceId);
+        return !movieType && contentType === "movies";
+      });
 
-  //     console.log({movieType , hasMovieSubscription});
+      const hasSeriesSubscription = userPriceIds.some((priceId) => {
+        const contentType = getContentTypeFromPriceId(priceId);
+        return movieType && contentType === "web series";
+      });
 
-  //     if (movieType && !hasSeriesSubscription) {
-  //       setSubscriptionMessage("You don’t have an active series subscription. To enjoy unlimited access to series, please choose one of our subscription plans.");
-  //       setHasSubscription(false);
-  //     } else if (!movieType && !hasMovieSubscription) {
-  //       setSubscriptionMessage("You don’t have an active movies subscription. To enjoy unlimited access to movies, please choose one of our subscription plans.");
-  //       setHasSubscription(false);
-  //     } else if (!hasMovieSubscription && !hasSeriesSubscription) {
-  //       setSubscriptionMessage("You don’t have an active subscription. To enjoy unlimited access to movies and series, please choose one of our subscription plans.");
-  //       setHasSubscription(false);
-  //     }
-  //   }
-  // }, [singleMovie, user]);
+      // console.log({movieType , hasMovieSubscription});
+
+      if (movieType && !hasSeriesSubscription) {
+        setSubscriptionMessage("You don’t have an active series subscription. To enjoy unlimited access to series, please choose one of our subscription plans.");
+        setHasSubscription(false);
+      } else if (!movieType && !hasMovieSubscription) {
+        setSubscriptionMessage("You don’t have an active movies subscription. To enjoy unlimited access to movies, please choose one of our subscription plans.");
+        setHasSubscription(false);
+      } else if (!hasMovieSubscription && !hasSeriesSubscription) {
+        setSubscriptionMessage("You don’t have an active subscription. To enjoy unlimited access to movies and series, please choose one of our subscription plans.");
+        setHasSubscription(false);
+      }
+    }
+  }, [singleMovie, user]);
 
   const NoSubscription = () => {
     return (
       <div className="noSub">
         <div className="noSubInfo">
           <h2>No Active Subscription</h2>
-          {/* <p>{subscriptionMessage}</p> */}
+          <p>{subscriptionMessage}</p> 
           <div className="noSubActions">
             <button
               className="btn-primary"

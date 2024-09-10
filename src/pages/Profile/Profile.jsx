@@ -1,11 +1,11 @@
 import "./Profile.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import profileImg from "../../assets/images/sm.jpg";
 import { useEffect, useState } from "react";
 import { BsArrowLeft } from "react-icons/bs";
 import axios from "axios";
 import { toast } from "react-toastify";
+import {updateProfileAsync} from "../../redux/asyncThunks/authThunks";
 
 const priceBackgroundMap = {
   700: "url('../../assets/images/st.jpg')",
@@ -19,8 +19,14 @@ export default function Profile() {
   const navigate = useNavigate();
   const [subscriptionData, setSubscriptionData] = useState([]);
   const [openCancelId, setOpenCancelId] = useState(null); // Track which subscription's cancel modal is open
+  const [updateMode, setUpdateMode] = useState(false);
 
   const { user } = useSelector((state) => state.auth);
+
+  const dispatch = useDispatch();
+
+  const [name, setName] = useState(user.user?.name || "");
+  const [email, setEmail] = useState(user.user?.email || "");
 
 
   useEffect(() => {
@@ -30,7 +36,6 @@ export default function Profile() {
           withCredentials: true,
         });
         setSubscriptionData(data.userDetails.subscription);
-        console.log(data.userDetails.subscription[0])
       } catch (error) {
         console.error("Error fetching subscription data:", error);
       }
@@ -55,6 +60,21 @@ export default function Profile() {
 
   const goBack = () => {
     navigate(-1);
+  };
+
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await dispatch(updateProfileAsync({ name, email })).unwrap();
+      localStorage.setItem("user", JSON.stringify({ ...user, user: res.user }));
+      navigate(0);
+      toast.success(res.message);  
+      // setUpdateMode(false);
+    } catch (error) {
+      toast.error(error.message || "Failed to update profile");
+      console.log(error)
+    }
   };
 
   const formatDate = (time) => {
@@ -95,24 +115,49 @@ export default function Profile() {
       <div className="settings">
         <div className="settingsWrapper">
           <div className="profileData">
-            <div className="left">
-              <div className="profileUpdatedImg">
-                <img src={user.user.profilePic || profileImg} alt="Profile" />
-              </div>
-            </div>
             <div className="right">
-              <div className="profileName">
-                <h3>{user.user.name}</h3>
-              </div>
-              <div className="ProfileEmail">
-                <p>{user.user.email}</p>
-              </div>
-              <div className="profileEditBtn">
-                <button>Edit</button>
-                <Link to={"/changepassword"}>
-                  <p className="changePwd">Change Password</p>
-                </Link>
-              </div>
+              {updateMode ? (
+                <form className="updateMode" onSubmit={handleUpdate}>
+                  <input
+                    type="text"
+                    placeholder="Username"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                  <input
+                    type="email"
+                    placeholder="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                  <div className="profileEditBtn">
+                    <button onClick={() => setUpdateMode(!updateMode)}>
+                      Cancel
+                    </button>
+                    <button type="submit">Update</button>
+                  </div>
+                  <Link to={"/changepassword"}>
+                    <p className="changePwd">Change Password</p>
+                  </Link>
+                </form>
+              ) : (
+                <>
+                  <div className="profileName">
+                    <h3>{user.user.name}</h3>
+                  </div>
+                  <div className="ProfileEmail">
+                    <p>{user.user.email}</p>
+                  </div>
+                  <div className="profileEditBtn">
+                    <button onClick={() => setUpdateMode(!updateMode)}>
+                      Edit
+                    </button>
+                  </div>
+                  <Link to={"/changepassword"}>
+                    <p className="changePwd">Change Password</p>
+                  </Link>
+                </>
+              )}
             </div>
           </div>
 
@@ -124,7 +169,6 @@ export default function Profile() {
 
               {subscriptionData.map((subscription) => (
                 <div className="subscriptionPlansData" key={subscription._id}>
-                  
                   {openCancelId === subscription._id && (
                     <Cancel
                       subscriptionId={subscription.subscriptionId}
@@ -143,7 +187,8 @@ export default function Profile() {
                       Customer Email: <span>{subscription.email}</span>
                     </p>
                     <p>
-                      Subscription ID: <span>{subscription.subscriptionId}</span>
+                      Subscription ID:{" "}
+                      <span>{subscription.subscriptionId}</span>
                     </p>
                   </div>
 
@@ -153,7 +198,8 @@ export default function Profile() {
                       <span>{formatDate(subscription.startDate)}</span>
                     </p>
                     <p>
-                      Expire Date: <span>{formatDate(subscription.endDate)}</span>
+                      Expire Date:{" "}
+                      <span>{formatDate(subscription.endDate)}</span>
                     </p>
                     <p>
                       Plan Price: <span>{subscription.price} /-</span>

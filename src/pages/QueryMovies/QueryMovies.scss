@@ -3,7 +3,8 @@
   // height: 60vh;
 
   &.hasMovies{
-    height: 60vh;
+    height: 70vh;
+
 }
 
   .prevIcon {
@@ -29,6 +30,14 @@
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       gap: 65px;
       row-gap: 20px;
+
+      &.hasMovies{
+    
+        .queryAllMovies{
+          display: block;
+        }
+    }
+    
     }
   }
 }

@@ -17,7 +17,7 @@ const QueryMovies = () => {
 
   console.log(search);
  
- const [quertMovies , setQueryMovies] = useState([]); 
+ const [queryMovies , setQueryMovies] = useState([]); 
 
  const [error, setError] = useState(null);
   
@@ -26,7 +26,8 @@ const QueryMovies = () => {
     const getQueryMovies = async () => {
       try {
         const response = await dispatch(getQueryAsyncMovies(`${type}&genre=${genre}`)).unwrap();
-        setQueryMovies(response.data.movies);    
+        setQueryMovies(response.data.movies);   
+        
       } catch (error) {
         setError(error.message || "An error occurred while fetching movies.");
       }
@@ -35,7 +36,8 @@ const QueryMovies = () => {
   },[]);
 
   return (
-    <div className={`queryMoviesContainer ${quertMovies.length > 0 ? 'queryMoviesContainer' : 'hasMovies'}`}>
+    <div className={`queryMoviesContainer ${queryMovies.length  ? '' : 'hasMovies'}`}>
+    {/* // <div className={`queryMoviesContainer ${queryMovies.length  ?  'hasMovies' : ''}`}> */}
       <Link to="/">
         <div className="prevIcon">
           <BsArrowLeft className="backIcon" />
@@ -45,7 +47,7 @@ const QueryMovies = () => {
 
       <div className="queryMovies">
         <div className="queryAllMovies">
-          {quertMovies.length > 0 ?  quertMovies.map((query) => (
+          {queryMovies.length > 0 ?  queryMovies.map((query) => (
             <QueryMovieCard  key={query._id} query={query}/>
           )) : 
           <h3>{error}</h3>

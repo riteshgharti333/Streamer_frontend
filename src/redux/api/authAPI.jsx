@@ -21,3 +21,8 @@ export const logoutUser = () => {
 export const userProfile = () => {
     return axios.get(`${baseUrl}/auth/profile`, { withCredentials: true });
 }
+
+// UPDATE PROFILE
+export const updateProfile = (profileData) => {
+    return axios.put(`${baseUrl}/auth/profile`, profileData , { withCredentials: true });
+}
