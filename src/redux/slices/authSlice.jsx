@@ -4,6 +4,7 @@ import {
   registerAsyncUser,
   logoutAsyncUser,
   userProfileAsync,
+  updateProfileAsync,
 } from "../asyncThunks/authThunks";
 
 const initialState = {
@@ -65,6 +66,23 @@ const authSlice = createSlice({
         console.log(action.payload);
       })
       .addCase(userProfileAsync.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.payload;
+      });
+
+
+      builder
+      // update profile
+      .addCase(updateProfileAsync.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(updateProfileAsync.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        const updatedProfile = action.payload.updateProfile;
+
+        
+      })
+      .addCase(updateProfileAsync.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.payload;
       });

@@ -10,7 +10,7 @@
   }
 
   .settings {
-    height: 100%;
+    // height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,7 +21,12 @@
     }
 
     .settingsWrapper {
-      background: linear-gradient(90deg, #00c9ff 0%, #92fe9d 100%);
+      background: linear-gradient(
+        135.8deg,
+        rgb(26, 26, 29) 27.1%,
+        rgb(111, 34, 50) 77.5%
+      );
+
       padding: 40px;
       position: relative;
       border-radius: 5px;
@@ -30,42 +35,35 @@
         display: flex;
         justify-content: space-around;
 
-        .left {
-          .profileUpdatedImg {
-            position: relative;
-
-            img {
-              height: 150px;
-              object-fit: cover;
-              width: 150px;
-              border-radius: 50%;
-              transition: all 0.2s ease-in;
-              cursor: pointer;
-            }
-          }
-          p {
-            display: none;
-            position: absolute;
-            right: 23%;
-            cursor: pointer;
-            top: 43%;
-            color: white;
-            padding: 5px;
-            font-size: 20px;
-            font-weight: 500;
-          }
-        }
-
         .right {
           font-family: "Gabarito", sans-serif;
           display: flex;
           flex-direction: column;
           align-items: center;
+
+          .updateMode {
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+
+            input {
+              font-family: "Gabarito", sans-serif;
+              background-color: transparent;
+              border: none;
+              border-bottom: 2px solid white;
+              font-size: 24px;
+              font-weight: bold;
+              color: white;
+              text-align: center;
+              outline: none;
+            }
+          }
+
           .profileName {
             h3 {
               color: white;
               text-align: center;
-              margin: 12px 0px;
+              margin: 15px 0px;
               font-size: 25px;
             }
           }
@@ -83,158 +81,130 @@
               font-weight: 600;
               margin-top: 5px;
             }
-
-            input {
-              border: none;
-              width: 100%;
-              max-width: 200px;
-              border-bottom: 2px solid aqua;
-              color: white;
-              text-align: center;
-              background-color: transparent;
-              font-size: 20px;
-              &:focus {
-                outline: none;
-              }
-
-              &::placeholder {
-                font-size: 20px;
-              }
-            }
-
-            &:first-child {
-              input {
-                background: none;
-                text-align: center;
-
-                margin: 5px 0px;
-                font-size: 25px;
-                font-weight: 600;
-              }
-            }
-
-            &:last-child {
-              input {
-                background: none;
-                margin: 5px 0px;
-                font-size: 20px;
-                font-weight: 600;
-              }
-            }
-          }
-        }
-
-        .profileEditBtn {
-          button {
-            border: none;
-            font-size: 20px;
-            font-weight: 600;
-            background-color: aqua;
-            border-radius: 3px;
-            padding: 5px 0px;
-            color: white;
-            cursor: pointer;
-            letter-spacing: 2px;
-            width: 100%;
-            margin: 10px 0px;
-            letter-spacing: 2px;
-            font-family: "Bebas Neue", sans-serif;
-
-            &:hover {
-              background-color: rgb(25, 175, 175);
-            }
-          }
-
-          .changePwd {
-            color: white;
-            font-family: "Bebas Neue", sans-serif;
-            letter-spacing: 2px;
           }
         }
       }
 
-      .lineBr {
-        // color: red;
-        margin: 20px 0px;
-      }
-      .subscriptionPlans {
-        font-family: "Bebas Neue", sans-serif;
-        letter-spacing: 1px;
-        color: white;
-
-        p {
+      .profileEditBtn {
+        display: flex;
+        button {
+          border: none;
           font-size: 20px;
-        }
-
-        .subscriptionPlansData {
-          display: flex;
+          font-weight: 600;
+          background-color: aqua;
           border-radius: 3px;
-          padding: 10px;
-          justify-content: space-between;
-          z-index: 1;
-          position: relative;
-          margin-top: 10px;
-
-          &::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url("../../assets/images/st.jpg");
-            background-size: cover;
-            background-position: center;
-            border-radius: inherit;
-            filter: brightness(30%);
-            z-index: -1;
-          }
-          .planInfo {
-            p {
-              font-weight: 300;
-              font-size: 14px;
-
-              span {
-                font-weight: 500;
-                color: aquamarine;
-                font-size: 18px;
-              }
-            }
-            .subscriptionPlansDataBtn {
-              button {
-                background-color: aqua;
-                cursor: pointer;
-                padding: 7px;
-                color: white;
-                border: none;
-                font-family: "Bebas Neue", sans-serif;
-                font-size: 16px;
-                letter-spacing: 1px;
-                border-radius: 2px;
-                &:first-child {
-                  margin-right: 10px;
-                  background-color: red;
-                }
-              }
-            }
-          }
-        }
-      }
-      .noplan {
-        font-family: "Bebas Neue", sans-serif;
-        letter-spacing: 1px;
-        font-size: 20px;
-
-        color: rgb(187, 22, 22);
-
-        .seeplan {
-          color: rgba(35, 35, 185, 0.87);
+          padding: 5px 10px;
+          color: white;
           cursor: pointer;
-          margin-left: 5px;
+          letter-spacing: 2px;
+          width: 100%;
+          margin: 10px 0px;
+          letter-spacing: 2px;
+          font-family: "Bebas Neue", sans-serif;
+          margin-left: 10px;
 
           &:hover {
-            color: rgba(35, 35, 185, 0.658);
+            background-color: rgb(25, 175, 175);
           }
+
+          &:first-child {
+            background-color: red;
+
+            &:hover {
+              background-color: rgb(182, 17, 17);
+            }
+          }
+        }
+      }
+      .changePwd {
+        color: white;
+        font-family: "Bebas Neue", sans-serif;
+        letter-spacing: 2px;
+        text-align: center;
+      }
+    }
+
+    .lineBr {
+      // color: red;
+      margin: 20px 0px;
+    }
+    .subscriptionPlans {
+      font-family: "Bebas Neue", sans-serif;
+      letter-spacing: 1px;
+      color: white;
+
+      p {
+        font-size: 20px;
+      }
+
+      .subscriptionPlansData {
+        display: flex;
+        border-radius: 3px;
+        padding: 10px;
+        justify-content: space-between;
+        z-index: 1;
+        position: relative;
+        margin-top: 10px;
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-image: url("../../assets/images/st.jpg");
+          background-size: cover;
+          background-position: center;
+          border-radius: inherit;
+          filter: brightness(30%);
+          z-index: -1;
+        }
+        .planInfo {
+          p {
+            font-weight: 300;
+            font-size: 14px;
+
+            span {
+              font-weight: 500;
+              color: aquamarine;
+              font-size: 18px;
+            }
+          }
+          .subscriptionPlansDataBtn {
+            button {
+              background-color: aqua;
+              cursor: pointer;
+              padding: 7px;
+              color: white;
+              border: none;
+              font-family: "Bebas Neue", sans-serif;
+              font-size: 16px;
+              letter-spacing: 1px;
+              border-radius: 2px;
+              &:first-child {
+                margin-right: 10px;
+                background-color: red;
+              }
+            }
+          }
+        }
+      }
+    }
+    .noplan {
+      font-family: "Bebas Neue", sans-serif;
+      letter-spacing: 1px;
+      font-size: 20px;
+
+      color: rgb(187, 22, 22);
+
+      .seeplan {
+        color: aqua;
+        cursor: pointer;
+        margin-left: 5px;
+
+        &:hover {
+          color: rgba(0, 255, 255, 0.767);
         }
       }
     }
@@ -250,7 +220,7 @@
   border-radius: 3px;
 
   .openCancelInfo {
-    p{
+    p {
       color: black;
     }
     button {
@@ -267,7 +237,7 @@
       background-color: aqua;
     }
 
-    :last-child{
+    :last-child {
       background-color: rgb(209, 16, 16);
     }
   }
