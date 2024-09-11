@@ -1,17 +1,35 @@
 @import "../../styles/responsive.scss";
 
 .subscriptions {
-  .backIcon {
-    font-size: 40px;
-    margin-top: 50px;
-    margin-left: 20px;
-  }
-  h1 {
-    font-size: 60px;
-    font-family: "Bebas Neue", sans-serif;
-    text-align: center;
-  }
 
+  .subscriptionsTop{
+    display: flex;
+    padding-top: 50px;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    .backIcon {
+      font-size: 50px;
+      position: absolute;
+      top: 50px;
+      left: 20px;
+      // margin-top: 50px;
+      // margin-left: 20px;
+      // display: inline-block;
+    }
+    h1 {
+      font-size: 60px;
+      font-family: "Bebas Neue", sans-serif;
+      
+      display: inline-block;
+      display: flex;
+  
+      // display: flex;
+      // justify-content: center;
+    }
+  
+  }
+ 
   .subscriptionsCards {
     display: flex;
     gap: 10px;

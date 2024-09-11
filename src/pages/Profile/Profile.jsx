@@ -210,7 +210,9 @@ export default function Profile() {
                       >
                         Cancel
                       </button>
-                      <button>Upgrade</button>
+                      
+                      <button><Link to={"/subscriptions"}>Upgrade    </Link></button>
+                   
                     </div>
                   </div>
                 </div>

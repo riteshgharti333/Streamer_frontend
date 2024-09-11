@@ -90,7 +90,7 @@ const Navbar = () => {
               {genre.map((g) => (
                 <span key={g} value={g}>
                   <Link
-                    to={`/query?type=webseries&genre=${g}`}
+                    to={`/query?type=series&genre=${g}`}
                     onClick={handleLinkClick}
                   >
                     {g} Series
