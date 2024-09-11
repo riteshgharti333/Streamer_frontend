@@ -30,15 +30,15 @@ const Subscriptions = () => {
           paymentMethod: "pm_card_visa",
         })
       ).unwrap();
-        if (customerResult && customerResult.id) {
-          // Create a subscription session
-          const sessionResult = await dispatch(
-            createAsyncSubscriptionSession(subscriptionData)
-          ).unwrap();
-  
-          // Redirect to Stripe Checkout
-          if (sessionResult) {
-            window.location.href = sessionResult;
+      if (customerResult && customerResult.id) {
+        // Create a subscription session
+        const sessionResult = await dispatch(
+          createAsyncSubscriptionSession(subscriptionData)
+        ).unwrap();
+
+        // Redirect to Stripe Checkout
+        if (sessionResult) {
+          window.location.href = sessionResult;
         } else {
           console.error(
             "Failed to create subscription session:",
@@ -55,10 +55,13 @@ const Subscriptions = () => {
 
   return (
     <div className="subscriptions">
-      <Link to="/">
-        <BsArrowLeft className="backIcon" />
-      </Link>
-      <h1>Subscriptions</h1>
+      <div className="subscriptionsTop">
+        <Link to="/">
+          <BsArrowLeft className="backIcon" />
+        </Link>
+        <h1>Subscriptions</h1>
+        <span></span>
+      </div>
       <div className="subscriptionsCards">
         {subscriptionsPlans.map((s) => (
           <SubscriptionCard

@@ -9,8 +9,6 @@ import { useDispatch } from "react-redux";
 import { registerAsyncUser } from "../../redux/asyncThunks/authThunks";
 import { toast } from "react-toastify";
 
-
-
 const initialvalues = {
   name: "",
   email: "",
@@ -49,10 +47,7 @@ export default function Register() {
   return (
     <div className="register">
       <div className="logo">
-          <h1>
-            <span className="f">STRE</span>
-            <span className="s">AMER</span>
-          </h1>
+        <h1>STREAMER</h1>
       </div>
       <form className="input" onSubmit={handleSubmit}>
         <h1>Sign Up</h1>

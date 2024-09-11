@@ -48,11 +48,9 @@ export default function Login() {
 
   return (
     <div className="login">
-      <div className="top">
-        <div className="wrapper">
-        <h1><span className="f">STRE</span><span className="s">AMER</span></h1>
+      <div className="logo">
+        <h1>STREAMER</h1>
         </div>
-      </div>
       <div className="container">
         <form className="input"  onSubmit={handleSubmit}>
           <h1>Login</h1>

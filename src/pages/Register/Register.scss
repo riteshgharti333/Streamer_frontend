@@ -9,24 +9,15 @@
   position: relative;
 
   .logo {
-    display: flex;
-    justify-content: center;
-      h1{
-        font-family: "Agbalumo";
-        color: yellow;
-        font-size: 40px;
+        h1 {
+          text-align: center;
+          font-family: "Agbalumo";
+          color: green;
+          font-size: 60px;
+          letter-spacing: 2px;
+          font-family: "Bebas Neue", sans-serif;
+        }
   
-          .f{
-            &:hover{
-              color: green;
-            }
-          }
-          .s{
-            &:hover{
-              color: red;
-            }
-          }
-    }
   }
    
   .input{
@@ -81,7 +72,7 @@
         font-family: 'Gabarito', sans-serif;
         &::placeholder{
           color: black;
-          font-size: 20px;
+          font-size: 18px;
           font-family: 'Gabarito', sans-serif;
         }
 

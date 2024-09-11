@@ -46,21 +46,21 @@ export const MovieItems = [
 
 export const subscriptionsPlans = [
     {
-        name: "movies",
-        price: "900",
-        priceId: "price_1Pt0FASGN61YzC6ZVsLPr87B", 
+        name: "movies subscription",
+        price: "₹ 900 /-",
+        priceId: import.meta.env.VITE_MOVIE_KEY, 
         image: spider,
     },
     {
-        name: "web series",
-        price: "700",
-        priceId: "price_1Pt0D9SGN61YzC6Za7Por7Fy", 
+        name: "web series subscription",
+        price: "₹ 700 /-",
+        priceId: import.meta.env.VITE_SERIES_KEY, 
         image: st,
     },
     {
-        name: "movies + web series",
-        price: "1500",
-        priceId: "price_1Pt0G5SGN61YzC6ZzRoweliJ",
+        name: "movies + web series subscription",
+        price: "₹1500 /-",
+        priceId: import.meta.env.VITE_MOVIE_SERIES_KEY,
         image: sg,
     }
 ];
