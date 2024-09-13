@@ -14,7 +14,7 @@ const Foooter = () => {
 
 
   return (
-    <div className="footer">
+    <div className="footer bg-primary">
       <div className="footerLeft">
         <div className="logo">
           <h1>Streamer</h1>

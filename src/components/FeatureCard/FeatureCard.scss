@@ -1,7 +1,6 @@
 @import "../../styles/responsive.scss";
 
 .featureCards {
-  font-family: "Bebas Neue", sans-serif;
   position: relative;
 
   .featureCardsImg {
@@ -19,10 +18,12 @@
 
   .featureCardsInfo {
     color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     position: absolute;
     top: 25%;
     left: 5%;
-    gap: 10px;
     opacity: 0;
     .title {
       font-size: 30px;
@@ -53,8 +54,6 @@
     button {
       width: 30%;
       border: none;
-      background: green;
-      font-family: "Bebas Neue", sans-serif;
       font-size: 20px;
       border-radius: 4px;
       padding: 5px 10px;

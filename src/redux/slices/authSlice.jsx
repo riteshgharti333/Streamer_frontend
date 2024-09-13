@@ -5,6 +5,7 @@ import {
   logoutAsyncUser,
   userProfileAsync,
   updateProfileAsync,
+  updatePasswordAsync,
 } from "../asyncThunks/authThunks";
 
 const initialState = {
@@ -63,15 +64,14 @@ const authSlice = createSlice({
       .addCase(userProfileAsync.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.profile = action.payload;
-        console.log(action.payload);
+        // console.log(action.payload.profile);
       })
       .addCase(userProfileAsync.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.payload;
       });
 
-
-      builder
+    builder
       // update profile
       .addCase(updateProfileAsync.pending, (state) => {
         state.status = "loading";
@@ -79,10 +79,22 @@ const authSlice = createSlice({
       .addCase(updateProfileAsync.fulfilled, (state, action) => {
         state.status = "succeeded";
         const updatedProfile = action.payload.updateProfile;
-
-        
       })
       .addCase(updateProfileAsync.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.payload;
+      });
+
+    builder
+      // update password
+      .addCase(updatePasswordAsync.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(updatePasswordAsync.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        const updatedPassword = action.payload.passwordData;
+      })
+      .addCase(updatePasswordAsync.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.payload;
       });

@@ -53,25 +53,25 @@ const movieSlice = createSlice({
         state.error = action.payload;
       });
 
-        //  Get Random Movies
+    //  Get Random Movies
     builder
-    .addCase(getRandomAsyncMovies.pending, (state) => {
-      state.status = "loading";
-      state.error = null;
-    })
-    .addCase(getRandomAsyncMovies.fulfilled, (state, action) => {
-      const { query, data } = action.payload;
-      state.status = "succeeded";
-      if (query === "movies") {
-        state.movies = data;
-      } else if (query === "series") {
-        state.series = data;
-      }
-    })
-    .addCase(getRandomAsyncMovies.rejected, (state, action) => {
-      state.status = "failed";
-      state.error = action.payload;
-    });
+      .addCase(getRandomAsyncMovies.pending, (state) => {
+        state.status = "loading";
+        state.error = null;
+      })
+      .addCase(getRandomAsyncMovies.fulfilled, (state, action) => {
+        const { query, data } = action.payload;
+        state.status = "succeeded";
+        if (query === "movies") {
+          state.movies = data;
+        } else if (query === "series") {
+          state.series = data;
+        }
+      })
+      .addCase(getRandomAsyncMovies.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.payload;
+      });
 
     // Get Single Movie
     builder

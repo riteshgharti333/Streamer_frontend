@@ -26,3 +26,8 @@ export const userProfile = () => {
 export const updateProfile = (profileData) => {
     return axios.put(`${baseUrl}/auth/profile`, profileData , { withCredentials: true });
 }
+
+// UPDATE PASSWORD
+export const updatePassword = (passwordData) => {
+    return axios.put(`${baseUrl}/auth/update-password`, passwordData , { withCredentials: true });
+}

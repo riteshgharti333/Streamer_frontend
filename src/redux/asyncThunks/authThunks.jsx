@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { loginUser, logoutUser, registerUser, updateProfile, userProfile } from "../api/authAPI";
+import { loginUser, logoutUser, registerUser, updatePassword, updateProfile, userProfile } from "../api/authAPI";
 
 // LOGIN ASYNC THUNK
 export const loginAsyncUser = createAsyncThunk(
@@ -70,9 +70,23 @@ export const updateProfileAsync = createAsyncThunk(
     "auth/updateProfile",
     async (profileData, { rejectWithValue }) => {
         try {
-            const res = await updateProfile(profileData);
-            // console.log(res.data);
-            return res.data;
+            const response = await updateProfile(profileData);
+            return response.data;
+        } catch (error) {
+            console.error("Failed to fetch user profile:", error);
+            return rejectWithValue(error.response.data || "Failed to fetch user profile");
+        }
+    }
+);
+
+
+// UPDATE PASSWORD ASYNC THUNK
+export const updatePasswordAsync = createAsyncThunk(
+    "auth/updatePassword",
+    async (passwordData, { rejectWithValue }) => {
+        try {
+            const response = await updatePassword(passwordData);
+            return response.data;
         } catch (error) {
             console.error("Failed to fetch user profile:", error);
             return rejectWithValue(error.response.data || "Failed to fetch user profile");

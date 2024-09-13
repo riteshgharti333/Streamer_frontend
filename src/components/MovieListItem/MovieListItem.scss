@@ -33,7 +33,6 @@
     position: absolute;
     top: 25%;
     left: 10%;
-    font-family: "Bebas Neue", sans-serif;
 
     @include sm {
       left: 20%;
@@ -60,8 +59,6 @@
     }
 
     button {
-      font-family: "Bebas Neue", sans-serif;
-      background: green;
       padding: 5px 10px;
       font-size: 20px;
       border: none;

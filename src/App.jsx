@@ -18,6 +18,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "./components/Footer/Footer";
 import { useCheckSubscription } from "./utils/checkSubscription";
+import UpdatePassword from "./pages/UpdatePassword/UpdatePassword";
 
 function App() {
   return (
@@ -62,12 +63,14 @@ function Layout() {
         <Route path="/series" element={<Homepage type="series" />} />
         <Route path="/movies/:id" element={<Watch />} />
         <Route path="/query" element={<QueryMovies />} />
+        <Route path="/subscriptions" element={<Subscriptions />} />
+
 
         <Route
-          path="/subscriptions"
+          path="/updatepassword"
           element={
             <ProtectedRoute>
-              <Subscriptions />
+              <UpdatePassword />
             </ProtectedRoute>
           }
         />

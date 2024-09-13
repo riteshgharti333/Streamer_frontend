@@ -52,15 +52,15 @@
     top: 70%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-family: "Bebas Neue", sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
     h1 {
-      font-size: 30px;
+      font-size: 32px;
       color: #fff;
       letter-spacing: 2px;
+      text-align: center;
 
       @include md {
         font-size: 29px;
@@ -80,10 +80,8 @@
 
     button {
       padding: 5px 20px;
-      background: green;
       border: none;
       border-radius: 5px;
-      font-family: "Bebas Neue", sans-serif;
       font-size: 30px;
       cursor: pointer;
     }

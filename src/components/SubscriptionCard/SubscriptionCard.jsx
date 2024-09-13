@@ -11,7 +11,7 @@ const SubscriptionCard = ({ name, price, image, onClick }) => {
         <div className="subscriptionCardInfo">
           <h1>{name}</h1>
           <p>{price}</p>
-          <button onClick={onClick}>Buy</button>
+          <button className="play-btn" onClick={onClick}>Buy</button>
         </div>
       </div>
     </div>

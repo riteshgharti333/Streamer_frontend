@@ -63,7 +63,7 @@ const Feature = ({ type }) => {
             </span>
           </div>
           <Link to={`/movies/${content._id}`}>
-            <button>PLAY</button>
+            <button className="play-btn">PLAY</button>
           </Link>
         </div>
         <div className="featureAllCards">

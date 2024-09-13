@@ -1,108 +1,102 @@
-import { useContext, useState } from "react";
+import { BsArrowLeft } from "react-icons/bs";
 import "./UpdatePassword.scss";
-import { IoMdArrowRoundBack } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios"; 
-import toast from "react-hot-toast";
-import { baseUrl } from "../../main";
-import { Context } from "../../context/Context";
+import { updatePasswordSchema } from "../../schemas";
+import { useFormik } from "formik";
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+import { updatePasswordAsync } from "../../redux/asyncThunks/authThunks";
+
+const initialvalues = {
+  current_password: "",
+  new_password: "",
+  confirm_password: "",
+};
 
 const UpdatePassword = () => {
-  const { user } = useContext(Context);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const [currentPassword, setCurrentPassword] = useState("");
-  const [newPassword, setNewPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [errors, setErrors] = useState({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
+  
   const goBack = () => {
     navigate(-1);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const { values, errors, handleBlur, touched, handleChange, handleSubmit } =
+    useFormik({
+      initialValues: initialvalues,
+      validationSchema: updatePasswordSchema,
+      onSubmit: async (values) => {
+        try {
+          const payload = {
+            currentPassword: values.current_password,
+            newPassword: values.new_password, // Renaming the field for payload
+          };
 
-    // Validate inputs
-    let validationErrors = {};
-    if (newPassword.length < 6) {
-      validationErrors.newPassword = "Password must be at least 6 characters long";
-    }
-    if (newPassword !== confirmPassword) {
-      validationErrors.confirmPassword = "Passwords do not match";
-    }
-
-    setErrors(validationErrors);
-
-    if (Object.keys(validationErrors).length > 0) {
-      return;
-    }
-
-    setIsSubmitting(true); // Set submitting state to true
-
-    try {
-      const response = await axios.put(`${baseUrl}/api/changepassword/${user._id}`, {
-        currentPassword,
-        newPassword,
-      });
-      console.log(response.data);
-      toast.success("Password changed successfully");
-      navigate("/profile");
-    } catch (error) {
-      console.error("Error changing password:", error);
-      toast.error(error.response?.data?.message || "Error changing password");
-    } finally {
-      setIsSubmitting(false); // Reset submitting state
-    }
-  };
+          const response = await dispatch(
+            updatePasswordAsync(payload)
+          ).unwrap();
+          toast.success(response.message);
+          navigate("/profile");
+        } catch (error) {
+          toast.error(error.message);
+          console.log(error);
+        }
+      },
+    });
 
   return (
     <div className="updatePassword">
       <div className="updatePasswordBack">
         <Link to="#" onClick={goBack}>
-          <IoMdArrowRoundBack className="backArrow" />
+          <BsArrowLeft className="backArrow" />
         </Link>
       </div>
-      <div className="updatePasswordContainer">
+      <div className="updatePasswordContainer bg-primary">
         <h1>Change Password</h1>
         <form onSubmit={handleSubmit}>
           <div className="formData">
             <label htmlFor="currentPassword">Add Current Password</label>
             <input
               type="password"
-              name="currentPassword"
+              name="current_password"
               placeholder="Add Current Password"
-              value={currentPassword}
-              onChange={(e) => setCurrentPassword(e.target.value)}
+              value={values.current_password}
+              onChange={handleChange}
+              onBlur={handleBlur}
             />
+            {errors.current_password && touched.current_password ? (
+              <p className="formError">{errors.current_password}</p>
+            ) : null}
           </div>
           <div className="formData">
             <label htmlFor="newPassword">Add New Password</label>
             <input
               type="password"
-              name="newPassword"
+              name="new_password"
               placeholder="Add New Password"
-              value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
+              value={values.new_password}
+              onChange={handleChange}
+              onBlur={handleBlur}
             />
-            {errors.newPassword && <p className="formError">{errors.newPassword}</p>}
+            {errors.new_password && touched.new_password ? (
+              <p className="formError">{errors.new_password}</p>
+            ) : null}
           </div>
           <div className="formData">
             <label htmlFor="confirmPassword">Confirm New Password</label>
             <input
               type="password"
-              name="confirmPassword"
+              name="confirm_password"
               placeholder="Confirm New Password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
+              value={values.confirm_password}
+              onChange={handleChange}
+              onBlur={handleBlur}
             />
-            {errors.confirmPassword && <p className="formError">{errors.confirmPassword}</p>}
+            {errors.confirm_password && touched.confirm_password ? (
+              <p className="formError">{errors.confirm_password}</p>
+            ) : null}
           </div>
-
-          <button type="submit" disabled={isSubmitting}>
-            {isSubmitting ? "Changing Password..." : "Change Password"}
-          </button>
+          <button type="submit">Change Password</button>
         </form>
       </div>
     </div>
