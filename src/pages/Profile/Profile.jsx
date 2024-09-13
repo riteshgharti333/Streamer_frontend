@@ -5,55 +5,53 @@ import { useEffect, useState } from "react";
 import { BsArrowLeft } from "react-icons/bs";
 import axios from "axios";
 import { toast } from "react-toastify";
-import {updateProfileAsync} from "../../redux/asyncThunks/authThunks";
-
-const priceBackgroundMap = {
-  700: "url('../../assets/images/st.jpg')",
-  900: "url('../../assets/images/sm.jpg')",
-  1500: "url('../../assets/images/sg.jpg')",
-  // Add more mappings as needed
-};
+import {
+  updateProfileAsync,
+  userProfileAsync,
+} from "../../redux/asyncThunks/authThunks";
+import { profileSchema } from "../../schemas";
+import { useFormik } from "formik";
+import { deleteSubscriptionAsync } from "../../redux/asyncThunks/subscriptionThunks";
 
 export default function Profile() {
   const baseUrl = import.meta.env.VITE_API_KEY;
   const navigate = useNavigate();
   const [subscriptionData, setSubscriptionData] = useState([]);
-  const [openCancelId, setOpenCancelId] = useState(null); // Track which subscription's cancel modal is open
+  const [openCancelId, setOpenCancelId] = useState(null);
   const [updateMode, setUpdateMode] = useState(false);
 
-  const { user } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.auth.user);
 
   const dispatch = useDispatch();
 
-  const [name, setName] = useState(user.user?.name || "");
-  const [email, setEmail] = useState(user.user?.email || "");
+  const initialvalues = {
+    name: user.name || "",
+    email: user.email || "",
+  };
 
+  const { profile } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const { data } = await axios.get(`${baseUrl}/auth/profile`, {
-          withCredentials: true,
-        });
-        setSubscriptionData(data.userDetails.subscription);
-      } catch (error) {
-        console.error("Error fetching subscription data:", error);
-      }
-    };
-    fetchData();
-  }, [baseUrl]);
+    if (!profile) {
+      dispatch(userProfileAsync());
+    }
+  }, [dispatch, profile]);
+
+  useEffect(() => {
+    profile && setSubscriptionData(profile.userDetails.subscription);
+  }, [profile]);
 
   const handleDelete = async (id) => {
+    console.log(id + user._id);
     try {
-      const { data } = await axios.delete(`${baseUrl}/subscriptions/${id}`, {
-        withCredentials: true,
-      });
-      toast.success(data.message);
-      setSubscriptionData((prevData) =>
-        prevData.filter((subscription) => subscription._id !== id)
-      );
-      setOpenCancelId(null); // Close the modal after deletion
+      const res = await dispatch(
+        deleteSubscriptionAsync({ subscriptionId: id, userId: user._id })
+      ).unwrap();
+      toast.success(res.message);
+      navigate(0);
+      setOpenCancelId(null);
     } catch (error) {
+      toast.error(error.message);
       console.error("Error deleting subscription:", error);
     }
   };
@@ -62,20 +60,25 @@ export default function Profile() {
     navigate(-1);
   };
 
-  const handleUpdate = async (e) => {
-    e.preventDefault();
-
-    try {
-      const res = await dispatch(updateProfileAsync({ name, email })).unwrap();
-      localStorage.setItem("user", JSON.stringify({ ...user, user: res.user }));
-      navigate(0);
-      toast.success(res.message);  
-      // setUpdateMode(false);
-    } catch (error) {
-      toast.error(error.message || "Failed to update profile");
-      console.log(error)
-    }
-  };
+  const { values, errors, handleBlur, touched, handleChange, handleSubmit } =
+    useFormik({
+      initialValues: initialvalues,
+      validationSchema: profileSchema,
+      onSubmit: async (values) => {
+        try {
+          const response = await dispatch(updateProfileAsync(values)).unwrap();
+          localStorage.setItem(
+            "user",
+            JSON.stringify({ ...user, user: response.user })
+          );
+          toast.success(response.message);
+          navigate(0);
+        } catch (error) {
+          toast.error(error.message);
+          console.log(error);
+        }
+      },
+    });
 
   const formatDate = (time) => {
     const newDate = new Date(time).toLocaleDateString(undefined, {
@@ -107,58 +110,75 @@ export default function Profile() {
   return (
     <div className="settingsContainer">
       <div className="prevIcon">
-        <Link to="/">
+        <Link to="#" onClick={goBack}>
           <BsArrowLeft className="backIcon" />
         </Link>
       </div>
 
       <div className="settings">
-        <div className="settingsWrapper">
+        <div className="settingsWrapper bg-primary">
           <div className="profileData">
             <div className="right">
               {updateMode ? (
-                <form className="updateMode" onSubmit={handleUpdate}>
-                  <input
-                    type="text"
-                    placeholder="Username"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                  />
-                  <input
-                    type="email"
-                    placeholder="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
+                <form className="updateMode" onSubmit={handleSubmit}>
+                  <div className="inputValid">
+                    <div className="inputType">
+                      <input
+                        type="text"
+                        autoComplete="off"
+                        placeholder="Username"
+                        name="name"
+                        value={values.name}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                      />
+                    </div>
+                    {errors.name && touched.name ? (
+                      <p className="formError">{errors.name}</p>
+                    ) : null}
+                  </div>
+                  <div className="inputValid">
+                    <div className="inputType">
+                      <input
+                        type="text"
+                        autoComplete="off"
+                        placeholder="Email"
+                        name="email"
+                        value={values.email}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                      />
+                    </div>
+                    {errors.email && touched.email ? (
+                      <p className="formError">{errors.email}</p>
+                    ) : null}
+                  </div>
                   <div className="profileEditBtn">
                     <button onClick={() => setUpdateMode(!updateMode)}>
                       Cancel
                     </button>
                     <button type="submit">Update</button>
                   </div>
-                  <Link to={"/changepassword"}>
-                    <p className="changePwd">Change Password</p>
-                  </Link>
                 </form>
               ) : (
                 <>
                   <div className="profileName">
-                    <h3>{user.user.name}</h3>
+                    <h3>{user.name}</h3>
                   </div>
                   <div className="ProfileEmail">
-                    <p>{user.user.email}</p>
+                    <p>{user.email}</p>
                   </div>
                   <div className="profileEditBtn">
                     <button onClick={() => setUpdateMode(!updateMode)}>
                       Edit
                     </button>
                   </div>
-                  <Link to={"/changepassword"}>
-                    <p className="changePwd">Change Password</p>
-                  </Link>
                 </>
-              )}
+              )}  
             </div>
+            <Link to={"/updatepassword"}>
+                <p className="changePwd">Change Password</p>
+              </Link>
           </div>
 
           <hr className="lineBr" />
@@ -210,9 +230,10 @@ export default function Profile() {
                       >
                         Cancel
                       </button>
-                      
-                      <button><Link to={"/subscriptions"}>Upgrade    </Link></button>
-                   
+
+                      <button>
+                        <Link to={"/subscriptions"}>Upgrade </Link>
+                      </button>
                     </div>
                   </div>
                 </div>

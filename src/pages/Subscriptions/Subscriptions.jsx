@@ -3,7 +3,7 @@ import "./Subscriptions.scss";
 import SubscriptionCard from "../../components/SubscriptionCard/SubscriptionCard";
 import { subscriptionsPlans } from "../../assets/data";
 import { BsArrowLeft } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import {
   createAsyncCustomer,
@@ -14,6 +14,13 @@ const Subscriptions = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
   const [selectedPlan, setSelectedPlan] = useState(null);
+
+  const navigate = useNavigate();
+
+  
+  const goBack = () => {
+    navigate(-1);
+  };
 
   const handleSubscription = async (priceId) => {
     try {
@@ -38,6 +45,7 @@ const Subscriptions = () => {
 
         // Redirect to Stripe Checkout
         if (sessionResult) {
+          console.log("seeeion ----------> " + sessionResult);
           window.location.href = sessionResult;
         } else {
           console.error(
@@ -53,10 +61,11 @@ const Subscriptions = () => {
     }
   };
 
+
   return (
     <div className="subscriptions">
       <div className="subscriptionsTop">
-        <Link to="/">
+        <Link to="#" onClick={goBack}>
           <BsArrowLeft className="backIcon" />
         </Link>
         <h1>Subscriptions</h1>
@@ -65,12 +74,12 @@ const Subscriptions = () => {
       <div className="subscriptionsCards">
         {subscriptionsPlans.map((s) => (
           <SubscriptionCard
-            key={s.name} // Ensure unique key for list rendering
+            key={s.name} 
             name={s.name}
             price={s.price}
             image={s.image}
             onClick={() => {
-              setSelectedPlan(s.name); // Store the selected plan name
+              setSelectedPlan(s.name); 
               handleSubscription(s.priceId);
             }}
           />

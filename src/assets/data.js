@@ -47,19 +47,19 @@ export const MovieItems = [
 export const subscriptionsPlans = [
     {
         name: "movies subscription",
-        price: "₹ 900 /-",
+        price: "₹ 900 / Month",
         priceId: import.meta.env.VITE_MOVIE_KEY, 
         image: spider,
     },
     {
         name: "web series subscription",
-        price: "₹ 700 /-",
+        price: "₹ 700 / Month",
         priceId: import.meta.env.VITE_SERIES_KEY, 
         image: st,
     },
     {
         name: "movies + web series subscription",
-        price: "₹1500 /-",
+        price: "₹1500 / Month",
         priceId: import.meta.env.VITE_MOVIE_SERIES_KEY,
         image: sg,
     }

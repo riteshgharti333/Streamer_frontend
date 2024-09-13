@@ -22,7 +22,7 @@ const MovieListItem = ({ item }) => {
       <div className="movieListItemInfo">
         <p className="name">{movie?.title}</p>
         <p className="year">{movie?.year}</p>
-        <button>
+        <button className="play-btn">
           <Link to={`/movies/${movie?._id}`}>Play</Link>
         </button>
       </div>

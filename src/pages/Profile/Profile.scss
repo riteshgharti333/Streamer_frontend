@@ -21,20 +21,11 @@
     }
 
     .settingsWrapper {
-      background: linear-gradient(
-        135.8deg,
-        rgb(26, 26, 29) 27.1%,
-        rgb(111, 34, 50) 77.5%
-      );
-
       padding: 40px;
       position: relative;
       border-radius: 5px;
       width: 600px;
       .profileData {
-        display: flex;
-        justify-content: space-around;
-
         .right {
           font-family: "Gabarito", sans-serif;
           display: flex;
@@ -45,17 +36,23 @@
             display: flex;
             flex-direction: column;
             gap: 9px;
-
-            input {
-              font-family: "Gabarito", sans-serif;
-              background-color: transparent;
-              border: none;
-              border-bottom: 2px solid white;
-              font-size: 24px;
-              font-weight: bold;
-              color: white;
-              text-align: center;
-              outline: none;
+            .inputValid {
+              .inputType {
+                input {
+                  font-family: "Gabarito", sans-serif;
+                  background-color: transparent;
+                  border: none;
+                  border-bottom: 2px solid white;
+                  font-size: 24px;
+                  font-weight: bold;
+                  color: white;
+                  text-align: center;
+                  outline: none;
+                }
+              }
+              .formError {
+                color: red;
+              }
             }
           }
 
@@ -100,7 +97,6 @@
           width: 100%;
           margin: 10px 0px;
           letter-spacing: 2px;
-          font-family: "Bebas Neue", sans-serif;
           margin-left: 10px;
 
           &:hover {
@@ -118,7 +114,6 @@
       }
       .changePwd {
         color: white;
-        font-family: "Bebas Neue", sans-serif;
         letter-spacing: 2px;
         text-align: center;
       }
@@ -129,7 +124,6 @@
       margin: 20px 0px;
     }
     .subscriptionPlans {
-      font-family: "Bebas Neue", sans-serif;
       letter-spacing: 1px;
       color: white;
 
@@ -178,7 +172,6 @@
               padding: 7px;
               color: white;
               border: none;
-              font-family: "Bebas Neue", sans-serif;
               font-size: 16px;
               letter-spacing: 1px;
               border-radius: 2px;
@@ -192,7 +185,6 @@
       }
     }
     .noplan {
-      font-family: "Bebas Neue", sans-serif;
       letter-spacing: 1px;
       font-size: 20px;
 

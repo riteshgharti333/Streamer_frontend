@@ -16,7 +16,7 @@ const FeatureCard = ({ title, desc, age, year, genre, featureSmImg, id }) => {
           <span>{genre}</span>
         </div>
 
-        <button>
+        <button className="play-btn">
           <Link to={`/movies/${id}`}>PLAY </Link>
         </button>
       </div>

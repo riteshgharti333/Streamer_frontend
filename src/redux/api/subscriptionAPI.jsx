@@ -22,3 +22,10 @@ export const createSubscriptionSession = (subscriptionData) => {
     { withCredentials: true }
   );
 };
+
+// DELETE SUBSCRIPTION 
+export const deleteSubscription = (subscriptionId, userId) => {
+  return axios.delete(`${baseUrl}/subscriptions/${subscriptionId}/${userId}`, {
+    withCredentials: true,
+  });
+};

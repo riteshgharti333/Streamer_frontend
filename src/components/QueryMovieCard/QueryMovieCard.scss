@@ -23,9 +23,13 @@
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
-        text-overflow: ellipsis; // Add this to handle overflow gracefully
-        line-height: 1.2; // Adjust if necessary
-        width: 100%; // Ensure width is constrained
+        text-overflow: ellipsis;
+        line-height: 1.2;
+        width: 100%; 
+
+        &:hover{
+          color: rgb(26, 163, 163);
+        }
       }
   
       .queryMoviesInfo {

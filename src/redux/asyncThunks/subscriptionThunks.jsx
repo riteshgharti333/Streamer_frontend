@@ -2,6 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
   createCustomer,
   createSubscriptionSession,
+  deleteSubscription,
 } from "../api/subscriptionAPI";
 
 export const createAsyncCustomer = createAsyncThunk(
@@ -13,7 +14,7 @@ export const createAsyncCustomer = createAsyncThunk(
     } catch (error) {
       console.log(error)
       return rejectWithValue(
-        error.response?.data?.error?.message || "Failed to create customer"
+        error.response.data || "Failed to create customer"
       );
     }
   }
@@ -28,7 +29,24 @@ export const createAsyncSubscriptionSession = createAsyncThunk(
     } catch (error) {
       console.log(error)
       return rejectWithValue(
-        error.response?.data?.error?.message || "Failed to create session"
+        error.response.data || "Failed to create session"
+      );
+    }
+  }
+);
+
+
+export const deleteSubscriptionAsync = createAsyncThunk(
+  "subscription/deleteSubscription",
+  async ({subscriptionId,userId}, { rejectWithValue }) => {
+    try {
+      const response = await deleteSubscription(subscriptionId,userId);
+      console.log(response);
+      return response.data;
+    } catch (error) {
+      console.log(error)
+      return rejectWithValue(
+        error.response.data || "Failed to delete subscription"
       );
     }
   }
