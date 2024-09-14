@@ -1,8 +1,22 @@
+$EEsm: 320px;
+$Esm: 420px;
 $sm: 480px;
 $md: 768px;
 $lg: 1024px;
 $xl: 1200px;
 $xxl: 1400px;
+
+@mixin EEsm {
+  @media screen and (max-width: ($sm)) {
+    @content;
+  }
+}
+
+@mixin Esm {
+  @media screen and (max-width: ($sm)) {
+    @content;
+  }
+}
 
 @mixin sm {
   @media screen and (max-width: ($sm)) {

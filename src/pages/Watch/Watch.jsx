@@ -30,9 +30,6 @@ const Watch = () => {
     }
   }, [dispatch, profile]);
 
-  // useEffect(() => {
-
-  // }, [profile]);
 
   useEffect(() => {
     dispatch(getAsyncSigleMovie(path));
@@ -49,33 +46,38 @@ const Watch = () => {
       const seriesType = singleMovie.getMovie.isSeries;
       const userPriceIds =
         profile && profile.userDetails.subscription.map((sub) => sub.priceId);
-  
 
-      const hasComboSubscription = userPriceIds?.includes("price_1Pt0G5SGN61YzC6ZzRoweliJ");
-  
+      const hasComboSubscription = userPriceIds?.includes(
+        import.meta.env.VITE_MOVIE_SERIES_KEY
+      );
+
       if (hasComboSubscription) {
         setHasSubscription(true);
         return;
       }
-  
+
       const MovieSubscription = userPriceIds?.map((priceId) => {
-        if (priceId === "price_1Pt0FASGN61YzC6ZVsLPr87B") {
+        if (priceId === import.meta.env.VITE_MOVIE_KEY) {
           const contentType = getContentTypeFromPriceId(priceId);
           return !seriesType && contentType === "movies";
         }
       });
-  
-      const hasMovieSubscription = MovieSubscription?.some((hasSubscription) => hasSubscription === true);
-  
+
+      const hasMovieSubscription = MovieSubscription?.some(
+        (hasSubscription) => hasSubscription === true
+      );
+
       const SeriesSubscription = userPriceIds?.map((priceId) => {
-        if (priceId === "price_1Pt0D9SGN61YzC6Za7Por7Fy") {
+        if (priceId === import.meta.env.VITE_SERIES_KEY) {
           const contentType = getContentTypeFromPriceId(priceId);
           return seriesType && contentType === "web series";
         }
       });
-  
-      const hasSeriesSubscription = SeriesSubscription?.some((hasSubscription) => hasSubscription === true);
-  
+
+      const hasSeriesSubscription = SeriesSubscription?.some(
+        (hasSubscription) => hasSubscription === true
+      );
+
       if (seriesType && !hasSeriesSubscription) {
         setSubscriptionMessage(
           "You don’t have an active series subscription. To enjoy unlimited access to series, please choose one of our subscription plans."
@@ -94,7 +96,7 @@ const Watch = () => {
       }
     }
   }, [singleMovie, profile]);
-  
+
   const NoSubscription = () => {
     return (
       <div className="noSub">

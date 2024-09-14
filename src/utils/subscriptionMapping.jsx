@@ -1,7 +1,7 @@
 export const priceIdMapping = {
-    movies: "price_1Pt0FASGN61YzC6ZVsLPr87B",
-    webSeries: "price_1Pt0D9SGN61YzC6Za7Por7Fy",
-    combo: "price_1Pt0G5SGN61YzC6ZzRoweliJ"
+    movies: import.meta.env.VITE_MOVIE_KEY,
+    webSeries: import.meta.env.VITE_SERIES_KEY,
+    combo: import.meta.env.VITE_MOVIE_SERIES_KEY
   };
   
   export const getContentTypeFromPriceId = (priceId) => {
