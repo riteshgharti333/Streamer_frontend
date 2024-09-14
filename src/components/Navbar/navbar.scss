@@ -5,28 +5,23 @@
   color: white;
   z-index: 99;
   transition: all 0.5s;
-  // overflow: hidden;
 
   &.scrolled {
     background-color: black;
   }
 
-  .mobileSidebar {
-    @media (min-width: 505px) {
-      display: none;
-    }
-  }
+  
 
   .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0px 10px;
-    // height: 70px;
     .left {
       cursor: pointer;
-      font-size: 20px;
+      
       h1 {
+        font-size: 40px;
         letter-spacing: 2px;
         color: yellow;
 
@@ -40,6 +35,10 @@
             color: red;
           }
         }
+
+        @include EEsm{
+            font-size: 40px;
+        }
       }
     }
 
@@ -49,22 +48,69 @@
       justify-content: center;
       position: relative;
 
-      @media (max-width: 505px) {
-        display: none;
-      }
+      // @media (max-width: 505px) {
+      //   display: none;
+      // }
+
+      // .mobileSidebar {
+      //   @media screen and (max-width: 769px) {
+      //     display: none;
+      //   }
+      // }
 
       .navOptions {
         cursor: pointer;
         font-family: "Gabarito", sans-serif;
         font-size: 20px;
         font-weight: 600;
-        margin-right: 40px;
+        margin-right: 60px;
         color: white;
         padding: 5px;
         display: flex;
         align-items: center;
         justify-content: center;
         position: relative;
+
+        @media screen and (min-width:321px) {
+          
+         }
+
+        @include EEsm{
+          font-size:20px;
+          margin-right: 60px;
+
+          .seriesLink{
+            margin-left: -15px;
+          }
+      }
+
+       @media screen and (max-width:360px) {
+        margin-left: -22px;
+       }
+
+      @include Esm{
+        .seriesLink{
+          margin-left: 5px;
+        } 
+      }
+
+        .homepageLink {
+          @include sm {
+            display: none;
+          }
+
+        }
+
+        @media screen and (max-width: 708px) {
+          .seriesLink{
+            margin-right: 40px;
+          }
+        }
+
+        @include lg {
+          margin-right: 15px;
+            
+          }
 
         &:hover {
           .genre {
@@ -106,6 +152,14 @@
         cursor: pointer;
         transition: 0.4s;
 
+        @include sm {
+          display: none;
+        }
+
+        @media screen and (max-width: 707px) {
+          display: none;
+        }
+
         &:hover {
           box-shadow: 7px 5px 56px -14px #c3d900;
         }
@@ -134,6 +188,18 @@
         z-index: 1;
         border: none;
         cursor: pointer;
+
+        @include sm {
+          display: none;
+        }
+
+        @media screen and (max-width: 707px) {
+          display: none;
+        }
+
+        // @media screen and (max-width: 849px) {
+        //   display: none;
+        // }
       }
 
       .button:before {
@@ -171,6 +237,22 @@
         padding: 5px 8px;
         border-radius: 5px;
         cursor: pointer;
+
+        @include sm {
+          display: none;
+        }
+
+        @media screen and (max-width: 707px) {
+          display: none;
+        }
+
+        // @include md {
+        //   display: none;
+        // }
+        // @media screen and (max-width: 849px) {
+        //   display: none;
+        // }
+
         .userIcon {
           font-size: 20px;
         }

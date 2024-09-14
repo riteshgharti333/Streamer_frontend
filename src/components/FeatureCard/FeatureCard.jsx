@@ -1,7 +1,10 @@
 import "./FeatureCard.scss";
 import { Link } from "react-router-dom";
 
-const FeatureCard = ({ title, desc, age, year, genre, featureSmImg, id }) => {
+const FeatureCard = ({featureCard}) => {
+
+ const  {title  , desc , age , year , genre , featureSmImg , _id }  = featureCard;
+
   return (
     <div className="featureCards">
       <img className="featureCardsImg" src={featureSmImg} alt="" />
@@ -17,7 +20,7 @@ const FeatureCard = ({ title, desc, age, year, genre, featureSmImg, id }) => {
         </div>
 
         <button className="play-btn">
-          <Link to={`/movies/${id}`}>PLAY </Link>
+          <Link to={`/movies/${_id}`}>PLAY </Link>
         </button>
       </div>
     </div>

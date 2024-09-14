@@ -1,6 +1,6 @@
 @import "../../styles/responsive.scss";
 
-.slide {
+.mobileFeatureSlide {
   display: flex;
   justify-content: center;
   .container {
@@ -22,10 +22,6 @@
     margin: auto;
 
     @include sm {
-      display: none;
-    }
-
-    @include md {
       display: none;
     }
   }

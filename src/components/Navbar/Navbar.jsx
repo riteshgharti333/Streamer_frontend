@@ -2,7 +2,7 @@ import "./navbar.scss";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import MobileBurger from "../MobileBurger/MobileBurger";
+import MobileBurger from "../MobileBurger/MobileBurger";
 import { FaUser } from "react-icons/fa";
 import { genre } from "../../assets/data";
 import { useDispatch, useSelector } from "react-redux";
@@ -62,11 +62,18 @@ const Navbar = () => {
           </Link>
         </div>
 
-        <div className="mobileSidebar">{/* <MobileBurger /> */}</div>
-
         <div className="right">
+
+
+        <div className="mobileSidebar" >
+          <MobileBurger />
+        </div>
+
+
           <span className="navOptions">
-            <Link to={"/"}>Homepage</Link>
+            <Link to={"/"} className="homepageLink">
+              Homepage
+            </Link>
           </span>
           <span className="navOptions">
             <Link to={"/movies"}>Movies</Link>
@@ -85,7 +92,7 @@ const Navbar = () => {
           </span>
 
           <span className="navOptions">
-            <Link to={"/series"}>Series</Link>
+            <Link to={"/series"}  className="seriesLink">Series</Link>
             <div className="genre">
               {genre.map((g) => (
                 <span key={g} value={g}>
@@ -99,6 +106,9 @@ const Navbar = () => {
               ))}
             </div>
           </span>
+
+        
+
           <Link to="/subscriptions">
             <button className="subscribe">Subscribe</button>
           </Link>

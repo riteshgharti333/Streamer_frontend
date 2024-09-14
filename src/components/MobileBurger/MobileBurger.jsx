@@ -1,70 +1,51 @@
-// import React, { useContext } from "react";
-// import { slide as Menu } from "react-burger-menu";
-// import "./MobileBurger.scss";
-// import { Context, baseUrl } from "../../main";
-// import axios from "axios";
-// import { Link, useNavigate } from "react-router-dom";
-// import toast from "react-hot-toast";
+import React from "react";
+import { slide as Menu } from "react-burger-menu";
+import "./MobileBurger.scss";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { FaUser } from "react-icons/fa";
+const MobileBurger = () => {
+  const navigate = useNavigate();
 
-// const MobileBurger = () => {
-//   const { isAuthenticated, setIsAuthenticated, loading, setLoading } =
-//     useContext(Context);
+  const { user } = useSelector((state) => state.auth);
 
-//   const navigate = useNavigate();
+  return (
+    <div>
+      <Menu right>
+        <Link className="menu-item" href="/">
+          Home
+        </Link>
+        <Link className="menu-item" href="/movies">
+          Movies
+        </Link>
+        <Link className="menu-item" href="/series">
+          Web Series
+        </Link>
+        {user ? (
+          <Link to="/login">
+            <span>Logout</span>
+          </Link>
+        ) : (
+          <Link to="/login">
+            <span>Login</span>
+          </Link>
+        )}
 
-//   const token = localStorage.getItem("token");
+        <Link to="/subscriptions">
+          <button className="Msubscribe">Subscribe</button>
+        </Link>
 
+        
+        {user && (
+            <Link to="/profile">
+              <div className="Muser">
+                <FaUser className="userIcon" />
+              </div>
+            </Link>
+          )}
+      </Menu>
+    </div>
+  );
+};
 
-//   const logoutHandler = async () => {
-//     setLoading(true);
-//     try {
-//       const res = await axios.get(
-//         `${baseUrl}/api/auth/logout`,
-//         {
-//           withCredentials: true,
-//         }
-//       );
-//       toast.success(res.data.message);
-//       setIsAuthenticated(false);
-//       setLoading(false);
-//       localStorage.removeItem("token");
-//       navigate("/login");
-//     } catch (error) {
-//       toast.error(error.response.data.message);
-//       setIsAuthenticated(true);
-//       setLoading(false);
-//       console.log(error);
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <Menu right>
-//         <a className="menu-item" href="/">
-//           Home
-//         </a>
-//         <a className="menu-item" href="/movies">
-//           Movies
-//         </a>
-//         <a className="menu-item" href="/series">
-//           Web Series
-//         </a>
-
-//         {token ? (
-//           <span onClick={logoutHandler}>Logout</span>
-//         ) : (
-
-//           <Link to="/login">
-//           <span>Login</span>
-//           </Link>
-//         )}
-//         <Link to="/subscriptions">
-//         <button className="subscribe">Subscribe</button>
-
-//         </Link>
-//       </Menu>
-//     </div>
-//   );
-// };
-
-// export default MobileBurger;
+export default MobileBurger;
