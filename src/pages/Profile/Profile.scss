@@ -8,7 +8,6 @@
       margin-left: 20px;
     }
   }
-
   .settings {
     // height: 100%;
     display: flex;
@@ -16,15 +15,15 @@
     align-items: center;
     position: relative;
 
-    @include sm {
-      height: 70vh;
-    }
 
     .settingsWrapper {
       padding: 40px;
       position: relative;
       border-radius: 5px;
-      width: 600px;
+      @include sm {
+        margin: 0px 10px;
+        padding: 10px;
+      }
       .profileData {
         .right {
           font-family: "Gabarito", sans-serif;
@@ -140,6 +139,10 @@
         position: relative;
         margin-top: 10px;
 
+        @include sm {
+          display: block;
+        }
+
         &::before {
           content: "";
           position: absolute;
@@ -176,7 +179,7 @@
               letter-spacing: 1px;
               border-radius: 2px;
               &:first-child {
-                margin-right: 10px;
+                margin-right: 5px;
                 background-color: red;
               }
             }
@@ -210,6 +213,10 @@
   right: 50px;
   z-index: 20;
   border-radius: 3px;
+
+  @include sm {
+    top: 60px;
+  }
 
   .openCancelInfo {
     p {

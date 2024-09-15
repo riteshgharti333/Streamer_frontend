@@ -51,7 +51,8 @@ const UpdatePassword = () => {
           <BsArrowLeft className="backArrow" />
         </Link>
       </div>
-      <div className="updatePasswordContainer bg-primary">
+      <div className="updatePasswordContainer">
+        <div className="updatePasswordContainerWrapper bg-primary">
         <h1>Change Password</h1>
         <form onSubmit={handleSubmit}>
           <div className="formData">
@@ -98,6 +99,7 @@ const UpdatePassword = () => {
           </div>
           <button type="submit">Change Password</button>
         </form>
+      </div>
       </div>
     </div>
   );
