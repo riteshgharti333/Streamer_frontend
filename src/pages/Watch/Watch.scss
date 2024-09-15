@@ -11,25 +11,31 @@
         font-size: 40px;
         margin-top: 50px;
         margin-left: 20px;
+
+        @include sm{
+          margin-left: 5px;
+        }
       }
     }
 
     .video {
       display: flex;
       justify-content: center;
+      align-items: center;
 
-      video {
-        width: 50%;
-      }
-
-      .youtube {
-        @include md {
-        }
-      }
+      .youtubeW {
+     
+      } 
     }
 
     .watchInfo {
       margin: 40px 60px;
+
+       
+
+      @include sm{
+        margin: 0px;
+      }
 
       @include md {
         margin: 30px 20px;

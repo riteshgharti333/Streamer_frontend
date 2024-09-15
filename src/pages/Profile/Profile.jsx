@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { BsArrowLeft } from "react-icons/bs";
-import axios from "axios";
 import { toast } from "react-toastify";
 import {
   updateProfileAsync,

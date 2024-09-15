@@ -135,7 +135,7 @@ const Watch = () => {
         <div className="video">
           {/* Commented out the video element */}
           {/* <video src={movie.video} controls autoPlay muted></video> */}
-          {movie.video && <YouTube videoId={movie.video.split("v=")[1]} />}
+          {movie.video && <YouTube videoId={movie.video.split("v=")[1]} className="youtubeW" />}
         </div>
         <div className="watchInfo">
           <h1>{movie.title}</h1>

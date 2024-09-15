@@ -6,11 +6,12 @@ const QueryMovieCard = (query) => {
   const {_id , smImg,title,year,age,genre} = query.query;
 
   return (
-    <Link to={`/movies/${_id}`}>
     <div className='queryMovieCard'>
+    <Link to={`/movies/${_id}`}>
+
          <div className="queryMovie">
         <img src={smImg} alt="" />
-        <p className='title'>{title} Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo tempore tempora iure quas eum in, exercitationem minus qui necessitatibus esse eaque? Ab molestiae, vitae voluptatibus quod reiciendis, cupiditate maxime totam explicabo doloribus optio mollitia reprehenderit alias, dolores maiores aut voluptate.</p> 
+        <p className='title'>{title}</p> 
         <div className="queryMoviesInfo">
         <span>{year}</span>
           <span className='line'>|</span>
@@ -19,8 +20,9 @@ const QueryMovieCard = (query) => {
           <span>{genre}</span>
         </div>
       </div>
-    </div>
     </Link>
+
+    </div>
 
   )
 }
