@@ -4,18 +4,16 @@ import { BsArrowLeft } from "react-icons/bs";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import {
-  getQueryAsyncMovies,
-} from "../../redux/asyncThunks/movieThunks";
+import { getQueryAsyncMovies } from "../../redux/asyncThunks/movieThunks";
 
 const QueryMovies = () => {
   const dispatch = useDispatch();
   const { search } = useLocation();
   const navigate = useNavigate();
- 
+
   const goBack = () => {
     navigate(-1);
-  }
+  };
 
   const queryParams = new URLSearchParams(search);
   const type = queryParams.get("type");
@@ -37,12 +35,14 @@ const QueryMovies = () => {
       }
     };
     getQueryMovies();
-  }, []);
+  }, [dispatch, type, genre]);
+
+  console.log(queryMovies.length)
 
   return (
     <div
       className={`queryMoviesContainer ${
-        queryMovies.length ? "" : "hasMovies"
+        queryMovies.length > 0 ? "" : "hasMovies"
       }`}
     >
       {/* // <div className={`queryMoviesContainer ${queryMovies.length  ?  'hasMovies' : ''}`}> */}
@@ -56,13 +56,13 @@ const QueryMovies = () => {
       </Link>
 
       <div className="queryMovies">
-        <div className="queryAllMovies">
+        <div className={` ${queryMovies.length > 0 ? "queryAllMovies" : "hasError"}`}>
           {queryMovies.length > 0 ? (
             queryMovies.map((query) => (
               <QueryMovieCard key={query._id} query={query} />
             ))
           ) : (
-            <h3>{error}</h3>
+            <h3 className="hasError">{error}</h3>
           )}
         </div>
       </div>

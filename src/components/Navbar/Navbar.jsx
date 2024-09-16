@@ -36,14 +36,6 @@ const Navbar = () => {
     navigate("/login");
   };
 
-  const handleGenreChange = (e, type) => {
-    const selectedGenre = e.target.value;
-    if (selectedGenre) {
-      // Redirect to the /movies page with the selected genre
-      navigate(`/${type}?genre=${selectedGenre}`);
-    }
-  };
-
   const handleLinkClick = () => {
     navigate(`/query?type=movies&genre=${g}`);
   };
@@ -63,19 +55,14 @@ const Navbar = () => {
         </div>
 
         <div className="right">
+          <div className="mobileSidebar navOptions">
+            <MobileBurger />
+          </div>
 
-
-        <div className="mobileSidebar" >
-          <MobileBurger />
-        </div>
-
-
-          <span className="navOptions">
-            <Link to={"/"} className="homepageLink">
-              Homepage
-            </Link>
-          </span>
-          <span className="navOptions">
+          <span className="navOptions homepageLink">
+            <Link to={"/"}>Homepage</Link>
+        </span>
+          <span className="navOptions moviesLink">
             <Link to={"/movies"}>Movies</Link>
             <div className="genre">
               {genre.map((g) => (
@@ -91,8 +78,8 @@ const Navbar = () => {
             </div>
           </span>
 
-          <span className="navOptions">
-            <Link to={"/series"}  className="seriesLink">Series</Link>
+          <span className="navOptions seriesLink">
+            <Link to={"/series"}>Series</Link>
             <div className="genre">
               {genre.map((g) => (
                 <span key={g} value={g}>
@@ -107,10 +94,8 @@ const Navbar = () => {
             </div>
           </span>
 
-        
-
           <Link to="/subscriptions">
-            <button className="subscribe">Subscribe</button>
+            <button className="subscribe">Subscriptions</button>
           </Link>
           {user ? (
             <button className="button" onClick={handleLogout}>

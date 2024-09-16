@@ -2,7 +2,7 @@
 
 .queryMoviesContainer {
   &.hasMovies {
-    height: 70vh;
+    height: 80vh;
   }
 
   .prevIcon {
@@ -10,29 +10,36 @@
     padding-top: 60px;
     padding-left: 20px;
 
+    @include sm {
+    }
+
     .backIcon {
       font-size: 40px;
+
+      @include sm {
+        font-size: 20px;
+      }
     }
     h1 {
       letter-spacing: 2px;
+
+      @include sm {
+        font-size: 20px;
+      }
     }
 
-    @include sm{
+    @include sm {
       padding-left: 10px;
-
-      h1{
-        font-size: 30px;
-      }
-      .backIcon {
-        font-size: 30px;
-      }
-
-     }
+    }
   }
   .queryMovies {
     margin: 5px 20px 10px 20px;
 
-    @include sm{
+    @include md{
+      margin: 0px 5px;
+    }
+
+    @include sm {
       margin: 0px;
     }
     .queryAllMovies {
@@ -42,36 +49,41 @@
       gap: 65px;
       row-gap: 20px;
 
+      &.hasError {
+        display: block;
+      }
+
+      
       @include sm {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 0;
       }
 
-      
-    @include md{
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 5px; 
-    }
+      @include md {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 5px;
+      }
 
-    @include lg{
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 5px; 
-    }
+      @include lg {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 5px;
+      }
 
-    @include xl{
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 5px; 
-    }
-
-      &.hasMovies {
-        .queryAllMovies {
-          display: block;
-        }
+      @include xl {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 5px;
       }
     }
+
+    .hasError{
+      font-size: 20px;
+      color: rgb(197, 24, 24);
+      margin-left: 5px;
+    }
+
   }
 }

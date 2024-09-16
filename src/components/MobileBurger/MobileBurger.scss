@@ -4,10 +4,10 @@
   width: 30px;
   height: 25px;
   right: 10px;
-  top: 10px;
+  top: 14px;
   margin-left: 20px;
 
-  @media screen and (min-width: 708px) {
+  @media screen and (min-width: 750px) {
     display: none;
   }
 }
@@ -75,8 +75,26 @@
   color: #ffffff;
 }
 
-.topListItem {
-  margin: 20px 0px;
+/////////////////////////////
+
+.mLink {
+  position: relative;
+  .mIcon {
+    font-size: 30px;
+    position: absolute;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+
+  span {
+    display: flex;
+    // margin-left: 10px;
+    font-size: 18px;
+
+    &:hover {
+      color: aqua;
+    }
+  }
 }
 
 .Msubscribe {
@@ -102,17 +120,13 @@
   }
 }
 
-
-
 .Muser {
   background-color: aqua;
   padding: 5px 8px;
   border-radius: 5px;
-  width:fit-content;
+  width: fit-content;
   cursor: pointer;
   cursor: pointer;
-
- 
 
   .userIcon {
     font-size: 20px;
