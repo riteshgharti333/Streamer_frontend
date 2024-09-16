@@ -119,7 +119,6 @@
     }
 
     .lineBr {
-      // color: red;
       margin: 20px 0px;
     }
     .subscriptionPlans {
@@ -158,6 +157,10 @@
           z-index: -1;
         }
         .planInfo {
+
+          &.left{
+            margin-right: 20px;
+          }
           p {
             font-weight: 300;
             font-size: 14px;

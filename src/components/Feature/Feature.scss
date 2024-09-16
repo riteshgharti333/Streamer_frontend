@@ -1,25 +1,52 @@
 @import "../../styles/responsive.scss";
 
 .feature {
-  height: 85vh;
+  // height: 85vh;
   overflow: hidden;
   z-index: 0;
+  // height: clamp(400px, 50vh, 600px);
+  height: clamp(400px, 85vh, 600px);
 
-  @include md {
-    height: 72vh;
-  }
+  // @include xxl{
+  //   // height: 70vh;
+  // }
 
-  @include sm{
-    height: 50vh;
-  }
+  // @include xl {
+  //   height: 54vh;
+  // }
+
+  // @include lg {
+  //   height: 62vh;
+  // }
+
+  // @include md {
+  //   height: 50vh;
+  // }
+
+  // @include sm {
+  //   height: 50vh;
+  // }
 
   .featureContainer {
     position: relative;
     .featureBgImg {
       width: 100%;
-      height: 70vh;
+      // height: 70vh;
       object-fit: cover;
       filter: brightness(0.3);
+      height: clamp(400px, 47vh, 600px);
+
+      // @include xl {
+      //   height: 50vh;
+      // }
+
+      // @include lg {
+      //   height: 50vh;
+      // }
+
+      // @include md {
+      //   height: 50vh;
+      // }
     }
     .featureAllCards {
       position: absolute;
@@ -29,12 +56,16 @@
       display: flex;
       gap: 10px;
 
-      @media (max-width: 640px) {
-        display: none;
+      @include xl {
+        top: 41%;
+      }
+
+      @include lg {
+        top: 54%;
       }
 
       @include md {
-        top: 60%;
+        display: none;
       }
     }
 
@@ -42,20 +73,20 @@
       position: absolute;
       top: 15%;
       left: 5%;
-      width: 700px;
-
-      @include sm {
-        width: 350px;
-        top: 30%;
-        z-index: 3;
-      }
+      width: clamp(300px, 90vw, 700px);
+      z-index: 3;
 
       @include md {
-        width: 400px;
         top: 30%;
-        z-index: 3;
       }
 
+      @include sm {
+        top: 30%;
+      }
+
+      @include Esm {
+        top: 20%;
+      }
       h1 {
         font-size: 60px;
         color: #fff;
@@ -125,7 +156,6 @@
         border-radius: 4px;
         cursor: pointer;
         animation: fadeInFromBottom 0.5s ease-in-out;
-
       }
 
       @keyframes fadeInFromTop {
@@ -138,7 +168,7 @@
           transform: translateY(0);
         }
       }
-      
+
       @keyframes fadeInFromLeft {
         from {
           opacity: 0;
@@ -149,7 +179,7 @@
           transform: translateX(0);
         }
       }
-      
+
       @keyframes fadeInFromBottom {
         from {
           opacity: 0;
@@ -160,7 +190,6 @@
           transform: translateY(0);
         }
       }
-
     }
   }
 }
