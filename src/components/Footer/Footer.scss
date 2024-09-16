@@ -9,18 +9,18 @@
 
   @include sm {
     padding: 10px;
+    flex-direction: column;
+    align-items: center;
   }
 
-  .footerLeft, .footerRight {
-    flex: 1; 
+  .footerLeft,
+  .footerRight {
+    flex: 1;
   }
 
-  .footerCenter{
+  .footerCenter {
     flex: 2;
   }
-
-
-  
 
   .footerLeft {
     .logo {
@@ -31,6 +31,7 @@
 
         @include sm {
           font-size: 30px;
+          text-align: center;
         }
         span {
           color: red;
@@ -43,17 +44,17 @@
 
       @include sm {
         font-size: 25px;
+        text-align: center;
+        margin-top: 0px;
       }
       .leftIcon {
         margin-right: 10px;
         cursor: pointer;
       }
 
-      .Linkedin{
+      .Linkedin {
         color: #0a66c2;
       }
-
-
     }
   }
 
@@ -72,25 +73,25 @@
       font-size: 30px;
       font-weight: 600;
     }
-      span {
-        font-size: 18px;
-        font-weight: 500;
-        cursor: pointer;
-        margin-right: 10px;
+    span {
+      font-size: 18px;
+      font-weight: 500;
+      cursor: pointer;
+      margin-right: 10px;
 
-        &:hover{
-            color: aqua;
-        }
+      &:hover {
+        color: aqua;
+      }
 
-        @include md {
-          // display: flex;
-          // flex-direction: column;
-        }
+      @include md {
+        // display: flex;
+        // flex-direction: column;
+      }
 
-        @include lg {
-          // display: flex;
+      @include lg {
+        // display: flex;
         //   flex-direction: column;
-        }
+      }
     }
   }
 }
@@ -101,6 +102,7 @@
   h1 {
     @include sm {
       font-size: 30px;
+      text-align: center;
     }
   }
 
@@ -108,8 +110,6 @@
     display: flex;
     flex-direction: column;
     font-family: "Gabarito", sans-serif;
-
-
     span {
       font-size: 20px;
       font-weight: 600;
@@ -131,6 +131,10 @@
           color: orange;
           margin-right: 10px;
           font-size: 25px;
+
+          @include sm {
+            font-size: 20px;
+          }
         }
       }
     }

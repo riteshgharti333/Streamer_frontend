@@ -20,6 +20,7 @@
       padding: 40px;
       position: relative;
       border-radius: 5px;
+      margin: 0px 10px;
       @include sm {
         margin: 0px 10px;
         padding: 10px;
@@ -138,9 +139,15 @@
         position: relative;
         margin-top: 10px;
 
+        @media screen and (max-width:520px) {
+          display: block;
+        }
+
         @include sm {
           display: block;
         }
+
+
 
         &::before {
           content: "";
@@ -160,6 +167,10 @@
 
           &.left{
             margin-right: 20px;
+
+            @include md{
+              // margin-right: -22px;
+            }
           }
           p {
             font-weight: 300;

@@ -7,15 +7,17 @@
   width: 250px;
   height: 400px;
 
-  @include md {
-    width: 230px;
-    height: 400px;
-  }
-
+  
   @include lg {
     width: 260px;
     height: 400px;
   }
+
+  // @include md {
+  //   width: 230px;
+  //   height: 400px;
+  // }
+
 
   .card2 {
     background-size: cover;
@@ -25,16 +27,17 @@
     transition: all 0.2s;
     position: relative;
 
-    @include md {
-      width: 230px;
-      height: 400px;
-    
-    }
-
     @include lg {
       width: 260px;
       height: 400px;
     }
+    // @include md {
+    //   width: 230px;
+    //   height: 400px;
+    
+    // }
+
+   
 
   }
   .card2:hover {
