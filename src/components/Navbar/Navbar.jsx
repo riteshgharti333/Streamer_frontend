@@ -47,9 +47,7 @@ const Navbar = () => {
       <div className="container">
         <div className="left">
           <Link to={"/"}>
-            <h1>
-              <span className="f">STRE</span>
-              <span className="s">AMER</span>
+            <h1>STREAMER
             </h1>
           </Link>
         </div>

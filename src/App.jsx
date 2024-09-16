@@ -13,12 +13,13 @@ import Watch from "./pages/Watch/Watch";
 import Profile from "./pages/Profile/Profile";
 import QueryMovies from "./pages/QueryMovies/QueryMovies";
 import Navbar from "./components/Navbar/Navbar";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "./components/Footer/Footer";
-import { useCheckSubscription } from "./utils/checkSubscription";
 import UpdatePassword from "./pages/UpdatePassword/UpdatePassword";
+import SuccessPage from "./pages/SuccessPage/SuccessPage";
+import CancelPage from "./pages/CancelPage/CancelPage";
 
 function App() {
   return (
@@ -64,7 +65,8 @@ function Layout() {
         <Route path="/movies/:id" element={<Watch />} />
         <Route path="/query" element={<QueryMovies />} />
         <Route path="/subscriptions" element={<Subscriptions />} />
-
+        <Route path="/success" element={<SuccessPage />} />
+        <Route path="/cancel" element={<CancelPage />} />
 
         <Route
           path="/updatepassword"

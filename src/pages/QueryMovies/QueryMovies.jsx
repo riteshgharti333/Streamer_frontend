@@ -25,6 +25,10 @@ const QueryMovies = () => {
 
   useEffect(() => {
     const getQueryMovies = async () => {
+
+      setError(null); // Clear any previous errors
+      setQueryMovies([]); // Clear previous data
+      
       try {
         const response = await dispatch(
           getQueryAsyncMovies(`${type}&genre=${genre}`)

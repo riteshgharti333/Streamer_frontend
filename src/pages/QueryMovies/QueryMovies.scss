@@ -1,6 +1,7 @@
 @import "../../styles/responsive.scss";
 
 .queryMoviesContainer {
+  min-height: 80vh;
   &.hasMovies {
     height: 80vh;
   }
@@ -35,7 +36,7 @@
   .queryMovies {
     margin: 5px 20px 10px 20px;
 
-    @include md{
+    @include md {
       margin: 0px 5px;
     }
 
@@ -53,16 +54,21 @@
         display: block;
       }
 
-      
-      @include sm {
+      @include xxxl {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 5px;
+      }
+      
+      @include xxl {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 5px;
       }
 
-      @include md {
+      @include xl {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         gap: 5px;
       }
 
@@ -72,18 +78,23 @@
         gap: 5px;
       }
 
-      @include xl {
+      @include md {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 5px;
       }
+
+      @include sm {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0;
+      }
     }
 
-    .hasError{
+    .hasError {
       font-size: 20px;
       color: rgb(197, 24, 24);
       margin-left: 5px;
     }
-
   }
 }
