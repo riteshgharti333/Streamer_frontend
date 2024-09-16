@@ -1,11 +1,15 @@
 @import "../../styles/responsive.scss";
 
 .feature {
-  // height: 85vh;
+  height: 85vh;
   overflow: hidden;
   z-index: 0;
   // height: clamp(400px, 50vh, 600px);
-  height: clamp(400px, 85vh, 600px);
+
+  @include md{
+    height: clamp(400px, 85vh, 600px);
+
+  }
 
   // @include xxl{
   //   // height: 70vh;
@@ -15,17 +19,17 @@
   //   height: 54vh;
   // }
 
-  // @include lg {
-  //   height: 62vh;
-  // }
+  @include lg {
+    height: 62vh;
+  }
 
-  // @include md {
-  //   height: 50vh;
-  // }
+  @include md {
+    height: 50vh;
+  }
 
-  // @include sm {
-  //   height: 50vh;
-  // }
+  @include sm {
+    height: 50vh;
+  }
 
   .featureContainer {
     position: relative;
@@ -36,17 +40,13 @@
       filter: brightness(0.3);
       height: clamp(400px, 47vh, 600px);
 
-      // @include xl {
-      //   height: 50vh;
-      // }
-
       // @include lg {
       //   height: 50vh;
       // }
 
-      // @include md {
-      //   height: 50vh;
-      // }
+      @include md {
+        height: 50vh;
+      }
     }
     .featureAllCards {
       position: absolute;
