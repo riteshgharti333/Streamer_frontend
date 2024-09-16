@@ -18,8 +18,8 @@ const MovieLists = ({ list, type }) => {
   let slidesToShow = 1;
   if (isXxl) slidesToShow = 4;
   else if (isXlRange) slidesToShow = 4;
-  else if (isLgRange) slidesToShow = 4;
-  else if (isLg) slidesToShow = 4;
+  else if (isLgRange) slidesToShow = 3;
+  else if (isLg) slidesToShow = 3;
   else if (isMd) slidesToShow = 3;
   else if (isSMd) slidesToShow = 2;
   

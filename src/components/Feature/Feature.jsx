@@ -18,7 +18,7 @@ const Feature = ({ type }) => {
   const series = useSelector((state) => state.movies.series);
 
   // MUI useMediaQuery hook for small and medium devices
-  const isSmallScreen = useMediaQuery("(max-width: 640px)");
+  const isSmallScreen = useMediaQuery("(max-width: 768px)");
 
   useEffect(() => {
     const getRandomContent = () => {
