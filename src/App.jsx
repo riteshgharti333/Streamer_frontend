@@ -50,7 +50,10 @@ function Layout() {
   };
 
   const hideNavbarFooter =
-    location.pathname === "/login" || location.pathname === "/register";
+    location.pathname === "/login" ||
+    location.pathname === "/register" ||
+    location.pathname === "/success" ||
+    location.pathname === "/cancel";
 
   return (
     <div className="app">
@@ -65,8 +68,6 @@ function Layout() {
         <Route path="/movies/:id" element={<Watch />} />
         <Route path="/query" element={<QueryMovies />} />
         <Route path="/subscriptions" element={<Subscriptions />} />
-        <Route path="/success" element={<SuccessPage />} />
-        <Route path="/cancel" element={<CancelPage />} />
 
         <Route
           path="/updatepassword"
@@ -86,7 +87,10 @@ function Layout() {
         />
 
         {/* <Route path="*" element={<Navigate to="/" />} /> */}
+        <Route path="/success" element={<SuccessPage />} />
+        <Route path="/cancel" element={<CancelPage />} />
       </Routes>
+
       {!hideNavbarFooter && <Footer />}
     </div>
   );
