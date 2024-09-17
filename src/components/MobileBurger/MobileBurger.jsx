@@ -2,24 +2,34 @@ import React, { useState } from "react";
 import { slide as Menu } from "react-burger-menu";
 import "./MobileBurger.scss";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FaUser } from "react-icons/fa";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { genre } from "../../assets/data";
+import { logoutAsyncUser } from "../../redux/asyncThunks/authThunks";
 
 const MobileBurger = () => {
   const { user } = useSelector((state) => state.auth);
-  const [openDropdown, setOpenDropdown] = useState(""); // Single state for both dropdowns
-  const [isOpen, setIsOpen] = useState(false); // State to control the menu open/close
+  const [openDropdown, setOpenDropdown] = useState(""); 
+  const [isOpen, setIsOpen] = useState(false); 
+
+
+  const dispatch = useDispatch();
 
   const toggleDropdown = (dropdown) => {
     setOpenDropdown(openDropdown === dropdown ? "" : dropdown);
   };
 
-  // Function to close the menu when a link is clicked
+
+
   const handleCloseMenu = () => {
     setIsOpen(false);
+  };
+
+  const handleLogout = () => {
+    dispatch(logoutAsyncUser());
+    navigate("/login");
   };
 
   return (
@@ -90,7 +100,7 @@ const MobileBurger = () => {
         </div>
 
         {user ? (
-          <Link to="/login" onClick={handleCloseMenu}>
+         <Link to="/login" onClick={() => { handleCloseMenu(); handleLogout(); }}>
             <span>Logout</span>
           </Link>
         ) : (
