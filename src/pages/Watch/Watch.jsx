@@ -147,7 +147,6 @@ const Watch = () => {
         ) : (
           <>
             <div className="video">
-              {/* Commented out the video element */}
               {/* <video src={movie.video} controls autoPlay muted></video> */}
               {movie.video && (
                 <YouTube
