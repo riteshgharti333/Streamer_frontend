@@ -11,6 +11,7 @@ import {
 import { profileSchema } from "../../schemas";
 import { useFormik } from "formik";
 import { deleteSubscriptionAsync } from "../../redux/asyncThunks/subscriptionThunks";
+import { Skeleton } from "@mui/material";
 
 export default function Profile() {
   const baseUrl = import.meta.env.VITE_API_KEY;
@@ -18,6 +19,7 @@ export default function Profile() {
   const [subscriptionData, setSubscriptionData] = useState([]);
   const [openCancelId, setOpenCancelId] = useState(null);
   const [updateMode, setUpdateMode] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const { user } = useSelector((state) => state.auth.user);
 
@@ -31,9 +33,12 @@ export default function Profile() {
   const { profile } = useSelector((state) => state.auth);
 
   useEffect(() => {
+    setIsLoading(true);
+
     if (!profile) {
       dispatch(userProfileAsync());
     }
+    setIsLoading(false);
   }, [dispatch, profile]);
 
   useEffect(() => {
@@ -110,143 +115,163 @@ export default function Profile() {
     <div className="settingsContainer">
       <div className="prevIcon">
         <Link to="#" onClick={goBack}>
-          <BsArrowLeft className="backIcon" />
+          {isLoading ? (
+            <div className="backIcon"></div>
+          ) : (
+            <BsArrowLeft className="backIcon" />
+          )}
         </Link>
       </div>
 
       <div className="settings">
-        <div className="settingsWrapper bg-primary">
-          <div className="profileData">
-            <div className="right">
-              {updateMode ? (
-                <form className="updateMode" onSubmit={handleSubmit}>
-                  <div className="inputValid">
-                    <div className="inputType">
-                      <input
-                        type="text"
-                        autoComplete="off"
-                        placeholder="Username"
-                        name="name"
-                        value={values.name}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                      />
-                    </div>
-                    {errors.name && touched.name ? (
-                      <p className="formError">{errors.name}</p>
-                    ) : null}
-                  </div>
-                  <div className="inputValid">
-                    <div className="inputType">
-                      <input
-                        type="text"
-                        autoComplete="off"
-                        placeholder="Email"
-                        name="email"
-                        value={values.email}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                      />
-                    </div>
-                    {errors.email && touched.email ? (
-                      <p className="formError">{errors.email}</p>
-                    ) : null}
-                  </div>
-                  <div className="profileEditBtn">
-                    <button onClick={() => setUpdateMode(!updateMode)}>
-                      Cancel
-                    </button>
-                    <button type="submit">Update</button>
-                  </div>
-                </form>
-              ) : (
-                <>
-                  <div className="profileName">
-                    <h3>{user.name}</h3>
-                  </div>
-                  <div className="ProfileEmail">
-                    <p>{user.email}</p>
-                  </div>
-                  <div className="profileEditBtn">
-                    <button onClick={() => setUpdateMode(!updateMode)}>
-                      Edit
-                    </button>
-                  </div>
-                </>
-              )}  
+        {isLoading ? (
+          <div className="settingsWrapper">
+            <Skeleton variant="rectangular" width={500} height={200} style={{borderRadius: "10px"}} />
+            <div className="sub">
+              <Skeleton variant="rectangular" width={500} height={100} className="subChild" />
+              <Skeleton variant="rectangular" width={500} height={100} className="subChild"/>
             </div>
-            <Link to={"/updatepassword"}>
-                <p className="changePwd">Change Password</p>
-              </Link>
+
           </div>
-
-          <hr className="lineBr" />
-
-          {subscriptionData.length > 0 ? (
-            <div className="subscriptionPlans">
-              <p>Your Subscriptions</p>
-
-              {subscriptionData.map((subscription) => (
-                <div className="subscriptionPlansData" key={subscription._id}>
-                  {openCancelId === subscription._id && (
-                    <Cancel
-                      subscriptionId={subscription.subscriptionId}
-                      closeCancelModal={() => setOpenCancelId(null)}
-                    />
+        ) : (
+          <>
+            <div className="settingsWrapper bg-primary">
+              <div className="profileData">
+                <div className="right">
+                  {updateMode ? (
+                    <form className="updateMode" onSubmit={handleSubmit}>
+                      <div className="inputValid">
+                        <div className="inputType">
+                          <input
+                            type="text"
+                            autoComplete="off"
+                            placeholder="Username"
+                            name="name"
+                            value={values.name}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                          />
+                        </div>
+                        {errors.name && touched.name ? (
+                          <p className="formError">{errors.name}</p>
+                        ) : null}
+                      </div>
+                      <div className="inputValid">
+                        <div className="inputType">
+                          <input
+                            type="text"
+                            autoComplete="off"
+                            placeholder="Email"
+                            name="email"
+                            value={values.email}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                          />
+                        </div>
+                        {errors.email && touched.email ? (
+                          <p className="formError">{errors.email}</p>
+                        ) : null}
+                      </div>
+                      <div className="profileEditBtn">
+                        <button onClick={() => setUpdateMode(!updateMode)}>
+                          Cancel
+                        </button>
+                        <button type="submit">Update</button>
+                      </div>
+                    </form>
+                  ) : (
+                    <>
+                      <div className="profileName">
+                        <h3>{user.name}</h3>
+                      </div>
+                      <div className="profileEmail">
+                        <p>{user.email}</p>
+                      </div>
+                      <div className="profileEditBtn">
+                        <button onClick={() => setUpdateMode(!updateMode)}>
+                          Edit
+                        </button>
+                      </div>
+                    </>
                   )}
-
-                  <div className="planInfo left">
-                    <p>
-                      Name Of Plan: <span>{subscription.plan}</span>
-                    </p>
-                    <p>
-                      Customer Name: <span>{subscription.name}</span>
-                    </p>
-                    <p>
-                      Customer Email: <span>{subscription.email}</span>
-                    </p>
-                    <p>
-                      Subscription ID:{" "}
-                      <span>{subscription.subscriptionId}</span>
-                    </p>
-                  </div>
-
-                  <div className="planInfo right">
-                    <p>
-                      Start Date:{" "}
-                      <span>{formatDate(subscription.startDate)}</span>
-                    </p>
-                    <p>
-                      Expire Date:{" "}
-                      <span>{formatDate(subscription.endDate)}</span>
-                    </p>
-                    <p>
-                      Plan Price: <span>{subscription.price} /-</span>
-                    </p>
-                    <div className="subscriptionPlansDataBtn">
-                      <button
-                        onClick={() => toggleCancelModal(subscription._id)}
-                      >
-                        Cancel
-                      </button>
-
-                      <button>
-                        <Link to={"/subscriptions"}>Upgrade </Link>
-                      </button>
-                    </div>
-                  </div>
                 </div>
-              ))}
+                <Link to={"/updatepassword"}>
+                  <p className="changePwd">Change Password</p>
+                </Link>
+              </div>
+
+              <hr className="lineBr" />
+
+              {subscriptionData.length > 0 ? (
+                <div className="subscriptionPlans">
+                  <p>Your Subscriptions</p>
+
+                  {subscriptionData.map((subscription) => (
+                    <div
+                      className="subscriptionPlansData"
+                      key={subscription._id}
+                    >
+                      {openCancelId === subscription._id && (
+                        <Cancel
+                          subscriptionId={subscription.subscriptionId}
+                          closeCancelModal={() => setOpenCancelId(null)}
+                        />
+                      )}
+
+                      <div className="planInfo left">
+                        <p>
+                          Name Of Plan: <span>{subscription.plan}</span>
+                        </p>
+                        <p>
+                          Customer Name: <span>{subscription.name}</span>
+                        </p>
+                        <p>
+                          Customer Email: <span>{subscription.email}</span>
+                        </p>
+                        <p>
+                          Subscription ID:{" "}
+                          <span>{subscription.subscriptionId}</span>
+                        </p>
+                      </div>
+
+                      <div className="planInfo right">
+                        <p>
+                          Start Date:{" "}
+                          <span>{formatDate(subscription.startDate)}</span>
+                        </p>
+                        <p>
+                          Expire Date:{" "}
+                          <span>{formatDate(subscription.endDate)}</span>
+                        </p>
+                        <p>
+                          Plan Price: <span>{subscription.price} /-</span>
+                        </p>
+                        <div className="subscriptionPlansDataBtn">
+                          <button
+                            onClick={() => toggleCancelModal(subscription._id)}
+                          >
+                            Cancel
+                          </button>
+
+                          <button>
+                            <Link to={"/subscriptions"}>Upgrade </Link>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p className="noplan">
+                  You don't have an active plan
+                  <Link to={"/subscriptions"}>
+                    <span className="seeplan">See plans.</span>
+                  </Link>
+                </p>
+              )}
             </div>
-          ) : (
-            <p className="noplan">
-              You don't have an active plan
-              <Link to={"/subscriptions"}>
-                <span className="seeplan">See plans.</span>
-              </Link>
-            </p>
-          )}
-        </div>
+          </>
+        )}
       </div>
     </div>
   );

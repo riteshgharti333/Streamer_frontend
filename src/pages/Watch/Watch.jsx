@@ -8,6 +8,7 @@ import { getAsyncSigleMovie } from "../../redux/asyncThunks/movieThunks";
 import { useCheckSubscription } from "../../utils/checkSubscription";
 import { getContentTypeFromPriceId } from "../../utils/subscriptionMapping";
 import { userProfileAsync } from "../../redux/asyncThunks/authThunks";
+import { Skeleton } from "@mui/material";
 
 const Watch = () => {
   const location = useLocation();
@@ -16,6 +17,8 @@ const Watch = () => {
   const [movie, setMovie] = useState({});
   const [hasSubscription, setHasSubscription] = useState(true);
   const [subscriptionMessage, setSubscriptionMessage] = useState("");
+
+  const [isLoading, setIsLoading] = useState(true);
 
   const checkSubscription = useCheckSubscription();
   const dispatch = useDispatch();
@@ -30,9 +33,10 @@ const Watch = () => {
     }
   }, [dispatch, profile]);
 
-
   useEffect(() => {
+    setIsLoading(true);
     dispatch(getAsyncSigleMovie(path));
+    setIsLoading(false);
   }, [path, dispatch]);
 
   useEffect(() => {
@@ -129,23 +133,51 @@ const Watch = () => {
       <div className="watch">
         <div className="WatchIcon">
           <Link to="/">
-            <BsArrowLeft className="backIcon" />
+            {isLoading ? (
+              <div className="backIcon"></div>
+            ) : (
+              <BsArrowLeft className="backIcon" />
+            )}
           </Link>
         </div>
-        <div className="video">
-          {/* Commented out the video element */}
-          {/* <video src={movie.video} controls autoPlay muted></video> */}
-          {movie.video && <YouTube videoId={movie.video.split("v=")[1]} className="youtubeW" />}
-        </div>
-        <div className="watchInfo">
-          <h1>{movie.title}</h1>
-          <p>{movie.desc}</p>
-          <span>{movie.year}</span>
-          <span className="line">|</span>
-          <span>{movie.age}+</span>
-          <span className="line">|</span>
-          <span>{movie.genre}</span>
-        </div>
+        {isLoading ? (
+          <div className="video">
+            <Skeleton variant="rectangular" width={700} height={300} />
+          </div>
+        ) : (
+          <>
+            <div className="video">
+              {/* Commented out the video element */}
+              {/* <video src={movie.video} controls autoPlay muted></video> */}
+              {movie.video && (
+                <YouTube
+                  videoId={movie.video.split("v=")[1]}
+                  className="youtubeW"
+                />
+              )}
+            </div>
+          </>
+        )}
+        {isLoading ? (
+          <div className="watchInfo">
+            <Skeleton width="100%" height={50} />
+            <Skeleton width="50%" height={50} />
+            <Skeleton width="30%" height={50} />
+            <Skeleton width="100%" height={50} />
+          </div>
+        ) : (
+          <>
+            <div className="watchInfo">
+              <h1>{movie.title}</h1>
+              <p>{movie.desc}</p>
+              <span>{movie.year}</span>
+              <span className="line">|</span>
+              <span>{movie.age}+</span>
+              <span className="line">|</span>
+              <span>{movie.genre}</span>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

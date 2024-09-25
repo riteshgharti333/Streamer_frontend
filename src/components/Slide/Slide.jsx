@@ -1,10 +1,7 @@
 import "./Slide.scss";
 import Slider from "infinite-react-carousel";
 
-
-
-const Slide = ({ children, slidesToShow, arrowsScroll }) => {
-
+const Slide = ({ children, slidesToShow, arrowsScroll, isLoading }) => {
   const settings = {
     centerMode: true,
     centerPadding: 0,
@@ -13,7 +10,7 @@ const Slide = ({ children, slidesToShow, arrowsScroll }) => {
   };
 
   return (
-    <div className="slide">
+    <div className={`slide ${isLoading ? "loading" : ""}`}>
       <div className="container">
         <Slider
           slidesToShow={slidesToShow}
