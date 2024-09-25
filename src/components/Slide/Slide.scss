@@ -3,6 +3,7 @@
 .slide {
   display: flex;
   justify-content: center;
+
   .container {
     width: 1400px;
     position: relative;
@@ -37,10 +38,20 @@
   .carousel-next:before {
     background-image: url("../../assets/ArrowImage/arrow-next.svg");
   }
+
   .carousel-prev {
     left: -25px;
   }
+
   .carousel-next {
     right: -30px;
+  }
+
+  // When loading, hide the arrows
+  &.loading {
+    .carousel-prev,
+    .carousel-next {
+      display: none;
+    }
   }
 }

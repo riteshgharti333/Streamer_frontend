@@ -57,10 +57,11 @@ const subscriptionSlice = createSlice({
       .addCase(deleteSubscriptionAsync.fulfilled, (state, action) => {
         state.loading = false;
         // state.subscription = action.payload;
-        state.subscription = state.subscription.filter(
-          (sub) => sub._id !== action.meta.arg.subscriptionId
-        );
-      })
+        if (Array.isArray(state.subscription)) {
+          state.subscription = state.subscription.filter(
+            (sub) => sub._id !== action.payload.subscriptionId
+          );
+      }})
       .addCase(deleteSubscriptionAsync.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
