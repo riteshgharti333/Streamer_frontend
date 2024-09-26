@@ -27,7 +27,7 @@ const Feature = ({ type }) => {
       } catch (err) {
         console.log(err);
       } finally {
-        setIsLoading(false); // Stop loading after fetch completes
+        setIsLoading(false);
       }
     };
     getRandomContent();
@@ -57,13 +57,17 @@ const Feature = ({ type }) => {
             // Loading skeleton for small screens
             <MobileFeatureSlide slidesToShow={1} arrowsScroll={1}>
               {[...Array(3)].map((_, index) => (
-                <Skeleton
-                  key={index}
-                  variant="rectangular"
-                  width="100%"
-                  height={300}
-                  style={{ borderRadius: 10, marginBottom: "10px" }}
-                />
+                <>
+                  <Skeleton
+                    key={index}
+                    variant="rectangular"
+                    width="100%"
+                    height={200}
+                    style={{ borderRadius: 10, marginBottom: "10px" }}
+                  />
+                  <Skeleton width="60%" height={20} />
+                  <Skeleton width="60%" height={20} />
+                </>
               ))}
             </MobileFeatureSlide>
           ) : featureCards.length > 0 ? (
@@ -113,7 +117,6 @@ const Feature = ({ type }) => {
                   src={content.featureImg}
                   alt={content.title}
                 />
-                <div className="inner-shadow"></div>
                 <div className="info">
                   <h1>{content.title}</h1>
                   <p>{content.desc}</p>
@@ -132,14 +135,15 @@ const Feature = ({ type }) => {
             )}
 
             {isLoading ? (
-              <div className="featureAllCards" style={{position: "absolute" , top: "60px"}}>
-              <Skeleton  width={150} height={500}/>
-              <Skeleton  width={150} height={500}/>
-              <Skeleton  width={150} height={500}/>
-              <Skeleton  width={150} height={500}/>
-              <Skeleton  width={150} height={500}/>
-
-
+              <div
+                className="featureAllCards"
+                style={{ position: "absolute", top: "60px" }}
+              >
+                <Skeleton width={150} height={500} />
+                <Skeleton width={150} height={500} />
+                <Skeleton width={150} height={500} />
+                <Skeleton width={150} height={500} />
+                <Skeleton width={150} height={500} />
               </div>
             ) : (
               <>

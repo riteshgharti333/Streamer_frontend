@@ -31,8 +31,8 @@ const MovieLists = ({ list, type, isLoading }) => {
     <div className="movieLists">
       {isLoading ? (
         <div className="movieListsTop">
-          <Skeleton width={300} height={40} />
-          <Skeleton width={100} height={40} />
+          <Skeleton width="50%" height={40} />
+          <Skeleton width="20%" height={40} />
         </div>
       ) : (
         <div className="movieListsTop">
@@ -58,7 +58,7 @@ const MovieLists = ({ list, type, isLoading }) => {
           >
             {list.content.map((item, index) =>
               isLoading ? (
-                <Skeleton key={index} height="200px" />
+                <Skeleton key={index} variant="rectangular" height={100} />
               ) : (
                 <MovieListItem key={item.id || index} item={item} type={type} />
               )

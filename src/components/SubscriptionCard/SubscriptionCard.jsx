@@ -1,8 +1,27 @@
 import "./SubscriptionCard.scss";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import React from "react";
+import { toast } from "react-toastify";
 
 const SubscriptionCard = ({ name, price, image, onClick }) => {
   const style = {
     backgroundImage: `url(${image})`,
+  };
+
+  const { user } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
+
+  // Handle click when user is not logged in
+  const handleBuyClick = () => {
+    if (!user) {
+      toast.error(
+        "You are not logged in. Please log in to purchase a subscription."
+      );
+      navigate("/login"); 
+    } else {
+      onClick(); 
+    }
   };
 
   return (
@@ -11,7 +30,9 @@ const SubscriptionCard = ({ name, price, image, onClick }) => {
         <div className="subscriptionCardInfo">
           <h1>{name}</h1>
           <p>{price}</p>
-          <button className="play-btn" onClick={onClick}>Buy</button>
+          <button className="play-btn" onClick={handleBuyClick}>
+            Buy
+          </button>
         </div>
       </div>
     </div>

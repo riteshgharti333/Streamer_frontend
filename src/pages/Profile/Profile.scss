@@ -1,6 +1,7 @@
 @import "../../styles/responsive.scss";
 
 .settingsContainer {
+  min-height: 80vh;
   .prevIcon {
     padding-top: 50px;
     padding-left: 20px;
@@ -13,6 +14,18 @@
     justify-content: center;
     align-items: center;
     position: relative;
+
+    .settingsSke {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .subChild {
+        margin-top: 10px;
+        border-radius: 10px;
+      }
+    }
 
     .sub {
       .subChild {
@@ -70,11 +83,13 @@
             }
           }
 
-          .ProfileEmail {
-            text-align: center;
-            color: white;
-            font-size: 20px;
-            font-weight: 600;
+          .profileEmail {
+            p {
+              text-align: center;
+              color: white;
+              font-size: 20px;
+              font-weight: 600;
+            }
           }
 
           .profileInputForm {
