@@ -5,7 +5,6 @@ import { Skeleton } from "@mui/material";
 const QueryMovieCard = ({ query, isLoading }) => {
   const { _id, smImg, title, year, age, genre } = query;
 
-  console.log(isLoading);
 
   return (
     <div className="queryMovieCard">

@@ -22,9 +22,10 @@ const MobileBurger = () => {
   };
 
 
+  const navigate = useNavigate();
 
   const handleCloseMenu = () => {
-    setIsOpen(false);
+    setIsOpen(false)
   };
 
   const handleLogout = () => {
@@ -100,9 +101,9 @@ const MobileBurger = () => {
         </div>
 
         {user ? (
-         <Link to="/login" onClick={() => { handleCloseMenu(); handleLogout(); }}>
+         <span onClick={() => { handleCloseMenu(); handleLogout(); }}>
             <span>Logout</span>
-          </Link>
+          </span>
         ) : (
           <Link to="/login" onClick={handleCloseMenu}>
             <span>Login</span>

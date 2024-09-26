@@ -40,7 +40,7 @@ const QueryMovies = () => {
       } catch (error) {
         setError(error.message || "An error occurred while fetching movies.");
       } finally {
-        setIsLoading(true);
+        setIsLoading(false);
       }
     };
     getQueryMovies();

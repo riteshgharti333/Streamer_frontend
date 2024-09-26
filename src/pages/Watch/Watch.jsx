@@ -5,7 +5,6 @@ import { BsArrowLeft } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAsyncSigleMovie } from "../../redux/asyncThunks/movieThunks";
-import { useCheckSubscription } from "../../utils/checkSubscription";
 import { getContentTypeFromPriceId } from "../../utils/subscriptionMapping";
 import { userProfileAsync } from "../../redux/asyncThunks/authThunks";
 import { Skeleton } from "@mui/material";
@@ -14,16 +13,16 @@ const Watch = () => {
   const location = useLocation();
   const path = location.pathname.split("/")[2];
 
+  const { user } = useSelector((state) => state.auth);
+
   const [movie, setMovie] = useState({});
   const [hasSubscription, setHasSubscription] = useState(true);
   const [subscriptionMessage, setSubscriptionMessage] = useState("");
 
   const [isLoading, setIsLoading] = useState(true);
 
-  const checkSubscription = useCheckSubscription();
   const dispatch = useDispatch();
 
-  const { user } = useSelector((state) => state.auth.user);
   const { singleMovie } = useSelector((state) => state.movies);
   const { profile } = useSelector((state) => state.auth);
 
@@ -46,6 +45,14 @@ const Watch = () => {
   }, [singleMovie]);
 
   useEffect(() => {
+    if (!user) {
+      setSubscriptionMessage(
+        "You don’t have any active subscription. To enjoy unlimited access to movies and series, please choose one of our subscription plans."
+      );
+      setHasSubscription(false);
+      return; // Exit early since there's no user.
+    }
+
     if (singleMovie) {
       const seriesType = singleMovie.getMovie.isSeries;
       const userPriceIds =
@@ -94,7 +101,12 @@ const Watch = () => {
         setHasSubscription(false);
       } else if (!hasMovieSubscription && !hasSeriesSubscription) {
         setSubscriptionMessage(
-          "You don’t have an active subscription. To enjoy unlimited access to movies and series, please choose one of our subscription plans."
+          "You don’t have any active subscription. To enjoy unlimited access to movies and series, please choose one of our subscription plans."
+        );
+        setHasSubscription(false);
+      } else if (!user) {
+        setSubscriptionMessage(
+          "You don’t have any active subscription. To enjoy unlimited access to movies and series, please choose one of our subscription plans."
         );
         setHasSubscription(false);
       }

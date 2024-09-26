@@ -125,13 +125,25 @@ export default function Profile() {
 
       <div className="settings">
         {isLoading ? (
-          <div className="settingsWrapper">
-            <Skeleton variant="rectangular" width={500} height={200} style={{borderRadius: "10px"}} />
-            <div className="sub">
-              <Skeleton variant="rectangular" width={500} height={100} className="subChild" />
-              <Skeleton variant="rectangular" width={500} height={100} className="subChild"/>
-            </div>
-
+          <div className="settingsSke">
+            <Skeleton
+              variant="rectangular"
+              width="50%"
+              height={200}
+              style={{ borderRadius: "10px" }}
+            />
+            <Skeleton
+              variant="rectangular"
+              width="50%"
+              height={50}
+              className="subChild"
+            />
+            <Skeleton
+              variant="rectangular"
+              width="50%"
+              height={50}
+              className="subChild"
+            />
           </div>
         ) : (
           <>

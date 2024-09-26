@@ -2,6 +2,7 @@
 
 .watchContainer {
   position: relative;
+  min-height: 100vh;
 
   .watch {
     overflow: hidden;

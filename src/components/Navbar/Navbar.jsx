@@ -7,7 +7,6 @@ import { FaUser } from "react-icons/fa";
 import { genre } from "../../assets/data";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutAsyncUser } from "../../redux/asyncThunks/authThunks";
-import { IoMdArrowDropdown } from "react-icons/io";
 
 const Navbar = () => {
   const [scroll, setScroll] = useState(false);

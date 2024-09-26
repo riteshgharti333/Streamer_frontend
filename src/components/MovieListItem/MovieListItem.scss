@@ -22,6 +22,8 @@
     }
   }
 
+ 
+
   .movieListItemImg {
     width: 300px;
     height: 200px;
@@ -104,6 +106,55 @@
 
 
     }
-  }
-  
+  } 
+}
+
+
+//////////////////////////////////////
+.smMovieListItem{
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 5px;
+    .smMovieListItemImg{
+      width: 100%;
+      // height: 100%;
+      border-radius: 5px;
+      object-fit: cover;
+
+      
+
+      
+    // @include lg {
+    //   width: 100%;
+    //   height: 100%;
+    // }
+
+    // @include md {
+    //   width: 100%;
+    //   height: 100%;
+    // }
+
+    // @include sm {
+    //   width: 100%;
+    //   height: 100%;
+    // }
+    }
+
+    .smMovieListItemInfo{
+      padding: 0px 5px;
+    }
+
+    .smName{
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .item{
+      display: flex;
+
+      span{
+        color: red;
+      }
+    }
 }
