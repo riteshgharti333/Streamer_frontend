@@ -11,7 +11,6 @@ const useLists = () => {
 
   const [isLoading, setIsLoading] = useState(true);
 
-
   const dispatch = useDispatch();
   const { movie, series } = useSelector((state) => state.lists.lists);
 
@@ -29,7 +28,7 @@ const useLists = () => {
     setHomempageML(movie?.lists?.slice(0, 2) || []);
   }, [movie, series]);
 
-  return { movieLists, seriesLists, homempageML, homempageSL , isLoading };
+  return { movieLists, seriesLists, homempageML, homempageSL, isLoading };
 };
 
 export default useLists;

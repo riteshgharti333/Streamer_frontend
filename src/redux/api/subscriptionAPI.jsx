@@ -10,7 +10,7 @@ export const createCustomer = (email, paymentMethod) => {
       email,
       payment_method: paymentMethod,
     },
-    { withCredentials: true }
+    { withCredentials: true },
   );
 };
 
@@ -19,13 +19,13 @@ export const createSubscriptionSession = (subscriptionData) => {
   return axios.post(
     `${baseUrl}/subscriptions/create-subscription-session`,
     subscriptionData,
-    { withCredentials: true }
+    { withCredentials: true },
   );
 };
 
-// DELETE SUBSCRIPTION 
-export const deleteSubscription = (subscriptionId, userId) => {
-  return axios.delete(`${baseUrl}/subscriptions/${subscriptionId}/${userId}`, {
+// DELETE SUBSCRIPTION
+export const deleteSubscription = (subscriptionId) => {
+  return axios.delete(`${baseUrl}/subscriptions/${subscriptionId}`, {
     withCredentials: true,
   });
 };

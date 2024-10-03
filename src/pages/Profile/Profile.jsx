@@ -14,45 +14,50 @@ import { deleteSubscriptionAsync } from "../../redux/asyncThunks/subscriptionThu
 import { Skeleton } from "@mui/material";
 
 export default function Profile() {
-  const baseUrl = import.meta.env.VITE_API_KEY;
   const navigate = useNavigate();
   const [subscriptionData, setSubscriptionData] = useState([]);
   const [openCancelId, setOpenCancelId] = useState(null);
   const [updateMode, setUpdateMode] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  const { user } = useSelector((state) => state.auth.user);
+  const [profileData, setProfileData] = useState({});
 
   const dispatch = useDispatch();
 
-  const initialvalues = {
-    name: user.name || "",
-    email: user.email || "",
-  };
+  const { user } = useSelector((state) => state.auth);
 
   const { profile } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    setIsLoading(true);
+    const fetchProfileData = async () => {
+      setIsLoading(true);
 
-    if (!profile) {
-      dispatch(userProfileAsync());
-    }
-    setIsLoading(false);
+      // Fetch user profile only if it doesn't exist
+      if (!profile) {
+        await dispatch(userProfileAsync()).unwrap;
+      }
+
+      // Destructure userDetails to simplify access
+      const { userDetails } = profile || {};
+
+      if (userDetails) {
+        setSubscriptionData(userDetails.subscription);
+        setProfileData(userDetails.user);
+      }
+
+      setIsLoading(false);
+    };
+
+    fetchProfileData();
   }, [dispatch, profile]);
 
-  useEffect(() => {
-    profile && setSubscriptionData(profile.userDetails.subscription);
-  }, [profile]);
-
   const handleDelete = async (id) => {
-    console.log(id + user._id);
     try {
-      const res = await dispatch(
-        deleteSubscriptionAsync({ subscriptionId: id, userId: user._id })
-      ).unwrap();
+      const res = await dispatch(deleteSubscriptionAsync(id)).unwrap();
       toast.success(res.message);
-      navigate(0);
+
+      await dispatch(userProfileAsync()).unwrap();
+
       setOpenCancelId(null);
     } catch (error) {
       toast.error(error.message);
@@ -66,20 +71,32 @@ export default function Profile() {
 
   const { values, errors, handleBlur, touched, handleChange, handleSubmit } =
     useFormik({
-      initialValues: initialvalues,
+      enableReinitialize: true,
+      initialValues: {
+        name: profileData.name || "",
+        email: profileData.email || "",
+      },
       validationSchema: profileSchema,
       onSubmit: async (values) => {
+        if (
+          values.name === profileData.name &&
+          values.email === profileData.email
+        ) {
+          toast.info("No changes detected.");
+          return;
+        }
         try {
           const response = await dispatch(updateProfileAsync(values)).unwrap();
           localStorage.setItem(
             "user",
-            JSON.stringify({ ...user, user: response.user })
+            JSON.stringify({ ...user, user: response.user }),
           );
           toast.success(response.message);
-          navigate(0);
         } catch (error) {
           toast.error(error.message);
           console.log(error);
+        } finally {
+          setUpdateMode(false);
         }
       },
     });
@@ -93,7 +110,6 @@ export default function Profile() {
     return newDate;
   };
 
-  // Cancel component to handle subscription cancellation
   const Cancel = ({ subscriptionId, closeCancelModal }) => {
     return (
       <div className="openCancel">
@@ -185,7 +201,10 @@ export default function Profile() {
                         ) : null}
                       </div>
                       <div className="profileEditBtn">
-                        <button onClick={() => setUpdateMode(!updateMode)}>
+                        <button
+                          type="button"
+                          onClick={() => setUpdateMode(false)}
+                        >
                           Cancel
                         </button>
                         <button type="submit">Update</button>
@@ -194,10 +213,10 @@ export default function Profile() {
                   ) : (
                     <>
                       <div className="profileName">
-                        <h3>{user.name}</h3>
+                        <h3>{profileData.name}</h3>
                       </div>
                       <div className="profileEmail">
-                        <p>{user.email}</p>
+                        <p>{profileData.email}</p>
                       </div>
                       <div className="profileEditBtn">
                         <button onClick={() => setUpdateMode(!updateMode)}>
@@ -275,7 +294,7 @@ export default function Profile() {
                 </div>
               ) : (
                 <p className="noplan">
-                  You don't have an active plan
+                  You don not have any active plan
                   <Link to={"/subscriptions"}>
                     <span className="seeplan">See plans.</span>
                   </Link>

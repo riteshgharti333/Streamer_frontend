@@ -34,7 +34,7 @@ const QueryMovies = () => {
 
       try {
         const response = await dispatch(
-          getQueryAsyncMovies(`${type}&genre=${genre}`)
+          getQueryAsyncMovies(`${type}&genre=${genre}`),
         ).unwrap();
         setQueryMovies(response.data.movies);
       } catch (error) {
@@ -77,7 +77,11 @@ const QueryMovies = () => {
         >
           {queryMovies.length > 0 ? (
             queryMovies.map((query) => (
-              <QueryMovieCard key={query._id} query={query} isLoading={isLoading} />
+              <QueryMovieCard
+                key={query._id}
+                query={query}
+                isLoading={isLoading}
+              />
             ))
           ) : (
             <h3 className="hasError">{error}</h3>

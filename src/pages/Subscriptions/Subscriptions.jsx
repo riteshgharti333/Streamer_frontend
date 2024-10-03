@@ -17,7 +17,6 @@ const Subscriptions = () => {
 
   const navigate = useNavigate();
 
-  
   const goBack = () => {
     navigate(-1);
   };
@@ -35,22 +34,21 @@ const Subscriptions = () => {
         createAsyncCustomer({
           email: user.user.email,
           paymentMethod: "pm_card_visa",
-        })
+        }),
       ).unwrap();
       if (customerResult && customerResult.id) {
         // Create a subscription session
         const sessionResult = await dispatch(
-          createAsyncSubscriptionSession(subscriptionData)
+          createAsyncSubscriptionSession(subscriptionData),
         ).unwrap();
 
         // Redirect to Stripe Checkout
         if (sessionResult) {
-          console.log("seeeion ----------> " + sessionResult);
           window.location.href = sessionResult;
         } else {
           console.error(
             "Failed to create subscription session:",
-            sessionResult.payload
+            sessionResult.payload,
           );
         }
       } else {
@@ -60,7 +58,6 @@ const Subscriptions = () => {
       console.error("Error handling subscription:", error);
     }
   };
-
 
   return (
     <div className="subscriptions">
@@ -74,12 +71,12 @@ const Subscriptions = () => {
       <div className="subscriptionsCards">
         {subscriptionsPlans.map((s) => (
           <SubscriptionCard
-            key={s.name} 
+            key={s.name}
             name={s.name}
             price={s.price}
             image={s.image}
             onClick={() => {
-              setSelectedPlan(s.name); 
+              setSelectedPlan(s.name);
               handleSubscription(s.priceId);
             }}
           />

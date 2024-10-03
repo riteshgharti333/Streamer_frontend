@@ -1,14 +1,12 @@
 import "./Login.scss";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { IoMdMail } from "react-icons/io";
 import { BiSolidLock, BiShow, BiHide } from "react-icons/bi";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
-import { useContext } from "react";
 import { useDispatch } from "react-redux";
 import { loginAsyncUser } from "../../redux/asyncThunks/authThunks";
 import { toast } from "react-toastify";
-
 
 const initialvalues = {
   email: "",
@@ -21,37 +19,32 @@ export default function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-
   const { values, errors, handleBlur, touched, handleChange, handleSubmit } =
     useFormik({
       initialValues: initialvalues,
       onSubmit: async (values) => {
         try {
           const response = await dispatch(loginAsyncUser(values)).unwrap();
-           toast.success(response.message);
-           navigate("/");
-     
-         } catch (error) {
-           toast.error(error.message);
-           console.log(error);
-         }
+          toast.success(response.message);
+          navigate("/");
+        } catch (error) {
+          toast.error(error.message);
+          console.log(error);
+        }
       },
     });
-
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
-
-
   return (
     <div className="login">
       <div className="logo">
         <h1>STREAMER</h1>
-        </div>
+      </div>
       <div className="container">
-        <form className="input"  onSubmit={handleSubmit}>
+        <form className="input" onSubmit={handleSubmit}>
           <h1>Login</h1>
 
           <div className="inputValid">
@@ -103,8 +96,12 @@ export default function Login() {
           <button className="loginButton" type="submit">
             Login
           </button>
+          <p className="forgot">
+            <Link to={"/forgot-password"}>Forgot Passoword</Link>
+          </p>
+
           <span>
-            New to streamer
+            New to Streamer
             <span className="signupLink">
               <Link to="/register"> Sign Up</Link>
             </span>

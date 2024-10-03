@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./Register.scss";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BiSolidLock, BiSolidUser, BiShow, BiHide } from "react-icons/bi";
 import { IoMdMail } from "react-icons/io";
 import { useFormik } from "formik";

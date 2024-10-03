@@ -12,7 +12,7 @@ export const getAsyncLists = createAsyncThunk(
       console.log(error);
       return rejectWithValue(error.message || "Failed to fetch lists");
     }
-  }
+  },
 );
 
 //GET QUERY LITS
@@ -27,7 +27,7 @@ export const getAsyncQueryLists = createAsyncThunk(
       console.log(error);
       return rejectWithValue(error.message || "Failed to fetch query lists");
     }
-  }
+  },
 );
 
 //GET SINGLE LIST
@@ -41,5 +41,5 @@ export const getAsyncSingleList = createAsyncThunk(
       console.log(error);
       return rejectWithValue(error.message || "Failed to fetch single list");
     }
-  }
+  },
 );

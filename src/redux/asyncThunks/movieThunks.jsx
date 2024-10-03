@@ -17,7 +17,7 @@ export const getAsyncMovies = createAsyncThunk(
       console.error("Failed to fetch movies:", error);
       return rejectWithValue(error.response.data || "Failed to fetch movies");
     }
-  }
+  },
 );
 
 //GET QUERY MOVIES
@@ -30,10 +30,10 @@ export const getQueryAsyncMovies = createAsyncThunk(
     } catch (error) {
       console.error("Failed to fetch movies:", error);
       return rejectWithValue(
-        error.response.data || "Failed to fetch query movies"
+        error.response.data || "Failed to fetch query movies",
       );
     }
-  }
+  },
 );
 
 //GET SINLGE MOVIE
@@ -48,7 +48,7 @@ export const getAsyncSigleMovie = createAsyncThunk(
       console.error("Failed to fetch movies:", error);
       return rejectWithValue(error.response.data || "Failed to fetch movie");
     }
-  }
+  },
 );
 
 //GET RANDOM MOVIES
@@ -61,8 +61,8 @@ export const getRandomAsyncMovies = createAsyncThunk(
     } catch (error) {
       console.error("Failed to fetch movies:", error);
       return rejectWithValue(
-        error.response.data || "Failed to fetch query movies"
+        error.response.data || "Failed to fetch query movies",
       );
     }
-  }
+  },
 );

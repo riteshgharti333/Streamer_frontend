@@ -47,7 +47,7 @@ const Watch = () => {
   useEffect(() => {
     if (!user) {
       setSubscriptionMessage(
-        "You don’t have any active subscription. To enjoy unlimited access to movies and series, please choose one of our subscription plans."
+        "You don’t have any active subscription. To enjoy unlimited access to movies and series, please choose one of our subscription plans.",
       );
       setHasSubscription(false);
       return; // Exit early since there's no user.
@@ -59,7 +59,7 @@ const Watch = () => {
         profile && profile.userDetails.subscription.map((sub) => sub.priceId);
 
       const hasComboSubscription = userPriceIds?.includes(
-        import.meta.env.VITE_MOVIE_SERIES_KEY
+        import.meta.env.VITE_MOVIE_SERIES_KEY,
       );
 
       if (hasComboSubscription) {
@@ -75,7 +75,7 @@ const Watch = () => {
       });
 
       const hasMovieSubscription = MovieSubscription?.some(
-        (hasSubscription) => hasSubscription === true
+        (hasSubscription) => hasSubscription === true,
       );
 
       const SeriesSubscription = userPriceIds?.map((priceId) => {
@@ -86,32 +86,32 @@ const Watch = () => {
       });
 
       const hasSeriesSubscription = SeriesSubscription?.some(
-        (hasSubscription) => hasSubscription === true
+        (hasSubscription) => hasSubscription === true,
       );
 
       if (seriesType && !hasSeriesSubscription) {
         setSubscriptionMessage(
-          "You don’t have an active series subscription. To enjoy unlimited access to series, please choose one of our subscription plans."
+          "You don’t have an active series subscription. To enjoy unlimited access to series, please choose one of our subscription plans.",
         );
         setHasSubscription(false);
       } else if (!seriesType && !hasMovieSubscription) {
         setSubscriptionMessage(
-          "You don’t have an active movies subscription. To enjoy unlimited access to movies, please choose one of our subscription plans."
+          "You don’t have an active movies subscription. To enjoy unlimited access to movies, please choose one of our subscription plans.",
         );
         setHasSubscription(false);
       } else if (!hasMovieSubscription && !hasSeriesSubscription) {
         setSubscriptionMessage(
-          "You don’t have any active subscription. To enjoy unlimited access to movies and series, please choose one of our subscription plans."
+          "You don’t have any active subscription. To enjoy unlimited access to movies and series, please choose one of our subscription plans.",
         );
         setHasSubscription(false);
       } else if (!user) {
         setSubscriptionMessage(
-          "You don’t have any active subscription. To enjoy unlimited access to movies and series, please choose one of our subscription plans."
+          "You don’t have any active subscription. To enjoy unlimited access to movies and series, please choose one of our subscription plans.",
         );
         setHasSubscription(false);
       }
     }
-  }, [singleMovie, profile]);
+  }, [user, singleMovie, profile]);
 
   const NoSubscription = () => {
     return (

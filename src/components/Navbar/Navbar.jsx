@@ -35,10 +35,6 @@ const Navbar = () => {
     navigate("/login");
   };
 
-  const handleLinkClick = () => {
-    navigate(`/query?type=movies&genre=${g}`);
-  };
-
   const navbarClass = scroll ? "navbar scrolled" : "navbar";
 
   return (
@@ -46,8 +42,7 @@ const Navbar = () => {
       <div className="container">
         <div className="left">
           <Link to={"/"}>
-            <h1>STREAMER
-            </h1>
+            <h1>STREAMER</h1>
           </Link>
         </div>
 
@@ -58,18 +53,13 @@ const Navbar = () => {
 
           <span className="navOptions homepageLink">
             <Link to={"/"}>Homepage</Link>
-        </span>
+          </span>
           <span className="navOptions moviesLink">
             <Link to={"/movies"}>Movies</Link>
             <div className="genre">
               {genre.map((g) => (
                 <span key={g} value={g}>
-                  <Link
-                    to={`/query?type=movies&genre=${g}`}
-                    onClick={handleLinkClick}
-                  >
-                    {g} Movies
-                  </Link>
+                  <Link to={`/query?type=movies&genre=${g}`}>{g} Movies</Link>
                 </span>
               ))}
             </div>
@@ -80,12 +70,7 @@ const Navbar = () => {
             <div className="genre">
               {genre.map((g) => (
                 <span key={g} value={g}>
-                  <Link
-                    to={`/query?type=series&genre=${g}`}
-                    onClick={handleLinkClick}
-                  >
-                    {g} Series
-                  </Link>
+                  <Link to={`/query?type=series&genre=${g}`}>{g} Series</Link>
                 </span>
               ))}
             </div>

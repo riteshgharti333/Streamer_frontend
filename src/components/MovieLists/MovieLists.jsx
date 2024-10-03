@@ -8,11 +8,11 @@ const MovieLists = ({ list, type, isLoading }) => {
   const isXxl = useMediaQuery("(min-width: 1400px)");
   // const isXl = useMediaQuery("(max-width: 1200px)");
   const isXlRange = useMediaQuery(
-    "(min-width: 1200px) and (max-width: 1400px)"
+    "(min-width: 1200px) and (max-width: 1400px)",
   );
 
   const isLgRange = useMediaQuery(
-    "(min-width: 1025px) and (max-width: 1199px)"
+    "(min-width: 1025px) and (max-width: 1199px)",
   );
   const isLg = useMediaQuery("(max-width: 1024px)");
   const isMd = useMediaQuery("(max-width: 768px)");
@@ -61,7 +61,7 @@ const MovieLists = ({ list, type, isLoading }) => {
                 <Skeleton key={index} variant="rectangular" height={100} />
               ) : (
                 <MovieListItem key={item.id || index} item={item} type={type} />
-              )
+              ),
             )}
           </Slide>
         </div>

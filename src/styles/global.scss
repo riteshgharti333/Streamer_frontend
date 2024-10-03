@@ -1,26 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Bebas+Neue&family=Gabarito&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Agbalumo&family=Bebas+Neue&family=Gabarito&display=swap");
 
-
-*{
+* {
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
   box-sizing: border-box;
 }
 
-html, body {
-  font-family: 'Bebas Neue', sans-serif;
+html,
+body {
+  font-family: "Bebas Neue", sans-serif;
 }
 
-a{
+a {
   text-decoration: none;
   color: inherit;
 }
 
-
 .app {
   position: relative;
-  
+
   background-color: #fde7f9;
   background-image: linear-gradient(315deg, #fde7f9 0%, #aacaef 74%);
   height: 100%;
@@ -33,20 +32,19 @@ a{
   }
 }
 
-button{
-  font-family: 'Bebas Neue', sans-serif;
+button {
+  font-family: "Bebas Neue", sans-serif;
   letter-spacing: 1px;
 }
 
-.play-btn{
+.play-btn {
   background-color: green;
 }
 
-.bg-primary{
+.bg-primary {
   background: linear-gradient(
-        135.8deg,
-        rgb(26, 26, 29) 27.1%,
-        rgb(111, 34, 50) 77.5%
-      );
+    135.8deg,
+    rgb(26, 26, 29) 27.1%,
+    rgb(111, 34, 50) 77.5%
+  );
 }
-

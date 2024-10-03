@@ -5,7 +5,6 @@ import { Skeleton } from "@mui/material";
 const QueryMovieCard = ({ query, isLoading }) => {
   const { _id, smImg, title, year, age, genre } = query;
 
-
   return (
     <div className="queryMovieCard">
       <Link to={`/movies/${_id}`}>
@@ -15,12 +14,12 @@ const QueryMovieCard = ({ query, isLoading }) => {
             <Skeleton variant="rectangular" height={100} />
 
             {/* Skeleton for Title */}
-            <Skeleton width="60%" height={30} style={{ marginTop: '10px' }} />
+            <Skeleton width="60%" height={30} style={{ marginTop: "10px" }} />
 
             {/* Skeleton for Movie Info (year, age, genre) */}
             <div className="queryMoviesInfo">
               <Skeleton width="20%" height={20} />
-              <Skeleton width="10%" height={20} style={{ margin: '0 5px' }} />
+              <Skeleton width="10%" height={20} style={{ margin: "0 5px" }} />
               <Skeleton width="20%" height={20} />
             </div>
           </div>

@@ -1,18 +1,9 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import "./Footer.scss";
-import { IoMdMail } from "react-icons/io";
-import { IoCallSharp } from "react-icons/io5";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { genre } from "../../assets/data";
 
 const Foooter = () => {
-  const navigate = useNavigate();
-  
-  const handleLinkClick = () => {
-    navigate(`/query?type=movies&genre=${g}`);
-  };
-
-
   return (
     <div className="footer bg-primary">
       <div className="footerLeft">
@@ -29,38 +20,24 @@ const Foooter = () => {
         </div>
       </div>
       <div className="footerCenter">
-        <p>Genre : </p>
-        {genre.map((g) => (
-          <span key={g}>
-            <Link
-              to={`/query?type=movies&genre=${g}`}
-              onClick={handleLinkClick}
-            >
-              {g}
+        <h1>Genre</h1>
+        <div className="genreInfo">
+          {genre.map((g) => (
+            <Link to={`/query?type=movies&genre=${g}`} key={g}>
+              <span>{g}</span>
             </Link>
-          </span>
-        ))}
+          ))}
+        </div>
       </div>
       <div className="footerRight">
         <h1>Contact Me</h1>
         <div className="links">
-          {/* <Link to={"/about"}>
-            <span>About Me</span>
-          </Link>
-          <Link to={"/contact"}>
-            <span>Contact Me</span>
-          </Link> */}
           <div className="contactLinks">
             <a href="mailto:riteshgharti333@gmail.com">
-              <span>
-                <IoMdMail className="contactIcon" /> riteshgharti333@gmail.com
-              </span>
+              <span>riteshgharti333@gmail.com</span>
             </a>
 
-            <span>
-              <IoCallSharp className="contactIcon" />
-              +91 000 333 999
-            </span>
+            <span>+91 000 333 999</span>
           </div>
         </div>
       </div>
