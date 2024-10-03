@@ -1,49 +1,48 @@
 import { BsArrowLeft } from "react-icons/bs";
-import "./UpdatePassword.scss";
-import { Link, useNavigate } from "react-router-dom";
-import { updatePasswordSchema } from "../../schemas";
+import "./ResetPassword.scss";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { resetSchema } from "../../schemas";
 import { useFormik } from "formik";
-import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
-import { updatePasswordAsync } from "../../redux/asyncThunks/authThunks";
 import { BiShow, BiHide } from "react-icons/bi";
 import { useState } from "react";
+import axios from "axios";
 
 const initialvalues = {
-  current_password: "",
-  new_password: "",
+  password: "",
   confirm_password: "",
 };
 
-const UpdatePassword = () => {
-  const dispatch = useDispatch();
+const ResetPassword = () => {
+  const { id, token } = useParams();
   const navigate = useNavigate();
-
-  const goBack = () => {
-    navigate(-1);
-  };
-
   const [showPassword, setShowPassword] = useState(false);
+
+  const baseUrl = import.meta.env.VITE_API_KEY;
 
   const { values, errors, handleBlur, touched, handleChange, handleSubmit } =
     useFormik({
       initialValues: initialvalues,
-      validationSchema: updatePasswordSchema,
+      validationSchema: resetSchema,
       onSubmit: async (values) => {
         try {
           const payload = {
-            currentPassword: values.current_password,
-            newPassword: values.new_password,
+            password: values.password,
           };
 
-          const response = await dispatch(
-            updatePasswordAsync(payload),
-          ).unwrap();
-          toast.success(response.message);
-          navigate("/profile");
+          const response = await axios.post(
+            `${baseUrl}/auth/reset-password/${id}/${token}`,
+            payload,
+          );
+
+          toast.success(response.data.message);
+          navigate("/login");
         } catch (error) {
-          toast.error(error.message);
           console.log(error);
+          toast.error(
+            error.response?.data?.message ||
+              "Something went wrong, please try again.",
+          );
         }
       },
     });
@@ -52,8 +51,15 @@ const UpdatePassword = () => {
     setShowPassword(!showPassword);
   };
 
+  const goBack = () => {
+    navigate(-1);
+  };
+
   return (
-    <div className="updatePassword">
+    <div className="resetPassword">
+      <div className="logo">
+        <h1>Streamer</h1>
+      </div>
       <div className="updatePasswordBack">
         <Link to="#" onClick={goBack}>
           <BsArrowLeft className="backArrow" />
@@ -61,30 +67,16 @@ const UpdatePassword = () => {
       </div>
       <div className="updatePasswordContainer">
         <div className="updatePasswordContainerWrapper bg-primary">
-          <h1>Update Password</h1>
+          <h1>Reset Password</h1>
           <form onSubmit={handleSubmit}>
             <div className="formData">
-              <label htmlFor="currentPassword">Add Current Password</label>
-              <input
-                type="password"
-                name="current_password"
-                placeholder="Add Current Password"
-                value={values.current_password}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              {errors.current_password && touched.current_password ? (
-                <p className="formError">{errors.current_password}</p>
-              ) : null}
-            </div>
-            <div className="formData">
-              <label htmlFor="newPassword">Add New Password</label>
+              <label htmlFor="password">Add New Password</label>
               <div className="inputData">
                 <input
                   type={showPassword ? "text" : "password"}
-                  name="new_password"
+                  name="password"
                   placeholder="Add New Password"
-                  value={values.new_password}
+                  value={values.password}
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
@@ -102,8 +94,8 @@ const UpdatePassword = () => {
                 )}
               </div>
 
-              {errors.new_password && touched.new_password ? (
-                <p className="formError">{errors.new_password}</p>
+              {errors.password && touched.password ? (
+                <p className="formError">{errors.password}</p>
               ) : null}
             </div>
             <div className="formData">
@@ -120,11 +112,7 @@ const UpdatePassword = () => {
                 <p className="formError">{errors.confirm_password}</p>
               ) : null}
             </div>
-            <button type="submit">Change Password</button>
-            <p className="forgot">
-              {" "}
-              <Link to={"/forgot-password"}>Forgot Password</Link>
-            </p>
+            <button type="submit">Reset Password</button>
           </form>
         </div>
       </div>
@@ -132,4 +120,4 @@ const UpdatePassword = () => {
   );
 };
 
-export default UpdatePassword;
+export default ResetPassword;

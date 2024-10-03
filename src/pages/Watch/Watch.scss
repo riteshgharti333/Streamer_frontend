@@ -13,7 +13,7 @@
         margin-top: 50px;
         margin-left: 20px;
 
-        @include sm{
+        @include sm {
           margin-left: 5px;
         }
       }
@@ -25,16 +25,13 @@
       align-items: center;
 
       .youtubeW {
-     
-      } 
+      }
     }
 
     .watchInfo {
       margin: 40px 60px;
 
-       
-
-      @include sm{
+      @include sm {
         margin: 0px;
       }
 
@@ -82,32 +79,31 @@
     z-index: 10;
     background-color: rgba(0, 0, 0, 0.925);
 
-    .noSubInfo{
+    .noSubInfo {
       letter-spacing: 1px;
       padding: 30px;
       background-color: aquamarine;
       width: 800px;
       margin: 0px 10px;
-  
 
-    p {
-      font-size: 20px;
-    }
-    .noSubActions {
-      float: right;
-
-      button {
-        background-color: green;
-        padding: 5px;
-        border: none;
-        font-weight: 500;
+      p {
         font-size: 20px;
-        margin-left: 10px;
-        letter-spacing: 1px;
-        cursor: pointer;
-        margin-top: 10px;
+      }
+      .noSubActions {
+        float: right;
+
+        button {
+          background-color: green;
+          padding: 5px;
+          border: none;
+          font-weight: 500;
+          font-size: 20px;
+          margin-left: 10px;
+          letter-spacing: 1px;
+          cursor: pointer;
+          margin-top: 10px;
+        }
       }
     }
   }
-}
 }

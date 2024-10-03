@@ -7,7 +7,9 @@ import {
 
 const initialState = {
   customer: null,
-  subscription: null,
+  subscription: {
+    subscriptionData: [],
+  },
   sessionUrl: null,
   loading: false,
   error: null,
@@ -56,12 +58,15 @@ const subscriptionSlice = createSlice({
       })
       .addCase(deleteSubscriptionAsync.fulfilled, (state, action) => {
         state.loading = false;
-        // state.subscription = action.payload;
-        if (Array.isArray(state.subscription)) {
-          state.subscription = state.subscription.filter(
-            (sub) => sub._id !== action.payload.subscriptionId
-          );
-      }})
+        const { subscriptionId } = action.payload;
+
+        if (Array.isArray(state.subscription.subscriptionData)) {
+          state.subscription.subscriptionData =
+            state.subscription.subscriptionData.filter(
+              (sub) => sub.subscriptionId !== subscriptionId,
+            );
+        }
+      })
       .addCase(deleteSubscriptionAsync.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;

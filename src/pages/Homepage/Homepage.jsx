@@ -5,7 +5,7 @@ import { Link, useLocation } from "react-router-dom";
 import useLists from "./useLists";
 import { Skeleton } from "@mui/material";
 
-const Homepage = ({ type }) => {
+const Homepage = () => {
   const location = useLocation();
   const path = location.pathname;
   const { movieLists, seriesLists, homempageSL, homempageML, isLoading } =

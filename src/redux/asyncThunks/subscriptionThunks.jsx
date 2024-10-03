@@ -12,12 +12,12 @@ export const createAsyncCustomer = createAsyncThunk(
       const response = await createCustomer(email, paymentMethod);
       return response.data.customer;
     } catch (error) {
-      console.log(error)
+      console.log(error);
       return rejectWithValue(
-        error.response.data || "Failed to create customer"
+        error.response.data || "Failed to create customer",
       );
     }
-  }
+  },
 );
 
 export const createAsyncSubscriptionSession = createAsyncThunk(
@@ -27,29 +27,23 @@ export const createAsyncSubscriptionSession = createAsyncThunk(
       const response = await createSubscriptionSession(subscriptionData);
       return response.data.sessionUrl;
     } catch (error) {
-      console.log(error)
-      return rejectWithValue(
-        error.response.data || "Failed to create session"
-      );
+      console.log(error);
+      return rejectWithValue(error.response.data || "Failed to create session");
     }
-  }
+  },
 );
-
 
 export const deleteSubscriptionAsync = createAsyncThunk(
   "subscription/deleteSubscription",
-  async ({subscriptionId,userId}, { rejectWithValue }) => {
+  async (subscriptionId, { rejectWithValue }) => {
     try {
-      const response = await deleteSubscription(subscriptionId,userId);
-      console.log(response);
+      const response = await deleteSubscription(subscriptionId);
       return response.data;
     } catch (error) {
-      console.log(error)
+      console.log(error);
       return rejectWithValue(
-        error.response.data || "Failed to delete subscription"
+        error.response.data || "Failed to delete subscription",
       );
     }
-  }
+  },
 );
-
-

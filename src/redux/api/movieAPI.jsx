@@ -17,7 +17,6 @@ export const getSingleMovie = (id) => {
   return axios.get(`${baseUrl}/movies/${id}`);
 };
 
-
 //GET RANDOM MOVIES
 export const getRandomMovies = (query) => {
   return axios.get(`${baseUrl}/movies/random?type=${query}`);

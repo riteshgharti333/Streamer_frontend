@@ -4,30 +4,36 @@ const baseUrl = import.meta.env.VITE_API_KEY;
 
 // LOGIN USER
 export const loginUser = (userData) => {
-    return axios.post(`${baseUrl}/auth/login`, userData , { withCredentials: true });
-}
+  return axios.post(`${baseUrl}/auth/login`, userData, {
+    withCredentials: true,
+  });
+};
 
 // REGISTER USER
 export const registerUser = (userData) => {
-    return axios.post(`${baseUrl}/auth/register`, userData);
-}
+  return axios.post(`${baseUrl}/auth/register`, userData);
+};
 
 // LOGOUT USER
 export const logoutUser = () => {
-    return axios.get(`${baseUrl}/auth/logout`);
-}
+  return axios.get(`${baseUrl}/auth/logout`);
+};
 
 // USER PROFILE
 export const userProfile = () => {
-    return axios.get(`${baseUrl}/auth/profile`, { withCredentials: true });
-}
+  return axios.get(`${baseUrl}/auth/profile`, { withCredentials: true });
+};
 
 // UPDATE PROFILE
 export const updateProfile = (profileData) => {
-    return axios.put(`${baseUrl}/auth/profile`, profileData , { withCredentials: true });
-}
+  return axios.put(`${baseUrl}/auth/profile`, profileData, {
+    withCredentials: true,
+  });
+};
 
 // UPDATE PASSWORD
 export const updatePassword = (passwordData) => {
-    return axios.put(`${baseUrl}/auth/update-password`, passwordData , { withCredentials: true });
-}
+  return axios.put(`${baseUrl}/auth/update-password`, passwordData, {
+    withCredentials: true,
+  });
+};

@@ -1,8 +1,7 @@
 import "./FeatureCard.scss";
 import { Link } from "react-router-dom";
-import { Skeleton } from "@mui/material";
 
-const FeatureCard = ({ featureCard, isLoading }) => {
+const FeatureCard = ({ featureCard }) => {
   const { title, desc, age, year, genre, featureSmImg, _id } = featureCard;
 
   return (

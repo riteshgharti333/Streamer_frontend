@@ -22,8 +22,6 @@
     }
   }
 
- 
-
   .movieListItemImg {
     width: 300px;
     height: 200px;
@@ -51,31 +49,35 @@
     position: absolute;
     top: 20%;
     left: 10%;
-  
+
     @include sm {
       top: 10%;
     }
-  
+
     @include md {
       top: 10%;
     }
 
-    @include lg{
+    @include lg {
       top: 10%;
     }
-  
+
     .name {
       color: #fff;
-      font-size: clamp(16px, 4vw, 30px); // Automatically adjust based on viewport width
+      font-size: clamp(
+        16px,
+        4vw,
+        30px
+      ); // Automatically adjust based on viewport width
       margin: 0;
-  
+
       @include sm {
         display: -webkit-box;
         -webkit-line-clamp: 1;
         -webkit-box-orient: vertical;
         overflow: hidden;
       }
-  
+
       @include md {
         display: -webkit-box;
         -webkit-line-clamp: 1;
@@ -90,39 +92,40 @@
         overflow: hidden;
       }
     }
-  
+
     .year {
       color: aqua;
-      font-size: clamp(12px, 3vw, 20px); // Automatically adjust based on viewport width
-
+      font-size: clamp(
+        12px,
+        3vw,
+        20px
+      ); // Automatically adjust based on viewport width
     }
-  
+
     button {
       padding: 5px 10px;
-      font-size: clamp(12px, 2.5vw, 20px); // Automatically adjust based on viewport width
+      font-size: clamp(
+        12px,
+        2.5vw,
+        20px
+      ); // Automatically adjust based on viewport width
       border: none;
       border-radius: 4px;
       cursor: pointer;
-
-
     }
-  } 
+  }
 }
 
-
 //////////////////////////////////////
-.smMovieListItem{
+.smMovieListItem {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   border-radius: 5px;
-    .smMovieListItemImg{
-      width: 100%;
-      // height: 100%;
-      border-radius: 5px;
-      object-fit: cover;
+  .smMovieListItemImg {
+    width: 100%;
+    // height: 100%;
+    border-radius: 5px;
+    object-fit: cover;
 
-      
-
-      
     // @include lg {
     //   width: 100%;
     //   height: 100%;
@@ -137,24 +140,24 @@
     //   width: 100%;
     //   height: 100%;
     // }
-    }
+  }
 
-    .smMovieListItemInfo{
-      padding: 0px 5px;
-    }
+  .smMovieListItemInfo {
+    padding: 0px 5px;
+  }
 
-    .smName{
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
+  .smName {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 
-    .item{
-      display: flex;
+  .item {
+    display: flex;
 
-      span{
-        color: red;
-      }
+    span {
+      color: red;
     }
+  }
 }

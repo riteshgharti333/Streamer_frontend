@@ -1,7 +1,6 @@
 import "./SubscriptionCard.scss";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import React from "react";
 import { toast } from "react-toastify";
 
 const SubscriptionCard = ({ name, price, image, onClick }) => {
@@ -16,11 +15,11 @@ const SubscriptionCard = ({ name, price, image, onClick }) => {
   const handleBuyClick = () => {
     if (!user) {
       toast.error(
-        "You are not logged in. Please log in to purchase a subscription."
+        "You are not logged in. Please log in to purchase a subscription.",
       );
-      navigate("/login"); 
+      navigate("/login");
     } else {
-      onClick(); 
+      onClick();
     }
   };
 

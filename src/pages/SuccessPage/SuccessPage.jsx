@@ -10,8 +10,8 @@ const SuccessPage = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       navigate("/subscriptions");
-    }, 5000); 
-    
+    }, 5000);
+
     return () => clearTimeout(timer);
   }, [navigate]);
 
@@ -26,7 +26,12 @@ const SuccessPage = () => {
 
   return (
     <div className="success">
-      <Lottie options={defaultOptions} height={600} width={300} className="successAni" />
+      <Lottie
+        options={defaultOptions}
+        height={600}
+        width={300}
+        className="successAni"
+      />
     </div>
   );
 };

@@ -1,74 +1,70 @@
 @import "../../styles/responsive.scss";
 
-
 .queryMovieCard {
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    width: 300px;
-    padding: 10px;
-    margin-bottom: 5px;
-    display: flex;
-    flex-direction: column; 
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  width: 300px;
+  padding: 10px;
+  margin-bottom: 5px;
+  display: flex;
+  flex-direction: column;
 
-    @include sm{
-     width: 100%;
-    }
+  @include sm {
+    width: 100%;
+  }
 
-    @include md{
+  @include md {
+    width: 100%;
+  }
+
+  @include lg {
+    width: 100%;
+  }
+
+  @include xl {
+    width: 100%;
+  }
+
+  .queryMovie {
+    flex-grow: 1;
+
+    img {
       width: 100%;
+      // height: 170px;
+      border-radius: 5px;
+      object-fit: cover;
     }
 
-    @include lg{
+    .title {
+      font-size: 30px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.2;
       width: 100%;
-    }
 
-    @include xl{
-      width: 100%;
-    }
-
-    
-    .queryMovie {
-      flex-grow: 1;
-  
-      img {
-        width: 100%;
-        // height: 170px;
-        border-radius: 5px;
-        object-fit: cover;
+      @include sm {
+        font-size: 20px;
       }
-  
-      .title {
-        font-size: 30px;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        line-height: 1.2;
-        width: 100%; 
 
-        @include sm{
-          font-size: 20px;
-         }
-
-         @include Esm{
-          font-size: 16px;
-         }
-       
-
-        &:hover{
-          color: rgb(26, 163, 163);
-        }
+      @include Esm {
+        font-size: 16px;
       }
-  
-      .queryMoviesInfo {
-        .line {
-          color: red;
-        }
 
-        @include Esm{
-          font-size: 11px;
-         }
+      &:hover {
+        color: rgb(26, 163, 163);
+      }
+    }
+
+    .queryMoviesInfo {
+      .line {
+        color: red;
+      }
+
+      @include Esm {
+        font-size: 11px;
       }
     }
   }
-  
+}

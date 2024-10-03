@@ -7,7 +7,6 @@ $xl: 1200px;
 $xxl: 1400px;
 $xxxl: 1600px;
 
-
 @mixin EEsm {
   @media screen and (max-width: ($sm)) {
     @content;
