@@ -14,7 +14,6 @@ export const loginAsyncUser = createAsyncThunk(
   async (userData, { rejectWithValue }) => {
     try {
       const res = await loginUser(userData);
-      // Save user info to local storage
       localStorage.setItem("user", JSON.stringify(res.data));
       return res.data;
     } catch (error) {

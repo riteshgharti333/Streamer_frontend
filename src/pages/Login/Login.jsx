@@ -25,8 +25,11 @@ export default function Login() {
       onSubmit: async (values) => {
         try {
           const response = await dispatch(loginAsyncUser(values)).unwrap();
-          toast.success(response.message);
-          navigate("/");
+          if(response){
+            toast.success(response.message);
+            navigate("/");
+          }
+        
         } catch (error) {
           toast.error(error.message);
           console.log(error);

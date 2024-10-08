@@ -22,6 +22,7 @@ import SuccessPage from "./pages/SuccessPage/SuccessPage";
 import CancelPage from "./pages/CancelPage/CancelPage";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword/ResetPassword";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 
 function App() {
   return (
@@ -73,6 +74,8 @@ function Layout() {
         <Route path="/query" element={<QueryMovies />} />
         <Route path="/subscriptions" element={<Subscriptions />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="*" element={<NotFoundPage />} />
+
 
         <Route
           path="/updatepassword"
