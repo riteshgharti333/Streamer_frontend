@@ -1,0 +1,35 @@
+@import "../../styles/responsive.scss";
+
+.notfound {
+  min-height: 80vh;
+  margin-bottom: -25px;
+
+  .notfoundImg {
+    position: relative;
+    img {
+      width: 100%;
+      object-fit: cover;
+      height: 90vh;
+      z-index: -1;
+    }
+
+    button {
+      position: absolute;
+      background-color: aqua;
+      z-index: 10;
+      top: 90%; /* Move down to the middle of the container */
+      left: 50%; /* Move to the middle of the container */
+      transform: translate(-50%, -50%);
+
+      border: none;
+      padding: 15px;
+      font-size: 20px;
+      font-weight: bold;
+      border-radius: 5px;
+
+      &:hover {
+        background: teal;
+      }
+    }
+  }
+}
