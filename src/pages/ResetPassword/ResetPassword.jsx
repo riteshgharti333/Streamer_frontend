@@ -15,7 +15,9 @@ const initialvalues = {
 
 const ResetPassword = () => {
   const { id, token } = useParams();
+
   const navigate = useNavigate();
+
   const [showPassword, setShowPassword] = useState(false);
 
   const baseUrl = import.meta.env.VITE_API_KEY;
