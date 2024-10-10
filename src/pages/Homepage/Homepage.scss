@@ -1,4 +1,12 @@
+@import "../../styles/responsive.scss";
+
+
 .homePage {
+ 
+  @include md{
+    min-height: 100vh;
+  }
+
   .title {
     text-align: center;
     font-size: 40px;
