@@ -7,9 +7,14 @@ import { FaUser } from "react-icons/fa";
 import { genre } from "../../assets/data";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutAsyncUser } from "../../redux/asyncThunks/authThunks";
+import { IoSearch } from "react-icons/io5";
+import axios from "axios"; // Don't forget to import axios if you haven't already
 
 const Navbar = () => {
   const [scroll, setScroll] = useState(false);
+  const [search, setSearch] = useState(false);
+  const [searchResults, setSearchResults] = useState([]); // State to store search results
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -35,6 +40,39 @@ const Navbar = () => {
     navigate("/login");
   };
 
+  const handleSearchChange = async (e) => {
+    const searchValue = e.target.value;
+
+    if (searchValue.length === 0) {
+      setSearch(false);
+      setSearchResults([]); // Clear search results when input is empty
+    } else {
+      setSearch(true);
+
+      try {
+        const response = await axios.get(`http://localhost:5000/api/movies/search`, {
+          params: { query: searchValue },
+        });
+
+        if (response.data.success) {
+          setSearchResults(response.data.results); // Set search results in state
+        } else {
+          console.log(response.data.message);
+        }
+      } catch (error) {
+        console.error("Error fetching search results:", error);
+      }
+    }
+  };
+
+  const handleInputBlur = () => {
+    setSearch(false); // Hide search results on blur
+  };
+
+  const handleInputFocus = () => {
+    if (searchResults.length > 0) setSearch(true); // Show search results on focus if there are results
+  };
+
   const navbarClass = scroll ? "navbar scrolled" : "navbar";
 
   return (
@@ -50,10 +88,6 @@ const Navbar = () => {
           <div className="mobileSidebar navOptions">
             <MobileBurger />
           </div>
-
-          <span className="navOptions homepageLink">
-            <Link to={"/"}>Homepage</Link>
-          </span>
           <span className="navOptions moviesLink">
             <Link to={"/movies"}>Movies</Link>
             <div className="genre">
@@ -74,6 +108,31 @@ const Navbar = () => {
                 </span>
               ))}
             </div>
+          </span>
+
+          <span className="searchOption">
+            <IoSearch className="search" />
+            <input
+              type="search"
+              placeholder="Movies, Series and more"
+              onChange={handleSearchChange}
+              onBlur={handleInputBlur} // Hide on blur
+              onFocus={handleInputFocus} // Show on focus
+            />
+
+            {search && searchResults.length > 0 ? (
+              <div className="searchItem">
+                <p className="recentSearched">Search Results</p>
+                {searchResults.map((result) => (
+                  <p key={result.id}>
+                    {result.title} <span className="searchType">/</span> <span className="searchValue">{result.genre}</span>
+                  </p>
+                ))}
+              </div>
+            ) : (
+              // <span>No result found!</span>
+              <></>
+            )}
           </span>
 
           <Link to="/subscriptions">
