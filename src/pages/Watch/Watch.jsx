@@ -36,7 +36,7 @@ const Watch = () => {
     setIsLoading(true);
     dispatch(getAsyncSigleMovie(path));
     setIsLoading(false);
-  }, [path, dispatch]);
+  }, [dispatch , path]);
 
   useEffect(() => {
     if (singleMovie && singleMovie.getMovie) {

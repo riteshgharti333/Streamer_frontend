@@ -30,6 +30,12 @@
         @include sm {
           font-size: 40px;
         }
+
+        @media screen and (max-width: 420px) {
+          font-size: 30px;
+          display: flex;
+          align-items: center;
+        }
       }
     }
 
@@ -62,18 +68,22 @@
 
         @media screen and (max-width: 750px) {
           &.seriesLink {
-            margin-right: 40px;
+            margin-right: 10px;
           }
         }
 
         @include sm {
           &.seriesLink {
-            margin-right: 50px;
+            margin-right: 20px;
           }
 
           &.homepageLink {
             display: none;
           }
+        }
+
+        @media screen and (max-width: 420px) {
+          font-size: 16px;
         }
 
         &:hover {
@@ -97,7 +107,6 @@
           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
           border-radius: 5px;
 
-
           span {
             padding: 5px;
             font-size: 16px;
@@ -117,9 +126,43 @@
         align-items: center;
         border-radius: 20px;
         position: relative;
+
+        @include sm {
+          &.openSearch {
+            input {
+              display: block;
+              background-color: black;
+              position: absolute;
+              width: 250px;
+              left: -555%;
+            }
+          }
+        }
+
+        @include lg {
+          margin-right: 10px;
+        }
+
+        @include md {
+          margin-right: 10px;
+        }
+
+        @media screen and (max-width: 750px) {
+          margin-right: 40px;
+        }
+
+        @include sm {
+          border: none;
+        }
+
         .search {
           font-size: 20px;
           margin-left: 10px;
+
+          @include sm {
+            margin-right: 20px;
+            margin-left: 0;
+          }
         }
 
         input {
@@ -133,9 +176,23 @@
           font-family: "Gabarito", sans-serif;
           width: 100%;
 
+          @media screen and (max-width: 750px) {
+            font-size: 10px;
+
+            @include sm {
+              display: none;
+              position: absolute;
+              width: 300px;
+            }
+          }
+
           &::placeholder {
             font-weight: bold;
             font-size: 14px;
+
+            @media screen and (max-width: 750px) {
+              font-size: 10px;
+            }
           }
         }
 
@@ -153,10 +210,20 @@
           border-radius: 5px;
           padding: 10px;
 
-          .recentSearched{
-               font-size: 14px;
-               color: green;
-               pointer-events: none;
+          @include md {
+            left: -100%;
+            top: 150%;
+          }
+
+          @include sm {
+            left: -649%;
+            top: 155%;
+          }
+
+          .recentSearched {
+            font-size: 14px;
+            color: green;
+            pointer-events: none;
           }
 
           p {
