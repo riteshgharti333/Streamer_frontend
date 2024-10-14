@@ -75,7 +75,7 @@ const MobileBurger = () => {
         {/* Web Series Dropdown */}
         <div className="mLink">
           <Link className="menu-item mSeriesLink" to={"/series"}>
-            Web Series
+            Series
           </Link>
           {openDropdown === "series" ? (
             <>

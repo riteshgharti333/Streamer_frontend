@@ -28,7 +28,7 @@
         color: green;
 
         @include sm {
-          font-size: 40px;
+          font-size: 35px;
         }
 
         @media screen and (max-width: 420px) {
@@ -86,6 +86,10 @@
           font-size: 16px;
         }
 
+        @media screen and (max-width: 350px) {
+          display: none;
+        }
+
         &:hover {
           .genre {
             display: flex;
@@ -128,13 +132,27 @@
         position: relative;
 
         @include sm {
-          &.openSearch {
+          &.closedSearch {
             input {
               display: block;
               background-color: black;
-              position: absolute;
-              width: 250px;
-              left: -555%;
+              width: 100vw; /* Full screen width */
+              position: fixed; /* Change to fixed to position relative to the viewport */
+              left: 0;    /* Align with the left side of the viewport */
+              top: 9%;   /* Optional: adjust vertical positioning */
+              transform: translateY(-50%); /* Vertically center the input */
+              z-index: 1000;
+              font-size: 20px;
+
+              @include sm{
+                top: 58px;
+              }
+
+              @media screen and (max-width: 420px) {
+                top: 54px;
+              }
+      
+              
             }
           }
         }
@@ -149,6 +167,7 @@
 
         @media screen and (max-width: 750px) {
           margin-right: 40px;
+          
         }
 
         @include sm {
@@ -179,11 +198,13 @@
           @media screen and (max-width: 750px) {
             font-size: 10px;
 
-            @include sm {
-              display: none;
-              position: absolute;
-              width: 300px;
-            }
+          }
+
+          
+          @include sm {
+            display: none;
+            position: absolute;
+            width: 300px;
           }
 
           &::placeholder {
@@ -191,7 +212,7 @@
             font-size: 14px;
 
             @media screen and (max-width: 750px) {
-              font-size: 10px;
+              font-size: 15px;
             }
           }
         }
@@ -217,7 +238,7 @@
 
           @include sm {
             left: -649%;
-            top: 155%;
+            top: 325%;
           }
 
           .recentSearched {
@@ -232,6 +253,10 @@
             cursor: pointer;
             font-family: "Gabarito", sans-serif;
             font-weight: bold;
+
+            &:hover {
+              background-color: #333;
+            }
 
             .searchType {
               color: red;

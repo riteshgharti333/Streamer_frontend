@@ -8,23 +8,23 @@ import { getAsyncSigleMovie } from "../../redux/asyncThunks/movieThunks";
 import { getContentTypeFromPriceId } from "../../utils/subscriptionMapping";
 import { userProfileAsync } from "../../redux/asyncThunks/authThunks";
 import { Skeleton } from "@mui/material";
+import { useMediaQuery } from "@mui/material";
 
 const Watch = () => {
   const location = useLocation();
   const path = location.pathname.split("/")[2];
 
   const { user } = useSelector((state) => state.auth);
-
   const [movie, setMovie] = useState({});
   const [hasSubscription, setHasSubscription] = useState(true);
   const [subscriptionMessage, setSubscriptionMessage] = useState("");
-
   const [isLoading, setIsLoading] = useState(true);
-
   const dispatch = useDispatch();
-
   const { singleMovie } = useSelector((state) => state.movies);
   const { profile } = useSelector((state) => state.auth);
+
+  // Use media query to determine if screen is mobile
+  const isMobile = useMediaQuery("(max-width: 480px)");
 
   useEffect(() => {
     if (!profile) {
@@ -36,7 +36,7 @@ const Watch = () => {
     setIsLoading(true);
     dispatch(getAsyncSigleMovie(path));
     setIsLoading(false);
-  }, [dispatch , path]);
+  }, [dispatch, path]);
 
   useEffect(() => {
     if (singleMovie && singleMovie.getMovie) {
@@ -47,20 +47,16 @@ const Watch = () => {
   useEffect(() => {
     if (!user) {
       setSubscriptionMessage(
-        "You don’t have any active subscription. To enjoy unlimited access to movies and series, please choose one of our subscription plans.",
+        "You don’t have any active subscription. To enjoy unlimited access to movies and series, please choose one of our subscription plans."
       );
       setHasSubscription(false);
-      return; // Exit early since there's no user.
+      return;
     }
 
     if (singleMovie) {
       const seriesType = singleMovie.getMovie.isSeries;
-      const userPriceIds =
-        profile && profile.userDetails.subscription.map((sub) => sub.priceId);
-
-      const hasComboSubscription = userPriceIds?.includes(
-        import.meta.env.VITE_MOVIE_SERIES_KEY,
-      );
+      const userPriceIds = profile && profile.userDetails.subscription.map((sub) => sub.priceId);
+      const hasComboSubscription = userPriceIds?.includes(import.meta.env.VITE_MOVIE_SERIES_KEY);
 
       if (hasComboSubscription) {
         setHasSubscription(true);
@@ -74,9 +70,7 @@ const Watch = () => {
         }
       });
 
-      const hasMovieSubscription = MovieSubscription?.some(
-        (hasSubscription) => hasSubscription === true,
-      );
+      const hasMovieSubscription = MovieSubscription?.some((hasSubscription) => hasSubscription === true);
 
       const SeriesSubscription = userPriceIds?.map((priceId) => {
         if (priceId === import.meta.env.VITE_SERIES_KEY) {
@@ -85,28 +79,26 @@ const Watch = () => {
         }
       });
 
-      const hasSeriesSubscription = SeriesSubscription?.some(
-        (hasSubscription) => hasSubscription === true,
-      );
+      const hasSeriesSubscription = SeriesSubscription?.some((hasSubscription) => hasSubscription === true);
 
       if (seriesType && !hasSeriesSubscription) {
         setSubscriptionMessage(
-          "You don’t have an active series subscription. To enjoy unlimited access to series, please choose one of our subscription plans.",
+          "You don’t have an active series subscription. To enjoy unlimited access to series, please choose one of our subscription plans."
         );
         setHasSubscription(false);
       } else if (!seriesType && !hasMovieSubscription) {
         setSubscriptionMessage(
-          "You don’t have an active movies subscription. To enjoy unlimited access to movies, please choose one of our subscription plans.",
+          "You don’t have an active movies subscription. To enjoy unlimited access to movies, please choose one of our subscription plans."
         );
         setHasSubscription(false);
       } else if (!hasMovieSubscription && !hasSeriesSubscription) {
         setSubscriptionMessage(
-          "You don’t have any active subscription. To enjoy unlimited access to movies and series, please choose one of our subscription plans.",
+          "You don’t have any active subscription. To enjoy unlimited access to movies and series, please choose one of our subscription plans."
         );
         setHasSubscription(false);
       } else if (!user) {
         setSubscriptionMessage(
-          "You don’t have any active subscription. To enjoy unlimited access to movies and series, please choose one of our subscription plans.",
+          "You don’t have any active subscription. To enjoy unlimited access to movies and series, please choose one of our subscription plans."
         );
         setHasSubscription(false);
       }
@@ -157,17 +149,19 @@ const Watch = () => {
             <Skeleton variant="rectangular" width={700} height={300} />
           </div>
         ) : (
-          <>
-            <div className="video">
-              {/* <video src={movie.video} controls autoPlay muted></video> */}
-              {movie.video && (
-                <YouTube
-                  videoId={movie.video.split("v=")[1]}
-                  className="youtubeW"
-                />
-              )}
-            </div>
-          </>
+          <div className="video">
+            {/* Adjust width dynamically based on screen size */}
+            {movie.video && (
+              <YouTube
+                videoId={movie.video.split("v=")[1]}
+                opts={{
+                  width: isMobile ? "100%" : "700", // 100% width on mobile, fixed width on larger screens
+                  height: isMobile ? "200" : "300", // Adjust height as necessary
+                }}
+                className="youtubeW"
+              />
+            )}
+          </div>
         )}
         {isLoading ? (
           <div className="watchInfo">
@@ -177,17 +171,15 @@ const Watch = () => {
             <Skeleton width="100%" height={50} />
           </div>
         ) : (
-          <>
-            <div className="watchInfo">
-              <h1>{movie.title}</h1>
-              <p>{movie.desc}</p>
-              <span>{movie.year}</span>
-              <span className="line">|</span>
-              <span>{movie.age}+</span>
-              <span className="line">|</span>
-              <span>{movie.genre}</span>
-            </div>
-          </>
+          <div className="watchInfo">
+            <h1>{movie.title}</h1>
+            <p>{movie.desc}</p>
+            <span>{movie.year}</span>
+            <span className="line">|</span>
+            <span>{movie.age}+</span>
+            <span className="line">|</span>
+            <span>{movie.genre}</span>
+          </div>
         )}
       </div>
     </div>

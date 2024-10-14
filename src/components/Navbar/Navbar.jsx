@@ -1,14 +1,13 @@
 import "./navbar.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import MobileBurger from "../MobileBurger/MobileBurger";
 import { FaUser } from "react-icons/fa";
 import { genre } from "../../assets/data";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutAsyncUser } from "../../redux/asyncThunks/authThunks";
 import { IoSearch } from "react-icons/io5";
-import axios from "axios"; // Don't forget to import axios if you haven't already
+import axios from "axios";
 
 const Navbar = () => {
   const [scroll, setScroll] = useState(false);
@@ -16,9 +15,11 @@ const Navbar = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [recentSearches, setRecentSearches] = useState([]);
   const [openSearch, setOpenSearch] = useState(false);
+  const [searchInputValue, setSearchInputValue] = useState("");
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation(); // Track current path
 
   const { user } = useSelector((state) => state.auth);
 
@@ -37,6 +38,19 @@ const Navbar = () => {
     };
   }, []);
 
+  // Reset search state when navigating to a new page without search
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    const queryValue = queryParams.get("search") || "";
+    if (queryValue) {
+      setSearchInputValue(queryValue); // Restore input from query params
+      setSearch(true); // Show the search results area
+    } else {
+      setSearchInputValue(""); // Clear input when no search in the URL
+      setSearch(false);
+    }
+  }, [location]);
+
   const handleLogout = () => {
     dispatch(logoutAsyncUser());
     navigate("/login");
@@ -44,6 +58,7 @@ const Navbar = () => {
 
   const handleSearchChange = async (e) => {
     const searchValue = e.target.value.toLowerCase();
+    setSearchInputValue(searchValue); // Update input value
 
     if (searchValue.length === 0) {
       setSearch(false);
@@ -89,7 +104,7 @@ const Navbar = () => {
           const movieResults = response.data.results.map((movie) => ({
             id: movie.id,
             title: movie.title,
-            genre: "Movies",
+            genre: movie.genre || "Movies", // Use the movie's genre or default to "Movies"
             link: `/movies/${movie.id}`,
             isMovie: true,
           }));
@@ -117,9 +132,10 @@ const Navbar = () => {
   const navbarClass = scroll ? "navbar scrolled" : "navbar";
 
   const handleClick = (result) => {
-    navigate(`/single/${result.id}`);
-    setSearchResults([]); // Clear the search results correctly
+    navigate(result.link);
+    setSearchResults([]); 
     setSearch(false);
+    setSearchInputValue("");
   };
 
   return (
@@ -132,7 +148,7 @@ const Navbar = () => {
         </div>
 
         <div className="right">
-          <div className="mobileSidebar navOptions">
+          <div className="mobileSidebar">
             <MobileBurger />
           </div>
           <span className="navOptions moviesLink">
@@ -156,17 +172,26 @@ const Navbar = () => {
               ))}
             </div>
           </span>
-          <span className={`searchOption ${openSearch ? "" : "openSearch" }`}>
-            <IoSearch className="search"  />
-            <input
-              type="search"s
-              placeholder="Movies, Series and more"
-              onChange={handleSearchChange}
-              // onBlur={handleInputBlur} // Hide on blur
-              onFocus={handleInputFocus} // Show on focus
+
+          <span className={`searchOption ${!openSearch ? "" : "closedSearch"}`}>
+            <IoSearch
+              className="search"
+              onClick={() => setOpenSearch(!openSearch)}
             />
 
-            {search ? (
+            <input
+              type="search"
+              placeholder="Movies, Series and more"
+              value={searchInputValue}
+              onChange={(e) => {
+                setSearchInputValue(e.target.value); // Update state on input change
+                handleSearchChange(e); // Call search handler
+              }}
+              onFocus={handleInputFocus}
+              className="searchInput"
+            />
+
+            {search && (
               <div className="searchItem">
                 <p className="recentSearched">Search Results</p>
 
@@ -178,7 +203,7 @@ const Navbar = () => {
                       onClick={() => handleClick(result)}
                     >
                       <p>
-                        {result.title} <span className="searchType">/</span>{" "}
+                        {result.title} <span className="searchType">/ </span>
                         <span className="searchValue">{result.genre}</span>
                       </p>
                     </Link>
@@ -187,15 +212,14 @@ const Navbar = () => {
                   <p>No result found!</p>
                 )}
 
-                {/* Recent Searches Section */}
                 {recentSearches.length > 0 && (
                   <div className="recentSearches">
                     <p className="recentSearched">Recent Searches</p>
                     {recentSearches.map((recentSearch, index) => (
                       <Link
-                        to={`/query?search=${recentSearch}`} // Adjust the link based on your routing
+                        to={`/query?search=${recentSearch}`}
                         key={index}
-                        onClick={() => handleClick({ title: recentSearch })} // Optional: define behavior here
+                        onClick={() => handleClick({ title: recentSearch })}
                       >
                         <p>{recentSearch}</p>
                       </Link>
@@ -203,7 +227,7 @@ const Navbar = () => {
                   </div>
                 )}
               </div>
-            ) : null}
+            )}
           </span>
 
           <Link to="/subscriptions">
