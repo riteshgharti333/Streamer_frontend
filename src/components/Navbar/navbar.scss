@@ -50,7 +50,7 @@
         font-family: "Gabarito", sans-serif;
         font-size: 20px;
         font-weight: 600;
-        margin-right: 60px;
+        margin-right: 20px;
         color: white;
         padding: 5px;
         display: flex;
@@ -107,7 +107,7 @@
           background: black;
           color: white;
           flex-direction: column;
-          width: 300px;
+          width: 200px;
           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
           border-radius: 5px;
 
@@ -124,7 +124,7 @@
       }
 
       .searchOption {
-        margin-right: 60px;
+        margin-right: 20px;
         border: 1px solid white;
         display: flex;
         align-items: center;
@@ -136,23 +136,21 @@
             input {
               display: block;
               background-color: black;
-              width: 100vw; /* Full screen width */
-              position: fixed; /* Change to fixed to position relative to the viewport */
-              left: 0;    /* Align with the left side of the viewport */
-              top: 9%;   /* Optional: adjust vertical positioning */
-              transform: translateY(-50%); /* Vertically center the input */
+              width: 100vw; 
+              position: fixed;
+              left: 0; 
+              top: 9%; 
+              transform: translateY(-50%);
               z-index: 1000;
               font-size: 20px;
 
-              @include sm{
+              @include sm {
                 top: 58px;
               }
 
               @media screen and (max-width: 420px) {
                 top: 54px;
               }
-      
-              
             }
           }
         }
@@ -167,7 +165,6 @@
 
         @media screen and (max-width: 750px) {
           margin-right: 40px;
-          
         }
 
         @include sm {
@@ -197,10 +194,8 @@
 
           @media screen and (max-width: 750px) {
             font-size: 10px;
-
           }
 
-          
           @include sm {
             display: none;
             position: absolute;

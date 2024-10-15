@@ -12,8 +12,11 @@ import { profileSchema } from "../../schemas";
 import { useFormik } from "formik";
 import { deleteSubscriptionAsync } from "../../redux/asyncThunks/subscriptionThunks";
 import { Skeleton } from "@mui/material";
+import axios from "axios";
 
 export default function Profile() {
+  const baseUrl = import.meta.env.VITE_API_KEY;
+
   const navigate = useNavigate();
   const [subscriptionData, setSubscriptionData] = useState([]);
   const [openCancelId, setOpenCancelId] = useState(null);
@@ -32,17 +35,13 @@ export default function Profile() {
     const fetchProfileData = async () => {
       setIsLoading(true);
 
-      // Fetch user profile only if it doesn't exist
-      if (!profile) {
-        await dispatch(userProfileAsync()).unwrap;
-      }
+      const { data } = await axios.get(`${baseUrl}/auth/profile`, {
+        withCredentials: true,
+      });
 
-      // Destructure userDetails to simplify access
-      const { userDetails } = profile || {};
-
-      if (userDetails) {
-        setSubscriptionData(userDetails.subscription);
-        setProfileData(userDetails.user);
+      if (data) {
+        setSubscriptionData(data.userDetails.subscription);
+        setProfileData(data.userDetails.user);
       }
 
       setIsLoading(false);
@@ -89,7 +88,7 @@ export default function Profile() {
           const response = await dispatch(updateProfileAsync(values)).unwrap();
           localStorage.setItem(
             "user",
-            JSON.stringify({ ...user, user: response.user }),
+            JSON.stringify({ ...user, user: response.user })
           );
           toast.success(response.message);
         } catch (error) {

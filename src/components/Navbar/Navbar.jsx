@@ -17,6 +17,8 @@ const Navbar = () => {
   const [openSearch, setOpenSearch] = useState(false);
   const [searchInputValue, setSearchInputValue] = useState("");
 
+  const baseUrl = import.meta.env.VITE_API_KEY
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation(); // Track current path
@@ -94,7 +96,7 @@ const Navbar = () => {
 
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/movies/search`,
+          `${baseUrl}/movies/search`,
           {
             params: { query: searchValue },
           }

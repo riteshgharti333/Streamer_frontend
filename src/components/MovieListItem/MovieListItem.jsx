@@ -21,7 +21,7 @@ const MovieListItem = ({ item }) => {
       setMovie(response.getMovie);
     };
     fetchMovie();
-    setIsLoading(true);
+    setIsLoading(false);
   }, [dispatch, item]);
 
   return (
