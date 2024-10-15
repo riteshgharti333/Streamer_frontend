@@ -34,7 +34,11 @@
     }
   }
   .queryMovies {
-    margin: 5px 20px 10px 20px;
+    padding: 10px 20px;
+
+    @include md{
+      padding: 10px;
+    }
 
     @include md {
       margin: 0px 5px;
@@ -49,6 +53,7 @@
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       gap: 65px;
       row-gap: 20px;
+      padding: 0px 1px;
 
       &.hasError {
         display: block;
@@ -57,31 +62,31 @@
       @include xxxl {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: 5px;
+        gap: 10px;
       }
 
       @include xxl {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: 5px;
+        gap: 10px;
       }
 
       @include xl {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 5px;
+        gap: 10px;
       }
 
       @include lg {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 5px;
+        gap: 10px;
       }
 
       @include md {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 5px;
+        gap: 10px;
       }
 
       @include sm {

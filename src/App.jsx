@@ -5,6 +5,7 @@ import {
   Navigate,
   useLocation,
 } from "react-router-dom";
+import { useEffect } from "react";  // Import useEffect
 import Homepage from "./pages/Homepage/Homepage";
 import Subscriptions from "./pages/Subscriptions/Subscriptions";
 import Login from "./pages/Login/Login";
@@ -24,9 +25,21 @@ import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword/ResetPassword";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 
+// Function to scroll to the top on route change
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scrolls to top
+  }, [pathname]);
+
+  return null;
+};
+
 function App() {
   return (
     <Router>
+      <ScrollToTop /> {/* Add this to ensure page scrolls to top */}
       <Layout />
       <ToastContainer
         position="top-center"
@@ -75,7 +88,6 @@ function Layout() {
         <Route path="/subscriptions" element={<Subscriptions />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="*" element={<NotFoundPage />} />
-
 
         <Route
           path="/updatepassword"

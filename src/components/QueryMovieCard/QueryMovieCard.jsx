@@ -26,8 +26,9 @@ const QueryMovieCard = ({ query, isLoading }) => {
         ) : (
           <div className="queryMovie">
             <img src={smImg} alt={title} />
-            <p className="title">{title}</p>
+           
             <div className="queryMoviesInfo">
+            <p className="title">{title}</p>
               <span>{year}</span>
               <span className="line">|</span>
               <span>{age} +</span>

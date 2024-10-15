@@ -62,7 +62,7 @@ const Subscriptions = () => {
   return (
     <div className="subscriptions">
       <div className="subscriptionsTop">
-        <Link to="#" onClick={goBack}>
+        <Link to="#" onClick={goBack} className="backLink">
           <BsArrowLeft className="backIcon" />
         </Link>
         <h1>Subscriptions</h1>

@@ -108,7 +108,7 @@ const Watch = () => {
   const NoSubscription = () => {
     return (
       <div className="noSub">
-        <div className="noSubInfo">
+        <div className="noSubInfo bg-primary">
           <h2>No Active Subscription</h2>
           <p>{subscriptionMessage}</p>
           <div className="noSubActions">
