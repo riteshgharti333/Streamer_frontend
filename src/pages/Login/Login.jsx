@@ -25,7 +25,8 @@ export default function Login() {
       onSubmit: async (values) => {
         try {
           const response = await dispatch(loginAsyncUser(values)).unwrap();
-          if(response){
+          console.log(response);
+          if(response && response.message){
             toast.success(response.message);
             navigate("/");
           }
