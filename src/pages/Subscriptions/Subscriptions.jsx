@@ -34,12 +34,12 @@ const Subscriptions = () => {
         createAsyncCustomer({
           email: user.user.email,
           paymentMethod: "pm_card_visa",
-        }),
+        })
       ).unwrap();
       if (customerResult && customerResult.id) {
         // Create a subscription session
         const sessionResult = await dispatch(
-          createAsyncSubscriptionSession(subscriptionData),
+          createAsyncSubscriptionSession(subscriptionData)
         ).unwrap();
 
         // Redirect to Stripe Checkout
@@ -48,7 +48,7 @@ const Subscriptions = () => {
         } else {
           console.error(
             "Failed to create subscription session:",
-            sessionResult.payload,
+            sessionResult.payload
           );
         }
       } else {

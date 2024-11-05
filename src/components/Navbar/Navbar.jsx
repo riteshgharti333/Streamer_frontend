@@ -21,7 +21,7 @@ const Navbar = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const location = useLocation(); // Track current path
+  const location = useLocation();
 
   const { user } = useSelector((state) => state.auth);
 

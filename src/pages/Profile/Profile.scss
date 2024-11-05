@@ -66,23 +66,23 @@
                   font-family: "Gabarito", sans-serif;
                   background-color: transparent;
                   border: none;
-                  border-bottom: 2px solid white;
+                  border-bottom: 2px solid #fff;
                   font-size: 24px;
                   font-weight: bold;
-                  color: white;
+                  color: #fff;
                   text-align: center;
                   outline: none;
                 }
               }
               .formError {
-                color: red;
+                color: #ff0000;
               }
             }
           }
 
           .profileName {
             h3 {
-              color: white;
+              color: #fff;
               text-align: center;
               margin: 15px 0px;
               font-size: 25px;
@@ -92,7 +92,7 @@
           .profileEmail {
             p {
               text-align: center;
-              color: white;
+              color: #fff;
               font-size: 20px;
               font-weight: 600;
             }
@@ -100,7 +100,7 @@
 
           .profileInputForm {
             .formError {
-              color: red;
+              color: #ff0000;
               font-weight: 600;
               margin-top: 5px;
             }
@@ -114,10 +114,10 @@
           border: none;
           font-size: 20px;
           font-weight: 600;
-          background-color: aqua;
+          background-color: #00ffff;
           border-radius: 3px;
           padding: 5px 10px;
-          color: white;
+          color: #fff;
           cursor: pointer;
           letter-spacing: 2px;
           width: 100%;
@@ -130,7 +130,7 @@
           }
 
           &:first-child {
-            background-color: red;
+            background-color: #ff0000;
 
             &:hover {
               background-color: rgb(182, 17, 17);
@@ -139,7 +139,7 @@
         }
       }
       .changePwd {
-        color: white;
+        color: #fff;
         letter-spacing: 2px;
         text-align: center;
       }
@@ -150,7 +150,7 @@
     }
     .subscriptionPlans {
       letter-spacing: 1px;
-      color: white;
+      color: #fff;
 
       padding-right: 10px;
       &::-webkit-scrollbar {
@@ -230,17 +230,17 @@
           }
           .subscriptionPlansDataBtn {
             button {
-              background-color: aqua;
+              background-color: #00ffff;
               cursor: pointer;
               padding: 7px;
-              color: white;
+              color: #fff;
               border: none;
               font-size: 16px;
               letter-spacing: 1px;
               border-radius: 2px;
               &:first-child {
                 margin-right: 5px;
-                background-color: red;
+                background-color: #ff0000;
               }
             }
           }
@@ -254,7 +254,7 @@
       color: rgb(187, 22, 22);
 
       .seeplan {
-        color: aqua;
+        color: #00ffff;
         cursor: pointer;
         margin-left: 5px;
 
@@ -280,7 +280,7 @@
 
   .openCancelInfo {
     p {
-      color: black;
+      color: #000;
     }
     button {
       border-radius: 3px;
@@ -293,7 +293,7 @@
       float: right;
       cursor: pointer;
       margin-left: 10px;
-      background-color: aqua;
+      background-color: #00ffff;
     }
 
     :last-child {

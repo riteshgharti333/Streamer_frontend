@@ -15,10 +15,10 @@
 
     button {
       position: absolute;
-      background-color: aqua;
+      background-color: #00ffff;
       z-index: 10;
-      top: 90%; /* Move down to the middle of the container */
-      left: 50%; /* Move to the middle of the container */
+      top: 90%;
+      left: 50%;
       transform: translate(-50%, -50%);
 
       border: none;
@@ -28,7 +28,7 @@
       border-radius: 5px;
 
       &:hover {
-        background: teal;
+        background: #008080;
       }
     }
   }

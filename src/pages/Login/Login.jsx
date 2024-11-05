@@ -26,11 +26,10 @@ export default function Login() {
         try {
           const response = await dispatch(loginAsyncUser(values)).unwrap();
           console.log(response);
-          if(response && response.message){
+          if (response && response.message) {
             toast.success(response.message);
             navigate("/");
           }
-        
         } catch (error) {
           toast.error(error.message);
           console.log(error);

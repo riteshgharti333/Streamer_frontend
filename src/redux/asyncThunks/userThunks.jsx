@@ -6,8 +6,8 @@ export const getAsyncUsers = createAsyncThunk(
   "users/getUsers",
   async (_, { rejectWithValue }) => {
     try {
-      const res = await getUsers();
-      return res.data;
+      const response = await getUsers();
+      return response.data;
     } catch (error) {
       console.log(error);
       return rejectWithValue(error.message || "Failed to fetch users");
@@ -20,8 +20,8 @@ export const getAsyncSingleUser = createAsyncThunk(
   "users/getSingleUser",
   async (id, { rejectWithValue }) => {
     try {
-      const res = await getSingleUser(id);
-      return res.data;
+      const response = await getSingleUser(id);
+      return response.data;
     } catch (error) {
       console.log(error);
       return rejectWithValue(error.message || "Failed to fetch user");

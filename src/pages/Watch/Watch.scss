@@ -25,8 +25,6 @@
       align-items: center;
 
       .youtubeW {
-
-      
       }
     }
 
@@ -65,7 +63,7 @@
       }
 
       .line {
-        color: red;
+        color: #ff0000;
       }
     }
   }
@@ -87,10 +85,10 @@
       background-color: aquamarine;
       width: 800px;
       margin: 0px 10px;
-      color: white;
+      color: #fff;
       border-radius: 5px;
 
-      h1{
+      h1 {
         letter-spacing: 1px;
       }
 
@@ -101,7 +99,7 @@
         float: right;
 
         button {
-          background-color: green;
+          background-color: #008000;
           padding: 5px;
           border: none;
           font-weight: 500;
@@ -111,7 +109,7 @@
           cursor: pointer;
           margin-top: 10px;
           border-radius: 2px;
-          color: white;
+          color: #fff;
         }
       }
     }

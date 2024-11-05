@@ -5,7 +5,7 @@ import {
   Navigate,
   useLocation,
 } from "react-router-dom";
-import { useEffect } from "react";  // Import useEffect
+import { useEffect } from "react";
 import Homepage from "./pages/Homepage/Homepage";
 import Subscriptions from "./pages/Subscriptions/Subscriptions";
 import Login from "./pages/Login/Login";
@@ -39,7 +39,7 @@ const ScrollToTop = () => {
 function App() {
   return (
     <Router>
-      <ScrollToTop /> {/* Add this to ensure page scrolls to top */}
+      <ScrollToTop />
       <Layout />
       <ToastContainer
         position="top-center"

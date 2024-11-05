@@ -1,9 +1,7 @@
 @import "../../styles/responsive.scss";
 
-
 .homePage {
- 
-  @include md{
+  @include md {
     min-height: 100vh;
   }
 

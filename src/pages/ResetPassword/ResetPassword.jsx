@@ -34,7 +34,7 @@ const ResetPassword = () => {
 
           const response = await axios.post(
             `${baseUrl}/auth/reset-password/${id}/${token}`,
-            payload,
+            payload
           );
 
           toast.success(response.data.message);
@@ -43,7 +43,7 @@ const ResetPassword = () => {
           console.log(error);
           toast.error(
             error.response?.data?.message ||
-              "Something went wrong, please try again.",
+              "Something went wrong, please try again."
           );
         }
       },

@@ -12,7 +12,7 @@
     padding: 10px;
     h1 {
       text-align: center;
-      color: green;
+      color: #008000;
       font-size: 60px;
       letter-spacing: 2px;
     }
@@ -26,8 +26,7 @@
     padding: 20px 40px;
     gap: 20px;
     border-radius: 6px;
-    box-shadow:
-      rgba(0, 0, 0, 0.19) 0px 10px 20px,
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
       rgba(0, 0, 0, 0.23) 0px 6px 6px;
     width: 400px;
     margin: 0 auto;
@@ -54,7 +53,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background: white;
+        background: #fff;
         border-radius: 10px;
         padding: 10px 30px;
 
@@ -71,7 +70,7 @@
           font-family: "Gabarito", sans-serif;
 
           &::placeholder {
-            color: black;
+            color: #000;
             font-size: 18px;
           }
 
@@ -81,7 +80,7 @@
         }
       }
       .formError {
-        color: red;
+        color: #ff0000;
       }
     }
     .forgot {
@@ -93,10 +92,10 @@
       }
     }
     span {
-      color: black;
+      color: #000;
 
       .signupLink {
-        color: green;
+        color: #008000;
       }
     }
 
