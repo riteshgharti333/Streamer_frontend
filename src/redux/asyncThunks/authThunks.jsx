@@ -14,7 +14,7 @@ export const loginAsyncUser = createAsyncThunk(
   async (userData, { rejectWithValue }) => {
     try {
       const response = await loginUser(userData);
-      localStorage.setItem("user", JSON.stringify(res.data));
+      localStorage.setItem("user", JSON.stringify(response.data));
       return response.data;
     } catch (error) {
       console.error("Failed to log in:", error);
@@ -29,6 +29,7 @@ export const registerAsyncUser = createAsyncThunk(
   async (userData, { rejectWithValue }) => {
     try {
       const response = await registerUser(userData);
+      localStorage.setItem("user", JSON.stringify(response.data));
       return response.data;
     } catch (error) {
       console.error("Failed to register:", error);

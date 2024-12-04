@@ -35,7 +35,7 @@ export default function Register() {
           const response = await dispatch(registerAsyncUser(values)).unwrap();
           if (response && response.message) {
             toast.success(response.message);
-            navigate("/login");
+            navigate("/");
           }
         } catch (error) {
           toast.error(error.message);
@@ -100,12 +100,12 @@ export default function Register() {
             />
             {showPassword ? (
               <BiHide
-                className="inputIcon"
+                className="viewIcon"
                 onClick={togglePasswordVisibility}
               />
             ) : (
               <BiShow
-                className="inputIcon"
+                className="viewIcon"
                 onClick={togglePasswordVisibility}
               />
             )}

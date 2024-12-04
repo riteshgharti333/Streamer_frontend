@@ -11,12 +11,14 @@ export const loginUser = (userData) => {
 
 // REGISTER USER
 export const registerUser = (userData) => {
-  return axios.post(`${baseUrl}/auth/register`, userData);
+  return axios.post(`${baseUrl}/auth/register`, userData, {
+    withCredentials: true,
+  });
 };
 
 // LOGOUT USER
 export const logoutUser = () => {
-  return axios.get(`${baseUrl}/auth/logout`);
+  return axios.get(`${baseUrl}/auth/logout`, { withCredentials: true });
 };
 
 // USER PROFILE

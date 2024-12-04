@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logoutAsyncUser } from "../../redux/asyncThunks/authThunks";
 import { IoSearch } from "react-icons/io5";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const [scroll, setScroll] = useState(false);
@@ -17,7 +18,7 @@ const Navbar = () => {
   const [openSearch, setOpenSearch] = useState(false);
   const [searchInputValue, setSearchInputValue] = useState("");
 
-  const baseUrl = import.meta.env.VITE_API_KEY
+  const baseUrl = import.meta.env.VITE_API_KEY;
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -55,6 +56,8 @@ const Navbar = () => {
 
   const handleLogout = () => {
     dispatch(logoutAsyncUser());
+    localStorage.removeItem("user");
+    toast.success("Logout Successfuly");
     navigate("/login");
   };
 
@@ -95,12 +98,9 @@ const Navbar = () => {
       setSearchResults(suggestions); // Set search results to suggestions
 
       try {
-        const response = await axios.get(
-          `${baseUrl}/movies/search`,
-          {
-            params: { query: searchValue },
-          }
-        );
+        const response = await axios.get(`${baseUrl}/movies/search`, {
+          params: { query: searchValue },
+        });
 
         if (response.data.success) {
           const movieResults = response.data.results.map((movie) => ({
@@ -135,7 +135,7 @@ const Navbar = () => {
 
   const handleClick = (result) => {
     navigate(result.link);
-    setSearchResults([]); 
+    setSearchResults([]);
     setSearch(false);
     setSearchInputValue("");
   };
@@ -214,7 +214,7 @@ const Navbar = () => {
                   <p>No result found!</p>
                 )}
 
-                {recentSearches.length > 0 && (
+                {/* {recentSearches.length > 0 && (
                   <div className="recentSearches">
                     <p className="recentSearched">Recent Searches</p>
                     {recentSearches.map((recentSearch, index) => (
@@ -227,7 +227,7 @@ const Navbar = () => {
                       </Link>
                     ))}
                   </div>
-                )}
+                )} */}
               </div>
             )}
           </span>
